@@ -18,16 +18,19 @@ ActiveRecord::Schema.define(version: 20171023072736) do
   create_table "events", force: :cascade do |t|
     t.string   "description"
     t.datetime "datetime"
+    t.string   "title"
     t.string   "winner"
     t.string   "address"
     t.integer  "coins"
     t.integer  "experience"
     t.integer  "game_id"
-    t.integer  "user_id"
+    t.integer  "host_id"
+    t.integer  "players_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["game_id"], name: "index_events_on_game_id", using: :btree
-    t.index ["user_id"], name: "index_events_on_user_id", using: :btree
+    t.index ["host_id"], name: "index_events_on_host_id", using: :btree
+    t.index ["players_id"], name: "index_events_on_players_id", using: :btree
   end
 
   create_table "games", force: :cascade do |t|
@@ -37,6 +40,20 @@ ActiveRecord::Schema.define(version: 20171023072736) do
     t.integer  "game_length"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "hosts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_hosts_on_user_id", using: :btree
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_players_on_user_id", using: :btree
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -71,7 +88,10 @@ ActiveRecord::Schema.define(version: 20171023072736) do
   end
 
   add_foreign_key "events", "games"
-  add_foreign_key "events", "users" column_id: "owner_id"
+  add_foreign_key "events", "hosts"
+  add_foreign_key "events", "players", column: "players_id"
+  add_foreign_key "hosts", "users"
+  add_foreign_key "players", "users"
   add_foreign_key "surveys", "events"
   add_foreign_key "surveys", "users"
 end
