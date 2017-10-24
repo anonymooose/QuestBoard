@@ -15,6 +15,12 @@ class User < ApplicationRecord
     :case_sensitive => false
   }
 
+
+  def self.get_by_username(usr)
+    #currently case sensitive
+    return User.where(username:usr.to_s)[0]
+  end
+
   private
 
   def initialize_host
