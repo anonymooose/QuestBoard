@@ -40,8 +40,64 @@ Event.create(
     host: Host.get_by_username('trevor')
   }
 )
-#5 users, 3 games, 2 events
+
+Event.create(
+  {
+    description: "Monopoly is one of the BEST BOARD GAMES EVER!!!!!!",
+    datetime: Time.now + 10000,
+    title: "CARLA HOSTS GAME",
+    address: 'Lewagon Street',
+    coins: 10,
+    experience: 100,
+    game: Game.get_by_name('Monopoly'),
+    host: Host.get_by_username('carla')
+  }
+)
+
+#5 users/hosts, 3 games, 3 events
 #fill admin game to max
 Event.first.add_user(User.get_by_username('trevor'))
 Event.first.add_user(User.get_by_username('james'))
 Event.first.add_user(User.get_by_username('rose'))
+
+Event.last.add_user(User.get_by_username('trevor'))
+Event.last.add_user(User.get_by_username('james'))
+Event.last.add_user(User.get_by_username('admin'))
+
+User.create(username:'randomguy1',email:'random1@gmail.com',password:'123123')
+Event.last.add_user(User.last)
+User.create(username:'randomguy2',email:'random2@gmail.com',password:'123123')
+Event.last.add_user(User.last)
+User.create(username:'randomguy3',email:'random3@gmail.com',password:'123123')
+Event.last.add_user(User.last)
+User.create(username:'randomguy4',email:'random4@gmail.com',password:'123123')
+Event.last.add_user(User.last)
+User.create(username:'randomguy5',email:'random5@gmail.com',password:'123123')
+
+
+Event.create(
+  {
+    description: "I just wanna play mouse trap with trevor",
+    datetime: Time.now + 10000,
+    title: "Come play mouse trap with james",
+    address: 'Adelaide University',
+    coins: 15,
+    experience: 120,
+    game: Game.first,
+    host: Host.get_by_username('james')
+  }
+)
+
+
+Event.create(
+  {
+    description: "Mouse trap is pretty popular recently, so I'll host one",
+    datetime: Time.now + 10000,
+    title: "CARLA HOSTS GAME",
+    address: 'Lewagon Street',
+    coins: 10,
+    experience: 100,
+    game: Game.first,
+    host: Host.get_by_username('carla')
+  }
+)
