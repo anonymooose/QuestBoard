@@ -37,7 +37,7 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.get_by_name('Operation'),
-    host: Host.get_by_username('trevor')
+    host: Host.find(2)
   }
 )
 
@@ -50,7 +50,7 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.get_by_name('Monopoly'),
-    host: Host.get_by_username('carla')
+    host: Host.find(5)
   }
 )
 
@@ -84,7 +84,7 @@ Event.create(
     coins: 15,
     experience: 120,
     game: Game.first,
-    host: Host.get_by_username('james')
+    host: Host.find(3)
   }
 )
 
@@ -98,6 +98,6 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.first,
-    host: Host.get_by_username('carla')
+    host: Host.find(5)
   }
 )
