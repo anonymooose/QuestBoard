@@ -4,12 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
+  attr_accessor :username
+  attr_accessor :login
 
   has_many :surveys
   has_one :host, dependent: :destroy
   has_many :players
   after_create :initialize_host, :initialize_user
-  validates :username, presence: true
+  validates :username, presence: true, :uniqueness => {
+    :case_sensitive => false
+  }
+
 
   def self.get_by_username(usr)
     #currently case sensitive
@@ -40,7 +45,7 @@ class User < ApplicationRecord
     user = User.find_by(provider: auth.provider, uid: auth.uid)
     user ||= User.find_by(email: auth.info.email) # User did a regular sign up in the past.
     if user
-      user_params[:username] = user_params["first_name"] + " " + user_params["last_name"]
+      user_params[:username] = user.username
       user.update(user_params)
     else
       user_params[:username] = user_params["first_name"] + " " + user_params["last_name"]
@@ -50,12 +55,16 @@ class User < ApplicationRecord
     end
 
     return user
-
-    def username(params)
-
-    end
-
   end
+
+   def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).first
+      end
+    end
 
 end
 
