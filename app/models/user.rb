@@ -9,8 +9,12 @@ class User < ApplicationRecord
   has_one :host, dependent: :destroy
   has_many :players
   after_create :initialize_host, :initialize_user
-  before_save :initialize_user
   validates :username, presence: true
+
+  def self.get_by_username(usr)
+    #currently case sensitive
+    return User.where(username:usr.to_s)[0]
+  end
 
   private
 
