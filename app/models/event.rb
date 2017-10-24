@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   has_one :survey
   belongs_to :host
   has_many :players
+  validates :game, :title, :address, :description, presence: true
 
   after_create :initialize_event
   before_update :ensure_gamesize
