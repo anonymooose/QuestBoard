@@ -8,8 +8,8 @@
 User.create(username:'admin',email:'admin@admin.com',password:"123123")
 User.create(username:'trevor',email:'trevor@admin.com',password:"123123")
 User.create(username:'james',email:'james@admin.com',password:"123123")
-User.create(username:'rose',email:'rose@admin.com',password:"123123")
-User.create(username:'carla',email:'carla@admin.com',password:"123123")
+User.create(username:'rose.desu',email:'rose@admin.com',password:"123123")
+User.create(username:'carla.desu',email:'carla@admin.com',password:"123123")
 
 Game.create(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
 Game.create(max_players:2, name:'Operation', complexity:9.6, game_length:180)
