@@ -10,7 +10,6 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.integer :experience
       t.references :game, foreign_key: true
       t.references :host, foreign_key: true
-      t.references :players, foreign_key: true
 
       t.timestamps
     end

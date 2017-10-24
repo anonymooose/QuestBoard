@@ -25,12 +25,10 @@ ActiveRecord::Schema.define(version: 20171024023002) do
     t.integer  "experience"
     t.integer  "game_id"
     t.integer  "host_id"
-    t.integer  "players_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["game_id"], name: "index_events_on_game_id", using: :btree
     t.index ["host_id"], name: "index_events_on_host_id", using: :btree
-    t.index ["players_id"], name: "index_events_on_players_id", using: :btree
   end
 
   create_table "games", force: :cascade do |t|
@@ -51,38 +49,38 @@ ActiveRecord::Schema.define(version: 20171024023002) do
 
   create_table "players", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_players_on_event_id", using: :btree
     t.index ["user_id"], name: "index_players_on_user_id", using: :btree
   end
 
   create_table "surveys", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
+    t.integer  "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_surveys_on_event_id", using: :btree
-    t.index ["user_id"], name: "index_surveys_on_user_id", using: :btree
+    t.index ["player_id"], name: "index_surveys_on_player_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",                       null: false
+    t.string   "encrypted_password",     default: "",                       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,                        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.string   "username"
-    t.float    "level"
-    t.integer  "wins"
-    t.integer  "coins"
-    t.string   "description"
+    t.float    "level",                  default: 1.0
+    t.integer  "wins",                   default: 0
+    t.integer  "coins",                  default: 0
+    t.string   "description",            default: "I'm a QuestBoard noob!"
     t.string   "provider"
     t.string   "uid"
     t.string   "facebook_picture_url"
@@ -96,9 +94,8 @@ ActiveRecord::Schema.define(version: 20171024023002) do
 
   add_foreign_key "events", "games"
   add_foreign_key "events", "hosts"
-  add_foreign_key "events", "players", column: "players_id"
   add_foreign_key "hosts", "users"
+  add_foreign_key "players", "events"
   add_foreign_key "players", "users"
-  add_foreign_key "surveys", "events"
-  add_foreign_key "surveys", "users"
+  add_foreign_key "surveys", "players"
 end

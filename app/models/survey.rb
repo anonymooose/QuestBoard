@@ -1,4 +1,3 @@
 class Survey < ApplicationRecord
-  belongs_to :user
-  belongs_to :event
+  belongs_to :player
 end

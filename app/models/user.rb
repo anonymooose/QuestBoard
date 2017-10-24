@@ -6,18 +6,16 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   has_many :surveys
-  has_many :events
-  has_one :host
-  has_one :player
-  after_create :initialize_host_and_player
+  has_one :host, dependent: :destroy
+  has_many :players
+  after_create :initialize_host, :initialize_user
   before_save :initialize_user
   validates :username, presence: true
 
   private
 
-  def initialize_host_and_player
+  def initialize_host
     Host.create(user_id:self.id)
-    Player.create(user_id:self.id)
   end
 
   def initialize_user
