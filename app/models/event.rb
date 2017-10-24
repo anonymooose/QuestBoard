@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   def add_user(usr)
     if self.game.max_players < self.players.length && !attending?(usr)
       self.players << Player.create(user:usr,event:self)
+      self.save
       return true
     end
     return false
