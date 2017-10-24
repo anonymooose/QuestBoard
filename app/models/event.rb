@@ -6,11 +6,12 @@ class Event < ApplicationRecord
   validates :game, :title, :address, :description, presence: true
 
   after_create :initialize_event
-  before_update :ensure_gamesize
+  before_save :ensure_gamesize
 
   def add_user(usr)
-    if self.game.max_players < self.players.length && !attending?(usr)
-      self.players << Player.create(user:usr,event:self)
+    if self.players.length < self.game.max_players && !attending?(usr)
+      player = Player.create(user:usr,event:self)
+      self.players << player
       self.save
       return true
     end
@@ -37,6 +38,7 @@ class Event < ApplicationRecord
   end
 
   def correct_players!
+    puts "WARNING! Semantic error. Event somehow has more players than allowed. resetting list to the first #{self.game.max_players}."
     self.players = []
     self.players.each { |player| self.players << player if self.players.length < self.game.max_players }
   end
