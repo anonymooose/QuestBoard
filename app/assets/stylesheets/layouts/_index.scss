@@ -8,6 +8,10 @@
   padding: 3em 0 2em 0;
 }
 
+.content-wrap {
+  min-height: calc(100vh - 70px);
+}
+
 .main-heading-group {
   h1 {
     text-transform: lowercase;
@@ -19,7 +23,7 @@
     font-family: $body-font;
     font-size: 24px;
     font-weight: 500;
-    margin: 10px 0 30px 0;
+    margin: 10px 0 0 0;
   }
 }
 
@@ -27,4 +31,9 @@
   h3 {
     text-transform: lowercase;
   }
+}
+
+.brand-blue-bg {
+  background: $brand-blue url(image-path('questboard_background.png')) center fixed;
+  background-size: cover;
 }

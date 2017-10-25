@@ -1,0 +1,39 @@
+.account-box {
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
+  .main-heading-group {
+    padding: 30px;
+    background-color: $brand-dark-gray;
+    h1 {
+      color: $brand-yellow;
+    }
+    h2 {
+      color: $brand-light-gray;
+    }
+  }
+  .btn-default:focus, .btn-default.focus, .btn-default:active {
+    background-color: $brand-red;
+    border-color: $brand-red;
+  }
+  .btn-default:active:focus {
+    color: #fff;
+    background-color: $brand-red;
+    border-color: $brand-red;
+  }
+  .alert {
+    margin-bottom: 30px;
+  }
+}
+
+.account-form-main {
+  padding: 30px;
+  background-color: lighten($brand-blue, 50%);
+}
+
+.account-footer {
+  padding: 30px;
+}
+
+
