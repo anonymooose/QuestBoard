@@ -7,3 +7,8 @@
   <%= f.button :submit, "Update" %>
 <% end %>
 
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my Account", user_path(@user), data: { confirm: "Are you sure? Once deleted, an account may NEVER be recovered!" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
