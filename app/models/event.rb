@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :game
   belongs_to :host
+  belongs_to :win, class_name: 'User'
   has_many :players
   has_many :surveys, through: :players
   validates :game, :title, :address, :description, presence: true
@@ -24,10 +25,6 @@ class Event < ApplicationRecord
       return true
     end
     return false
-  end
-
-  def win
-    return self.win
   end
 
   def attending?(usr)
@@ -69,7 +66,6 @@ class Event < ApplicationRecord
   end
 
   def correct_players!
-    puts "WARNING! Semantic error. Event somehow has more players than allowed. resetting list to the first #{self.game.max_players}."
     self.players = []
     self.players.each { |player| self.players << player if self.players.length < self.game.max_players }
   end
@@ -77,7 +73,12 @@ class Event < ApplicationRecord
 
   def geocode_address
     geo=Geokit::Geocoders::MultiGeocoder.geocode (address)
-    errors.add(:address, "Could not Geocode address") if !geo.success
+    if !geo.success
+      errors.add(:address, "Could not Geocode address")
+      self.lat = 0.0
+      self.lng = 0.0
+      #added so seed will still work properly if API is down
+    end
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
 

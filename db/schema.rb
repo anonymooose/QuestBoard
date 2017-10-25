@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025102551) do
+ActiveRecord::Schema.define(version: 20171025074812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20171025102551) do
     t.integer  "experience"
     t.integer  "game_id"
     t.integer  "host_id"
+    t.integer  "win_id"
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "users_id"
     t.index ["game_id"], name: "index_events_on_game_id", using: :btree
     t.index ["host_id"], name: "index_events_on_host_id", using: :btree
-    t.index ["users_id"], name: "win_id", using: :btree
+    t.index ["win_id"], name: "index_events_on_win_id", using: :btree
   end
 
   create_table "games", force: :cascade do |t|
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20171025102551) do
     t.datetime "updated_at",                                                null: false
     t.string   "username"
     t.float    "level",                  default: 1.0
-    t.integer  "wins",                   default: 0
     t.integer  "coins",                  default: 0
     t.string   "description",            default: "I'm a QuestBoard noob!"
     t.float    "lat"
@@ -101,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171025102551) do
 
   add_foreign_key "events", "games"
   add_foreign_key "events", "hosts"
+  add_foreign_key "events", "users", column: "win_id"
   add_foreign_key "hosts", "users"
   add_foreign_key "players", "events"
   add_foreign_key "players", "users"

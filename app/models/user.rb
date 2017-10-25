@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -6,7 +7,7 @@ class User < ApplicationRecord
   has_many :surveys
   has_one :host, dependent: :destroy
   has_many :players
-  has_many :wins, class_name: 'Event'
+  has_many :wins
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
   }
@@ -33,12 +34,15 @@ class User < ApplicationRecord
     return Survey.where(vote_id:self.id)[0]
   end
 
+  def wins
+    return Event.where(win_id:self.id)[0]
+  end
+
 
   private
   def ensure_new
     self.level = 1.0
     self.coins = 0
-    self.wins = []
     self.description = "I'm a QuestBoard noob!"
   end
 
