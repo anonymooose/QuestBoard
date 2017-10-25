@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def geocode_ip
-    geo=Geokit::Geocoders::MultiGeocoder.geocode (ip_address)
+    geo=Geokit::Geocoders::MultiGeocoder.geocode(ip_address)
     errors.add(:address, "Could not Geocode address") if !geo.success
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
