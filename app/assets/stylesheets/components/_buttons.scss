@@ -1,0 +1,70 @@
+// Buttons
+
+.brand-btn {
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.brand-alt-btn {
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.brand-btn-blue {
+  color: #fff;
+  background-color: $brand-blue;
+  border-color: $brand-blue;
+  &:hover {
+    color: #fff;
+    background-color: darken($brand-blue, 5%);
+    border-color: darken($brand-blue, 5%);
+  }
+}
+
+.brand-btn-red {
+  color: #fff;
+  background-color: $brand-red;
+  border-color: $brand-red;
+  &:hover {
+    color: #fff;
+    background-color: darken($brand-red, 5%);
+    border-color: darken($brand-red, 5%);
+  }
+}
+
+.brand-btn-yellow {
+  color: #fff;
+  background-color: $brand-yellow;
+  border-color: $brand-yellow;
+  &:hover {
+    color: #fff;
+    background-color: darken($brand-yellow, 5%);
+    border-color: darken($brand-yellow, 5%);
+  }
+}
+
+.brand-btn-red-invert {
+  color: $brand-red;
+  background-color: #fff;
+  border-color: #fff;
+  &:hover {
+    color: $brand-red;
+    background-color: darken(#fff, 5%);
+    border-color: darken(#fff, 5%);
+  }
+  &:focus {
+    color: $brand-red;
+  }
+}
+
+.brand-btn-blue:focus, .brand-btn-red:focus, .brand-btn-yellow:focus {
+  color: #fff;
+}
+
+
