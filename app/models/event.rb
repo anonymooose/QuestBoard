@@ -26,6 +26,10 @@ class Event < ApplicationRecord
     return false
   end
 
+  def win
+    return self.win
+  end
+
   def attending?(usr)
     return true if self.players.include?(usr)
     return false

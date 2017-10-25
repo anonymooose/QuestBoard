@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :surveys
   has_one :host, dependent: :destroy
   has_many :players
+  has_many :wins, class_name: 'Event'
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
   }
@@ -37,7 +38,7 @@ class User < ApplicationRecord
   def ensure_new
     self.level = 1.0
     self.coins = 0
-    self.wins = 0
+    self.wins = []
     self.description = "I'm a QuestBoard noob!"
   end
 
