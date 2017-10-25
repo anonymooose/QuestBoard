@@ -3,7 +3,13 @@
     <% @events.each do |event| %>
     <li><%= event.title %>
       <%= event.address %>
+      <% if @location != nil %>
       <%= event.distance_from(@location, :units=>:kms).round(1) %>km
+      <%= event.datetime %>
+      <% else @location = current_user.geocode_ip %>
+      <%= event.distance_from(@location, :units=>:kms).round(1) %>km
+      <%= event.datetime %>
+      <% end %>
     </li>
     <% end %>
   <% end %>
