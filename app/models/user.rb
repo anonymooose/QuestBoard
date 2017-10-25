@@ -8,12 +8,19 @@ class User < ApplicationRecord
   has_many :surveys
   has_one :host, dependent: :destroy
   has_many :players
-  after_create :initialize_host
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
   }
+  before_create :ensure_new
+  after_create :initialize_host
 
   private
+  def ensure_new
+    self.level = 1.0
+    self.coins = 0
+    self.wins = 0
+    self.description = "I'm a QuestBoard noob!"
+  end
 
   def initialize_host
     Host.create(user_id:self.id)
