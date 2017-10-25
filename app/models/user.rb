@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -13,11 +11,30 @@ class User < ApplicationRecord
     :case_sensitive => false
   }
 
+  acts_as_mappable :default_units => :kms,
+                   :default_formula => :sphere,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :lat,
+                   :lng_column_name => :lng
+
+  def ip_address
+    current_sign_in_ip
+  end
+
+  def geocode_ip
+    geo=Geokit::Geocoders::MultiGeocoder.geocode (ip_address)
+    errors.add(:address, "Could not Geocode address") if !geo.success
+    self.lat, self.lng = geo.lat,geo.lng if geo.success
+  end
+
+
   private
 
   def initialize_host
     Host.create(user_id:self.id)
   end
+
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
@@ -42,14 +59,20 @@ class User < ApplicationRecord
     return user
   end
 
-   def self.find_for_database_authentication(warden_conditions)
+  def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
         where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
       elsif conditions.has_key?(:username) || conditions.has_key?(:email)
         where(conditions.to_h).first
       end
-    end
+  end
+
+  def geocode_address
+    geo=Geokit::Geocoders::MultiGeocoder.geocode (ip_address)
+    errors.add(:address, "Could not Geocode address") if !geo.success
+    self.lat, self.lng = geo.lat,geo.lng if geo.success
+  end
 
 end
 

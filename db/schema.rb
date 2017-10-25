@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20171024023002) do
     t.integer  "experience"
     t.integer  "game_id"
     t.integer  "host_id"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["game_id"], name: "index_events_on_game_id", using: :btree
@@ -81,6 +83,8 @@ ActiveRecord::Schema.define(version: 20171024023002) do
     t.integer  "wins",                   default: 0
     t.integer  "coins",                  default: 0
     t.string   "description",            default: "I'm a QuestBoard noob!"
+    t.float    "lat"
+    t.float    "lng"
     t.string   "provider"
     t.string   "uid"
     t.string   "facebook_picture_url"

@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
+gem 'geokit-rails'
 gem 'simple_form'
 gem 'uglifier'
 
