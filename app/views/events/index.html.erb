@@ -1,4 +1,80 @@
-<ul>
+<div class="page-wrapper">
+    <div class="container">
+      <div class="ribbon-wrapper">
+        <div class="main-heading-group mrg-bottom">
+          <h1>Events</h1>
+        </div>
+      </div>
+      <div class="row">
+
+<% if !@events.blank? %>
+  <% @events.each do |event| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <div class="quest-header">
+            <div class="quest-date-box blue-box">
+              <span class="quest-date">
+                <time class="date" datetime="<%= event.datetime %>"></time>
+              </span>
+              <span class="quest-time">
+                <time class="time" datetime="<%= event.datetime %>"></time>
+              </span>
+            </div>
+            <div class="quest-top-info">
+              <span class="game-title">
+                Settlers of Catan
+              </span>
+              <span class="quest-distance">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <% if @location != nil %>
+                  <%= event.distance_from(@location, :units=>:kms).round(1) %> km from you
+                <% else @location = "Tokyo Station" %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+
+          <div class="quest-main">
+            <span class="event-title"><%= event.title.split.map { |i| i.capitalize }.join(' ') %></span>
+            <span class="rewards-title">Rewards</span>
+
+            <div class="quest-rewards">
+              <div class="reward-slot">
+                <%= image_tag("exp.svg") %>
+                <span class="reward-amount">650</span>
+              </div>
+              <div class="reward-slot">
+                <%= image_tag("coin.svg") %>
+                <span class="reward-amount">7</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="quest-footer">
+
+            <div class="event-host">
+              <%= image_tag("coin.svg") %>
+              <span class="host-pin">GM</span>
+            </div>
+
+            <span class="player-count">3/4 Players</span>
+            <%= link_to "See details", event_path(event), class: "btn brand-btn brand-btn-red" %>
+
+            <!-- <a class="btn brand-btn brand-btn-red" href="#" role="button">See details</a> -->
+          </div>
+        </div>
+      </div>
+            <% end %>
+      <% else %>
+        <div class="col-xs-12">
+          <p>Sorry, but there are currently no matches for your search.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- <ul>
   <% if !@events.blank? %>
     <% @events.each do |event| %>
     <li><%= event.title %>
@@ -12,4 +88,4 @@
     </li>
     <% end %>
   <% end %>
-</ul>
+</ul> -->
