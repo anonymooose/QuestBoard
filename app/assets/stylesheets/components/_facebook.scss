@@ -21,9 +21,11 @@
   &:hover {
     text-decoration: none;
     background-color: #405d9c;
+    color: #fff;
     transition: .2s ease-in-out;
   }
   &:active, &:focus {
     text-decoration: none;
+    color: #fff;
   }
 }

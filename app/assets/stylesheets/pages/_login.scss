@@ -6,6 +6,8 @@
   .main-heading-group {
     padding: 30px;
     background-color: $brand-dark-gray;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     h1 {
       color: $brand-yellow;
     }
@@ -25,15 +27,20 @@
   .alert {
     margin-bottom: 30px;
   }
+  .account-form-main {
+    padding: 30px;
+    background-color: lighten($brand-blue, 50%);
+  }
+
+  .account-footer {
+    padding: 30px;
+  }
+  .signup-link {
+    display: inline-block;
+    margin-top: 10px;
+  }
 }
 
-.account-form-main {
-  padding: 30px;
-  background-color: lighten($brand-blue, 50%);
-}
 
-.account-footer {
-  padding: 30px;
-}
 
 

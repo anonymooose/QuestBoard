@@ -36,4 +36,5 @@
 .brand-blue-bg {
   background: $brand-blue url(image-path('questboard_background.png')) center fixed;
   background-size: cover;
+  min-height: calc(100vh - 120px);
 }
