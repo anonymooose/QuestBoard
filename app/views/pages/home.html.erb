@@ -108,6 +108,7 @@
 <p>Find me in app/views/pages/home.html.erb</p>
 
 
+
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -120,7 +121,7 @@
       <div class="form-group">
         <%= text_field_tag :search_loc, params[:search_loc], placeholder: "location", class: "form-control input-size-large" %>
         <%= text_field_tag :search_date, params[:search_date], data:{ provide:'datepicker'}, placeholder: "date", class: "form-control input-size-large datepicker" %>
-        <%= select_tag :search_game, params[:search_game], placeholder: "game", class: "form-control input-size-large" %>
+        <%= text_field_tag :search_game, params[:search_game], placeholder: "game", class: "form-control input-size-large" %>
       </div>
       <%= submit_tag "search", :name => nil, class: "center-block btn btn-primary font-weight-extra-bold" %>
       <% end %>
