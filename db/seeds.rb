@@ -17,7 +17,7 @@ end
 Event.create!(
   {
     description: "Mouse trap has such a low complexity because nobody ever really played it, they just set up the traps and watched them",
-    datetime: Time.now + 10000,
+    datetime: Time.now + 10,
     title: "ADMIN HOSTS GAME",
     address: '123 Street',
     coins: 10,
