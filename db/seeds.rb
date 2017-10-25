@@ -1,21 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-User.create(username:'admin',email:'admin@admin.com',password:"123123")
-User.create(username:'trevor',email:'trevor@admin.com',password:"123123")
-User.create(username:'james',email:'james@admin.com',password:"123123")
-User.create(username:'rose.desu',email:'rose@admin.com',password:"123123")
-User.create(username:'carla.desu',email:'carla@admin.com',password:"123123")
+# In order to have a proper development environment,
+# please use rails db:reset from the terminal
+# instead of directly calling rails db:seed
+# TODO: Still need Game model seeder
 
-Game.create(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
-Game.create(max_players:2, name:'Operation', complexity:9.6, game_length:180)
-Game.create(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
+ADMINS = ['admin','trevor','rose','james','carla']
+Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
+Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
+Game.create!(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
 
-Event.create(
+ADMINS.each do |name|
+  tmp = User.new(email:"#{name}@admin.com",password:'123123')
+  tmp.username = "#{name}"
+  tmp.save
+end
+
+Event.create!(
   {
     description: "Mouse trap has such a low complexity because nobody ever really played it, they just set up the traps and watched them",
     datetime: Time.now + 10000,
@@ -24,11 +23,11 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.first,
-    host: Host.first
+    host: User.first.host
   }
 )
 
-Event.create(
+Event.create!(
   {
     description: "This game will not be fun, operation ruins friendships. BYOB.",
     datetime: Time.now + 10000,
@@ -37,11 +36,11 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.get_by_name('Operation'),
-    host: Host.find(2)
+    host: User.find(2).host
   }
 )
 
-Event.create(
+Event.create!(
   {
     description: "Monopoly is one of the BEST BOARD GAMES EVER!!!!!!",
     datetime: Time.now + 10000,
@@ -50,32 +49,24 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.get_by_name('Monopoly'),
-    host: Host.find(5)
+    host: User.find(5).host
   }
 )
 
-#5 users/hosts, 3 games, 3 events
-#fill admin game to max
-Event.first.add_user(User.get_by_username('trevor'))
-Event.first.add_user(User.get_by_username('james'))
-Event.first.add_user(User.get_by_username('rose'))
+#trevor, rose, and admin join Carla's event - 4/8
+[2,3,1].each { |id| Event.last.add_user(User.find(id)) }
 
-Event.last.add_user(User.get_by_username('trevor'))
-Event.last.add_user(User.get_by_username('james'))
-Event.last.add_user(User.get_by_username('admin'))
+#carla,rose,trevor join admin event - 4/4
+[5,3,2].each { |id| Event.first.add_user(User.find(id)) }
 
-User.create(username:'randomguy1',email:'random1@gmail.com',password:'123123')
-Event.last.add_user(User.last)
-User.create(username:'randomguy2',email:'random2@gmail.com',password:'123123')
-Event.last.add_user(User.last)
-User.create(username:'randomguy3',email:'random3@gmail.com',password:'123123')
-Event.last.add_user(User.last)
-User.create(username:'randomguy4',email:'random4@gmail.com',password:'123123')
-Event.last.add_user(User.last)
-User.create(username:'randomguy5',email:'random5@gmail.com',password:'123123')
-
-
-Event.create(
+#random users sign up + join carla's event - 8/8 (will disallow entry after 8/8)
+(1..8).each do |i|
+  tmp = User.new(email:"random#{i}@gmail.com",password:"123123")
+  tmp.username = "Rando#{i}"
+  tmp.save
+  Event.last.add_user(tmp)
+end
+Event.create!(
   {
     description: "I just wanna play mouse trap with trevor",
     datetime: Time.now + 10000,
@@ -84,12 +75,12 @@ Event.create(
     coins: 15,
     experience: 120,
     game: Game.first,
-    host: Host.find(3)
+    host: User.find(4).host
   }
 )
 
 
-Event.create(
+Event.create!(
   {
     description: "Mouse trap is pretty popular recently, so I'll host one",
     datetime: Time.now + 10000,
@@ -98,6 +89,9 @@ Event.create(
     coins: 10,
     experience: 100,
     game: Game.first,
-    host: Host.find(5)
+    host: User.find(5).host
   }
 )
+
+#rose joins carla's event (rose joins everything) - 2/8
+Event.last.add_user(User.find(3))

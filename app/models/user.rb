@@ -8,28 +8,15 @@ class User < ApplicationRecord
   has_many :surveys
   has_one :host, dependent: :destroy
   has_many :players
-  after_create :initialize_host, :initialize_user
+  after_create :initialize_host
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
   }
-
-
-  def self.get_by_username(usr)
-    #currently case sensitive
-    return User.where(username:usr.to_s)[0]
-  end
 
   private
 
   def initialize_host
     Host.create(user_id:self.id)
-  end
-
-  def initialize_user
-    self.level = 1.0
-    self.wins = 0
-    self.coins = 0
-    self.description = "I'm a QuestBoard noob!"
   end
 
   def self.find_for_facebook_oauth(auth)
