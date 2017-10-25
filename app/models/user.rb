@@ -28,6 +28,10 @@ class User < ApplicationRecord
   #   self.lat, self.lng = geo.lat,geo.lng if geo.success
   # end
 
+  def votes
+    return Survey.where(vote_id:self.id)[0]
+  end
+
 
   private
   def ensure_new
