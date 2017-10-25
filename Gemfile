@@ -18,6 +18,9 @@ gem 'sass-rails'
 gem 'geokit-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-ui-rails'
+
 
 group :development, :test do
   gem 'pry-byebug'
