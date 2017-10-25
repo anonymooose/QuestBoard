@@ -18,15 +18,15 @@ class User < ApplicationRecord
                    :lat_column_name => :lat,
                    :lng_column_name => :lng
 
-  def ip_address
-    current_sign_in_ip
-  end
+  # def ip_address
+  #   current_sign_in_ip
+  # end
 
-  def geocode_ip
-    geo=Geokit::Geocoders::MultiGeocoder.geocode(ip_address)
-    errors.add(:address, "Could not Geocode address") if !geo.success
-    self.lat, self.lng = geo.lat,geo.lng if geo.success
-  end
+  # def geocode_ip
+  #   geo = Geokit::Geocoders::MultiGeocoder.geocode(ip_address)
+  #   errors.add(:address, "Could not Geocode address") if !geo.success
+  #   self.lat, self.lng = geo.lat,geo.lng if geo.success
+  # end
 
 
   private
