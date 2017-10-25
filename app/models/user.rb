@@ -4,8 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-  attr_accessor :username
-  attr_accessor :login
 
   has_many :surveys
   has_one :host, dependent: :destroy
