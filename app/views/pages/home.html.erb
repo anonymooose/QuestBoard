@@ -1,4 +1,10 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-
+<%= form_tag(events_path, :method => "get", id: "search-form", class: "center-block") do %>
+      <div class="form-group">
+        <%= text_field_tag :search_loc, params[:search_loc], class: "form-control input-size-large" %>
+      </div>
+      <%= submit_tag "start", :name => nil, class: "center-block btn btn-primary font-weight-extra-bold" %>
+      <% end %>
+      </div>

@@ -1,0 +1,10 @@
+<ul>
+  <% if !@events.blank? %>
+    <% @events.each do |event| %>
+    <li><%= event.title %>
+      <%= event.address %>
+      <%= event.distance_from(@location, :units=>:kms).round(1) %>km
+    </li>
+    <% end %>
+  <% end %>
+</ul>
