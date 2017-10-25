@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :game
-  has_one :survey
   belongs_to :host
   has_many :players
+  has_many :surveys, through: :players
   validates :game, :title, :address, :description, presence: true
   before_validation :geocode_address, :on => :create
 
@@ -27,8 +27,19 @@ class Event < ApplicationRecord
   end
 
   def attending?(usr)
-    self.players.each { |player| return true if player.user == usr }
+    return true if self.players.include?(usr)
     return false
+  end
+
+  def past?
+    if already_distributed?
+      return true
+    elsif self.datetime < Time.now
+      distribute_surveys
+      return true
+    else
+      return false
+    end
   end
 
   private
@@ -36,6 +47,13 @@ class Event < ApplicationRecord
   def initialize_event
     hostplayer = Player.create(user:self.host.user,event:self)
     self.players << hostplayer
+  end
+
+  def already_distributed?
+    self.surveys != []
+  end
+  def distribute_surveys
+    self.players.each { |player| player.survey = Survey.new }
   end
 
   def ensure_gamesize
