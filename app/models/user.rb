@@ -41,9 +41,7 @@ class User < ApplicationRecord
   end
 
   def surveys!
-    self.events.each do |event|
-      event.surveys! if event.win == nil
-    end
+    self.events.where("datetime < ? AND win_id IS NULL", Time.now).each { |event| event.surveys! }
     return self.reload.surveys
   end
 
