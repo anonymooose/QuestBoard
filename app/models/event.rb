@@ -73,11 +73,12 @@ class Event < ApplicationRecord
 
   def geocode_address
     geo=Geokit::Geocoders::MultiGeocoder.geocode (address)
+    # remove all this VVV doexn't work
     if !geo.success
       errors.add(:address, "Could not Geocode address")
       self.lat = 0.0
       self.lng = 0.0
-      #added so seed will still work properly if API is down
+      #remove 
     end
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
