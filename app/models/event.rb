@@ -34,7 +34,7 @@ class Event < ApplicationRecord
 
   def surveys!
     distribute_surveys! if !already_distributed? && past?
-    return self.surveys
+    return self.reload.surveys
   end
 
   def past?
@@ -51,6 +51,7 @@ class Event < ApplicationRecord
   def already_distributed?
     self.surveys != []
   end
+
   def distribute_surveys!
     self.players.each { |player| player.survey = Survey.new }
   end
