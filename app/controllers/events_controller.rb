@@ -83,7 +83,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.owner = current_user
+    @event.owner = current_user.host
     if @event.save
       flash[:notice] = "Event successfully listed!"
       redirect_to event_path(@event)
@@ -95,7 +95,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    if @event.owner != current_user
+    if @event.owner != current_user.host
       flash[:alert] = "You don't own this event."
       redirect_to root_path
     end
