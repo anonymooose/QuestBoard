@@ -57,11 +57,10 @@ Other EVENT instance methods and their return value
 # => @user (id:1,username:'admin'....etc)
 ```
 
-Will write more later
 
-```html
+<hr>
 Rails app generated with
 [<a href="https://github.com/lewagon/rails-templates">lewagon/rails-templates</a>]
 created by the
 [<a href="https://www.lewagon.com">Le Wagon coding bootcamp</a>] team.
-```
+
