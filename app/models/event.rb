@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :game
   belongs_to :host
-  belongs_to :win, class_name: 'User'
+  belongs_to :win, class_name: 'User', optional: true
   has_many :players
   has_many :surveys, through: :players
   validates :game, :title, :address, :description, presence: true
