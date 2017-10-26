@@ -1,5 +1,61 @@
 .event-show-wpr {
-  .main-heading-group {
-    background-color: $brand-blue;
+  .event-show-heading {
+    background-color: $brand-dark-gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
+  .main-heading-group {
+    h2 {
+      color: $brand-light-gray;
+    }
+    padding: 30px 0;
+  }
+  .quest-show-info {
+    padding: 35px 30px 30px;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+    h3 {
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+  }
+  .quest-date {
+    display: inline-table;
+    background-color: #205CCC;
+    color: #fff;
+    padding: 0 5px;
+    font-weight: 600;
+  }
+  .game-title {
+    text-transform: uppercase;
+    color: $brand-med-gray;
+    font-weight: 500;
+    margin-top: -2px;
+    i {
+      color: $brand-yellow;
+    }
+  }
+  .quest-content {
+    blockquote.small-quote {
+      font-size: 18px;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 5px;
+    }
+  }
+  .brand-label {
+    font-weight: 500;
+    display: block;
+    margin-top: 15px;
+  }
+  .quest-show-party {
+    background-color: lighten($brand-blue, 50%);
+    border-bottom-right-radius: 5px;
+  }
+}
+
+.page-card {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
+  border-radius: 5px;
 }

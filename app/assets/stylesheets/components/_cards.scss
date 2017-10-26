@@ -29,10 +29,12 @@
     display: flex;
     flex-direction: column;
     padding: 15px;
+    font-weight: 600;
   }
 
   .blue-box {
     background-color: $brand-blue;
+    color: #fff;
   }
   .quest-top-info {
     display: flex;

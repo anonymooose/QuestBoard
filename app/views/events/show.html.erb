@@ -1,29 +1,39 @@
 <div class="page-wrapper event-show-wpr">
   <div class="container">
-    <div class="row is-flex">
+    <div class="row is-flex page-card">
 
-      <div class="col-xs-12">
+      <div class="col-xs-12 event-show-heading">
         <div class="main-heading-group">
-          <h1>Quest Details</h1>
-          <h2>Do you accept?</h2>
+          <h2>Quest Details</h2>
         </div>
       </div>
 
       <div class="col-sm-6 quest-show-info">
-        <p>Game Title: Cards Against Humanity</p>
-        <p>Date/Time: Oct. 31, 2017 at 21:00</p>
-        <p>Address: Shibuya</p>
-        <div class="quest-rewards">
-          <div class="reward-slot">
-            <%= image_tag("exp.svg") %>
-            <span class="reward-amount">300</span>
+
+        <header>
+          <span class="quest-date">Oct. 31, 2017 at 21:00</span>
+          <h3>Hyalloqweegn Game Night</h3>
+          <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Cards Against Humanity</span>
+        </header>
+
+        <div class="quest-content">
+          <span class="brand-label">Address:</span>
+          <span>1st Floor, Insatsu Kojo 2-11-3, Meguro, Meguro-ku, Tokyo</span>
+          <span class="brand-label">Rewards:</span>
+          <div class="quest-rewards">
+            <div class="reward-slot">
+              <%= image_tag("exp.svg") %>
+              <span class="reward-amount">300</span>
+            </div>
+            <div class="reward-slot">
+              <%= image_tag("coin.svg") %>
+              <span class="reward-amount">9</span>
+            </div>
           </div>
-          <div class="reward-slot">
-            <%= image_tag("coin.svg") %>
-            <span class="reward-amount">9</span>
-          </div>
+          <span class="brand-label">Description:</span>
+          <blockquote class="small-quote">Pre-party snacks and then we're starting Cards Against Humanity. Wear costumes! BYOB! I don’t care if Frost is the PvP spec du jour. My plan moving forward with the game is probably to play a Norn Guardian, a human Elementalist and a Sylvari Warrior, and we’ll see which of those ends up as my main. Draenei have a fairly extant commitment to being Lightsworn children of the Naaru, as well as being universe-wide diaspora.</blockquote>
         </div>
-        <p>Description: Pre-party snacks and then we're starting Cards Against Humanity. Wear costumes! BYOB! I don’t care if Frost is the PvP spec du jour. My plan moving forward with the game is probably to play a Norn Guardian, a human Elementalist and a Sylvari Warrior, and we’ll see which of those ends up as my main. Draenei have a fairly extant commitment to being Lightsworn children of the Naaru, as well as being universe-wide diaspora.</p>
+
       </div>
 
       <div class="col-sm-6 quest-show-party">
