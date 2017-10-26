@@ -1,3 +1,9 @@
+.brand-blue-bg {
+  background: $brand-blue url(image-path('questboard_background.png')) bottom right fixed;
+  min-height: calc(100vh - 120px);
+  background-repeat: no-repeat;
+}
+
 .account-box {
   background-color: #fff;
   border-radius: 5px;

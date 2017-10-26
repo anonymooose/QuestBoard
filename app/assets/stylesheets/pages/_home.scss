@@ -1,1 +1,44 @@
 // Specific CSS for your home-page
+
+#hero-wrapper {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: $brand-dark-gray;
+  h1 {
+    color: $brand-yellow;
+  }
+  h2 {
+    color: $brand-light-gray;
+  }
+}
+
+.hp-info {
+  background-color: #fff;
+  h3 {
+    font-size: 36px;
+    text-transform: lowercase;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  p {
+    margin-bottom: 40px;
+  }
+}
+
+.signup-accent {
+  background-color: $brand-red;
+  span {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 45px 20px 20px 20px;
+  }
+  .btn {
+    display: inline-table;
+    margin: 0 auto;
+  }
+}
+
+.hp-cards-wpr {
+  background-color: $brand-blue;
+}
