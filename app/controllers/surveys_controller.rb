@@ -1,24 +1,25 @@
 class SurveysController < ApplicationController
   def show
-    user_surveys = current_user.surveys.select(:player_id)
-    user_players = current_user.players.select(:id)
-    user_surveys.each do |survey|
-      @survey = survey if user_players.include?(survey.player_id)
-    end
+    @survey = Survey.find(params[:id])
     @event = Event.find(params[:event_id])
   end
 
   def update
-    @survey = Survey.find(:id)
-    if @survey.save
-      session[:return_to] ||= request.referer
+    @survey = Survey.find(params[:id])
+    binding.pry
+    attendance = survey_params[:attended] == 'true'
+    attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
+    if attendance
+      flash[:notice] = "Thanks for answering! Here's 5 coins!"
     else
-      redirect_to :show
+      flash[:notice] = "Thanks for being honest! Here's 1 coin!"
     end
+    binding.pry
+    redirect_to user_path(@survey.user)
   end
 
   private
   def survey_params
-    params.require(:survey).permit(:vote_id)
+    params.require(:survey).permit(:vote, :attended)
   end
-en
+end

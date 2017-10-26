@@ -1,0 +1,5 @@
+<%= simple_form_for ([@event, @survey]) do |f| %>
+  <%= f.input :attended, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= f.input :vote, collection: @event.players, label_method: :username %>
+  <%= f.submit %>
+<% end %>
