@@ -1,0 +1,23 @@
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script type="text/javascript">
+        jQuery(document).ready(function($) {
+          $('#datepicker').datepicker();
+        });
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
+
+
+
+<%= simple_form_for(@event) do |f| %>
+<%= f.input :title %>
+<%= f.input :game %>
+<%= f.label :description %>
+<%= f.text_area :description, :cols => "30", :rows => "5" %>
+<%= f.input :address, input_html: {id: "search_loc"}%>
+<% # note  - game field will ideally not be straight text input. stay tuned %>
+<%= f.input :datetime, data:{ provide:'datepicker'}, :input_html => { :value => Date.today } %>
+
+<% end %>
+
+
