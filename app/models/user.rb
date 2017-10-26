@@ -31,7 +31,8 @@ class User < ApplicationRecord
   # end
 
   def votes
-    return Survey.where(vote_id:self.id)[0]
+    result = Survey.where(vote_id:self.id)[0]
+    result.nil? ? [] : result
   end
 
   def wins
