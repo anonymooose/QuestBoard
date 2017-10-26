@@ -19,18 +19,19 @@ ActiveRecord::Schema.define(version: 20171025074812) do
     t.string   "description"
     t.datetime "datetime"
     t.string   "title"
-    t.string   "winner"
     t.string   "address"
     t.integer  "coins"
     t.integer  "experience"
     t.integer  "game_id"
     t.integer  "host_id"
+    t.integer  "win_id"
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["game_id"], name: "index_events_on_game_id", using: :btree
     t.index ["host_id"], name: "index_events_on_host_id", using: :btree
+    t.index ["win_id"], name: "index_events_on_win_id", using: :btree
   end
 
   create_table "games", force: :cascade do |t|
@@ -62,7 +63,6 @@ ActiveRecord::Schema.define(version: 20171025074812) do
     t.integer  "player_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "vote"
     t.integer  "vote_id"
     t.boolean  "attended",   default: false
     t.index ["player_id"], name: "index_surveys_on_player_id", using: :btree
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20171025074812) do
     t.datetime "updated_at",                                                null: false
     t.string   "username"
     t.float    "level",                  default: 1.0
-    t.integer  "wins",                   default: 0
     t.integer  "coins",                  default: 0
     t.string   "description",            default: "I'm a QuestBoard noob!"
     t.float    "lat"
@@ -101,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171025074812) do
 
   add_foreign_key "events", "games"
   add_foreign_key "events", "hosts"
+  add_foreign_key "events", "users", column: "win_id"
   add_foreign_key "hosts", "users"
   add_foreign_key "players", "events"
   add_foreign_key "players", "users"
