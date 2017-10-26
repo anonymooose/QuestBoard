@@ -10,6 +10,7 @@ gem 'rails', '5.0.6'
 gem 'redis'
 gem 'omniauth-facebook'
 
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
@@ -21,8 +22,7 @@ gem 'uglifier'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-ui-rails'
 gem 'momentjs-rails'
-
-
+gem 'country_select'
 
 group :development, :test do
   gem 'pry-byebug'
