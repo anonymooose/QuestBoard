@@ -1,128 +1,123 @@
-
-<div class="page-wrapper">
+<div id="hero-wrapper">
   <div class="container">
     <div class="row">
 
       <div class="col-xs-12">
+
         <div class="main-heading-group">
-          <h1>Heading One</h1>
-          <h2>Heading Two</h2>
+          <h1>hello! find a quest</h1>
+          <h2>discover board game events around you</h2>
         </div>
-      </div>
 
-      <div class="col-xs-12">
-        <p>
-          I don’t care if Frost is the PvP spec du jour. My plan moving forward with the game is probably to play a Norn Guardian, a human Elementalist and a Sylvari Warrior, and we’ll see which of those ends up as my main. Draenei have a fairly extant commitment to being Lightsworn children of the Naaru, as well as being universe-wide diaspora. Most likely this means that you received a fraudulent code from a third-party seller. SWTOR now has three raids: <a href="#">Eternity Vault</a>, <a href="#">Karagga's Palace</a>, and <a href="#">Explosive Conflict</a>.
-        </p>
-
-        <hr>
-
-        <blockquote>
-          Draenei have a fairly extant commitment to being Lightsworn children of the Naaru, as well as being universe-wide diaspora. Most likely this means that you received a fraudulent code from a third-party seller.
-        </blockquote>
-
-        <hr>
-
-        <ul>
-          <li>Monopoly</li>
-          <li>Uno</li>
-          <li>Settlers of Catan</li>
-          <li>Cosmic Encounters</li>
-        </ul>
-      </div>
-
-      <div class="col-xs-12">
-        <div class="section-heading-group">
-          <h3>Title for section</h3>
+        <div class="hero-search">
+          <%= form_tag(events_path, :method => "get", id: "search-form", class: "center-block") do %>
+            <div class="form-group">
+              <%= text_field_tag :search_loc, params[:search_loc], placeholder: "where?", class: "form-control input-size-large" %>
+              <%= text_field_tag :search_date, params[:search_date], data:{ provide:'datepicker'}, placeholder: "date", class: "form-control input-size-large datepicker", placeholder: "when?" %>
+              <%= text_field_tag :search_game, params[:search_game], placeholder: "what game?", class: "form-control input-size-large" %>
+              <%= submit_tag "search", :name => nil, class: "btn brand-alt-btn brand-btn-yellow" %>
+            </div>
+          <% end %>
         </div>
-      </div>
 
-      <div class="col-xs-12">
-        <p>
-          I don’t care if Frost is the PvP spec du jour. My plan moving forward with the game is probably to play a Norn Guardian, a human Elementalist and a Sylvari Warrior, and we’ll see which of those ends up as my main. Draenei have a fairly extant commitment to being Lightsworn children of the Naaru, as well as being universe-wide diaspora. Most likely this means that you received a fraudulent code from a third-party seller. SWTOR now has three raids: <a href="#">Eternity Vault</a>, <a href="#">Karagga's Palace</a>, and <a href="#">Explosive Conflict</a>.
-        </p>
-        <a class="btn brand-btn brand-btn-blue" href="#" role="button">Sign up</a>
-        <a class="btn brand-btn brand-btn-red" href="#" role="button">Sign up</a>
-        <a class="btn brand-btn brand-btn-red-invert" href="#" role="button">Sign up</a>
-        <a class="btn brand-alt-btn brand-btn-yellow" href="#" role="button"><i class="fa fa-search" aria-hidden="true"></i></a>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="card">
-
-          <div class="quest-header">
-            <div class="quest-date-box">
-              <span class="quest-date">
-                Oct. 28
-              </span>
-              <span class="quest-time">
-                18:00
-              </span>
-            </div>
-            <div class="quest-top-info">
-              <span class="game-title">
-                Settlers of Catan
-              </span>
-              <span class="quest-distance">
-                <i class="fa fa-map-marker" aria-hidden="true"></i> 1.2km from you
-              </span>
-            </div>
-          </div>
-
-          <div class="quest-main">
-            <span class="event-title">Celebratory Game Night</span>
-            <span class="rewards-title">Rewards</span>
-
-            <div class="quest-rewards">
-              <div class="reward-slot">
-                <%= image_tag("exp.svg") %>
-                <span class="reward-amount">650</span>
-              </div>
-              <div class="reward-slot">
-                <%= image_tag("coin.svg") %>
-                <span class="reward-amount">7</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="quest-footer">
-
-            <div class="event-host">
-              <%= image_tag("coin.svg") %>
-              <span class="host-pin">GM</span>
-            </div>
-
-            <span class="player-count">3/4 Players</span>
-
-            <a class="btn brand-btn brand-btn-red" href="#" role="button">See details</a>
-          </div>
-
-        </div>
       </div>
 
     </div>
   </div>
 </div>
 
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 
+<div class="container">
+  <div class="row is-flex">
+    <div class="col-sm-9 hp-info">
+      <h3>About QuestBoard</h3>
+      <p>I don’t care if Frost is the PvP spec du jour. My plan moving forward with the game is probably to play a Norn Guardian, a human Elementalist and a Sylvari Warrior, and we’ll see which of those ends up as my main. Draenei have a fairly extant commitment to being Lightsworn children of the Naaru, as well as being universe-wide diaspora. Most likely this means that you received a fraudulent code from a third-party seller. SWTOR now has three raids: Eternity Vault, Karagga's Palace, and Explosive Conflict.</p>
+    </div>
 
+    <div class="col-sm-3 signup-accent">
+      <span>Are you ready to level your board game states?</span>
+      <%= link_to t(".sign_in", default: "sign up"), new_user_registration_path, class: "btn brand-btn brand-btn-red-invert" %>
+    </div>
 
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </div>
+</div>
+
+<div class="hp-cards-wpr">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Happening quests</h3>
+      </div>
+
+      <% @events.each do |event| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="quest-header">
+              <div class="quest-date-box">
+                <span class="quest-date">
+                  <time class="date" datetime="<%= event.datetime %>"></time>
+                </span>
+                <span class="quest-time">
+                  <time class="time" datetime="<%= event.datetime %>"></time>
+                </span>
+              </div>
+              <div class="quest-top-info">
+                <span class="game-title">
+                  <%= event.game.name %>
+                </span>
+                <span class="quest-distance">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <% if @location != nil %>
+                    <%= event.distance_from(@location, :units=>:kms).round(1) %> km from you
+                  <% else @location = "Tokyo Station" %>
+                    No location specified
+                  <% end %>
+                </span>
+              </div>
+            </div>
+
+            <div class="quest-main">
+              <span class="event-title"><%= event.title.split.map { |i| i.capitalize }.join(' ') %></span>
+              <span class="rewards-title">Rewards</span>
+
+              <div class="quest-rewards">
+                <div class="reward-slot">
+                  <%= image_tag("exp.svg") %>
+                  <span class="reward-amount"><%= event.experience %></span>
+                </div>
+                <div class="reward-slot">
+                  <%= image_tag("coin.svg") %>
+                  <span class="reward-amount"><%= event.coins %></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="quest-footer">
+
+              <div class="event-host">
+                <%= image_tag("coin.svg") %>
+                <span class="host-pin">GM</span>
+              </div>
+
+              <span class="player-count"><%= event.players.length %>/<%= event.game.max_players %> PLAYERS</span>
+              <%= link_to "See details", event_path(event), class: "btn brand-btn brand-btn-red" %>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
   jQuery(document).ready(function($) {
     $('#datepicker').datepicker();
   });
 </script>
 
-    <%= form_tag(events_path, :method => "get", id: "search-form", class: "center-block") do %>
-      <div class="form-group">
-        <%= text_field_tag :search_loc, params[:search_loc], placeholder: "location", class: "form-control input-size-large" %>
-        <%= text_field_tag :search_date, params[:search_date], data:{ provide:'datepicker'}, placeholder: "date", class: "form-control input-size-large datepicker" %>
-        <%= text_field_tag :search_game, params[:search_game], placeholder: "game", class: "form-control input-size-large" %>
-      </div>
-      <%= submit_tag "search", :name => nil, class: "center-block btn btn-primary font-weight-extra-bold" %>
-      <% end %>
-      </div>
+
