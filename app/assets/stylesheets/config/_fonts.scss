@@ -1,14 +1,9 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Dosis:400,500,600');
-@font-face {
-    font-family: Gilbert;
-    src: url(Gilbert.otf);
-}
-
-
+@import url('https://fonts.googleapis.com/css?family=Hammersmith+One|Josefin+Sans:700');
 // Define fonts for body and headers
 $body-font: "Dosis", "Helvetica", "sans-serif";
-$headers-font: "Gilbert", "Helvetica", "sans-serif";
+$headers-font: "Josefin Sans", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

@@ -15,15 +15,15 @@
 .main-heading-group {
   h1 {
     text-transform: lowercase;
-    font-family: $headers-font;
+    font-weight: 700;
     margin: 0;
   }
   h2 {
     text-transform: uppercase;
-    font-family: $body-font;
     font-size: 24px;
     font-weight: 500;
-    margin: 10px 0 0 0;
+    margin: 0;
+    font-family: $body-font;
   }
 }
 
@@ -34,7 +34,7 @@
 }
 
 .brand-blue-bg {
-  background: $brand-blue url(image-path('questboard_background.png')) center fixed;
-  background-size: cover;
+  background: $brand-blue url(image-path('questboard_background.png')) bottom right fixed;
   min-height: calc(100vh - 120px);
+  background-repeat: no-repeat;
 }
