@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :surveys
+  has_many :surveys, through: :players
   has_one :host, dependent: :destroy
   has_many :players
   has_many :wins
