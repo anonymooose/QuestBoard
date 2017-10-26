@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
+    session[:return_to] ||= request.referer if @survey.attended
     @event = Event.find(params[:event_id])
   end
 
