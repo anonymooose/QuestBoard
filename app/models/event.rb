@@ -32,15 +32,13 @@ class Event < ApplicationRecord
     return false
   end
 
+  def surveys!
+    distribute_surveys! if !already_distributed? && past?
+    return self.reload.surveys
+  end
+
   def past?
-    if already_distributed?
-      return true
-    elsif self.datetime < Time.now
-      distribute_surveys
-      return true
-    else
-      return false
-    end
+    self.datetime < Time.now ? true : false
   end
 
   private
@@ -53,7 +51,8 @@ class Event < ApplicationRecord
   def already_distributed?
     self.surveys != []
   end
-  def distribute_surveys
+
+  def distribute_surveys!
     self.players.each { |player| player.survey = Survey.new }
   end
 
@@ -78,7 +77,7 @@ class Event < ApplicationRecord
       errors.add(:address, "Could not Geocode address")
       self.lat = 0.0
       self.lng = 0.0
-      #remove 
+      #remove
     end
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
