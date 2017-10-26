@@ -1,4 +1,8 @@
 class SurveysController < ApplicationController
+  def index
+    @surveys = current_user.surveys!
+  end
+
   def show
     @survey = Survey.find(params[:id])
     if @survey.attended

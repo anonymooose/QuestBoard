@@ -3,12 +3,3 @@
 <p><%= @user.username %></p>
 <p><%= @user.email %></p>
 <p><%= @user.description %></p>
-<% surveys = @user.surveys %>
-<% if !surveys.blank? %>
-  <% for survey in surveys %>
-    <% event = surve.event %>
-    <%= link_to "#{event.title}", event_survey_path(event, survey) %>
-  <% end %>
-<% else %>
-  <p>No active surveys to complete</p>
-<% end %>
