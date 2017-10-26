@@ -32,7 +32,7 @@
     font-weight: 500;
     margin-top: -2px;
     i {
-      color: $brand-yellow;
+      color: $brand-blue;
     }
   }
   .quest-content {
@@ -41,6 +41,7 @@
       padding-top: 0;
       padding-bottom: 0;
       margin-top: 5px;
+      margin-bottom: 0;
     }
   }
   .brand-label {
@@ -51,6 +52,12 @@
   .quest-show-party {
     background-color: lighten($brand-blue, 50%);
     border-bottom-right-radius: 5px;
+    .host-avatar {
+      background-color: #fff;
+      img {
+        width: 150px;
+      }
+    }
   }
 }
 
