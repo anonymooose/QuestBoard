@@ -1,6 +1,71 @@
+
+<div class="page-wrapper event-show-wpr">
+  <div class="container">
+    <div class="row is-flex page-card">
+
+      <div class="col-xs-12 event-show-heading">
+        <div class="main-heading-group">
+          <h2>Quest Details</h2>
+        </div>
+      </div>
+
+      <div class="col-sm-6 quest-show-info">
+
+        <header>
+          <span class="quest-date">Oct. 31, 2017 at 21:00</span>
+          <h3>Hyalloqweegn Game Night</h3>
+          <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Cards Against Humanity</span>
+        </header>
+
+        <div class="quest-content">
+          <span class="brand-label">Address:</span>
+          <span>1st Floor, Insatsu Kojo 2-11-3, Meguro, Meguro-ku, Tokyo</span>
+          <span class="brand-label">Rewards:</span>
+          <div class="quest-rewards">
+            <div class="reward-slot">
+              <%= image_tag("exp.svg") %>
+              <span class="reward-amount">300</span>
+            </div>
+            <div class="reward-slot">
+              <%= image_tag("coin.svg") %>
+              <span class="reward-amount">9</span>
+            </div>
+          </div>
+          <span class="brand-label">Description:</span>
+          <blockquote class="small-quote">Tokyo is often referred to as a city, but is officially known and governed as a "metropolitan prefecture", which differs from and combines elements of a city and a prefecture, a characteristic unique to Tokyo. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was the City of Tokyo before it merged and became the metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains.</blockquote>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6 quest-show-party">
+        <div class="player-block">
+          <%= image_tag("placeholder-female.svg") %>
+          <div class="player-info">
+            <p>GameMaster123</p>
+            <p>Level 8</p>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <p>Party</p>
+        <p>Player1 (Level 3)</p>
+        <p>Player2 (Level 5)</p>
+        <p>Player3 (Level 6)</p>
+        <p>Player4 (Level 2)</p>
+        <p>Player5 (Level 1)</p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <p><%= @event.title %></p>
 
 <% if current_user.host == @event.host %>
 <%= link_to "Edit Event", edit_event_path %>
 <%= link_to "Delete Event", event_path(@event), method: :delete %>
 <% end %>
+
