@@ -1,8 +1,8 @@
 
 class Survey < ApplicationRecord
   belongs_to :player
+  has_one :game, through: :event
   has_one :event, through: :player
-  before_update :disallow_editing
   after_update :set_winner_if_needed
 
   def vote
@@ -10,13 +10,16 @@ class Survey < ApplicationRecord
   end
 
   def vote=(player)
-    if player == 0
+    if player == 0 && self.attended == false
       self.destroy
-    else
+      return nil
+    elsif self.attended == false
       self.vote_id = player.id
-      valid_player?(player) ? self.save : false
       disallow_editing
+      valid_player?(player) ? self.save : false
+      return true
     end
+    return false
   end
 
   private
@@ -30,7 +33,17 @@ class Survey < ApplicationRecord
 
   def set_winner_if_needed
     #event = self.event
-    votes = self.event.surveys.where.not(vote_id:nil)
-    count = votes.pluck(:vote_id).group_by(&:itself).max_by{|_,v|v.size}.first
+    results = self.event.surveys.where.not(vote_id:nil)
+    if results != nil
+      #[1,1,1,1,2,3,4,5,5,5,...]
+      votes = results.pluck(:vote_id)
+      # [id, [id,id,id,...]]
+      counter = votes.group_by(&:itself).max_by{|_,v|v.size}
+      if counter[-1].length > (self.game.max_players)/2
+        self.event.win = Player.find(counter[0]).user
+        self.event.save
+      end
+    end
+    return false
   end
 end
