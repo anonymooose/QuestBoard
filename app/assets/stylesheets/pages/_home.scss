@@ -1,14 +1,28 @@
 // Specific CSS for your home-page
 
 #hero-wrapper {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 70px;
+  padding-bottom: 70px;
   background-color: $brand-dark-gray;
   h1 {
     color: $brand-yellow;
   }
   h2 {
     color: $brand-light-gray;
+  }
+  .form-group {
+    display: flex;
+    margin-bottom: 0;
+  }
+  .form-control {
+    border: none;
+    margin-right: 3px;
+  }
+  .datepicker {
+    padding: 6px 12px;
+  }
+  .hero-search {
+    margin-top: 30px;
   }
 }
 
@@ -41,4 +55,12 @@
 
 .hp-cards-wpr {
   background-color: $brand-blue;
+  padding-bottom: 30px;
+  h3 {
+    color: #fff;
+    font-size: 36px;
+    text-transform: lowercase;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }

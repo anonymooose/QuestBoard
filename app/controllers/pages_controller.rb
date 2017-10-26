@@ -3,6 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @games = Game.all
-    @events = Event.all.order(created_at: :desc).first(6)
+    @events = Event.all.order(created_at: :desc).first(3)
   end
 end
