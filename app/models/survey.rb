@@ -3,6 +3,7 @@ class Survey < ApplicationRecord
   belongs_to :player
   has_one :game, through: :event
   has_one :event, through: :player
+  has_one :user, through: :player
   after_update :set_winner_if_needed
 
   def vote
@@ -39,9 +40,12 @@ class Survey < ApplicationRecord
       votes = results.pluck(:vote_id)
       # [id, [id,id,id,...]]
       counter = votes.group_by(&:itself).max_by{|_,v|v.size}
-      if counter.last.length > (self.game.max_players)/2
-        self.event.win = Player.find(counter.first).user
-        self.event.save
+      if counter != nil
+        if counter.last.length > (self.game.max_players)/2
+          self.event.win = Player.find(counter.first).user
+          self.event.save
+          return true
+        end
       end
     end
     return false

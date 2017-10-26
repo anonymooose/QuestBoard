@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
   resources :users, only: [:show, :edit, :update, :destroy]
-  resources :events
+  resources :events do
+    resources :surveys, only: [ :show, :update ]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
