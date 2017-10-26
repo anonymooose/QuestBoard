@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  require 'pry-byebug'
 
   def index
      @events = Event.all
@@ -92,7 +91,6 @@ class EventsController < ApplicationController
       host: current_user.host,
       address: event_params[:address]
     }
-    binding.pry
     @event = Event.create(params)
     if @event.save
       flash[:notice] = "Event successfully listed!"
