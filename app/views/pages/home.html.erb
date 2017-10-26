@@ -116,6 +116,8 @@
     $('#datepicker').datepicker();
   });
 </script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
+
 
     <%= form_tag(events_path, :method => "get", id: "search-form", class: "center-block") do %>
       <div class="form-group">
@@ -127,6 +129,3 @@
       <% end %>
       </div>
 
-  <%= content_for(:after_js) do %>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
-<% end %>

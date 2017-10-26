@@ -5,21 +5,11 @@ function onPlaceChanged() {
 
   var address = document.getElementById('search_loc');
   address.blur();
-  address.value = components.address;
+  address.value = components.city;
 
-  document.getElementById('flat_zip_code').value = components.zip_code;
-  document.getElementById('flat_city').value = components.city;
-
-  if (components.country_code) {
-    var selector = '#flat_country option[value="' + components.country_code + '"]';
-    document.querySelector(selector).selected = true;
-  }
 }
 
 function getAddressComponents(place) {
-  // If you want lat/lng, you can look at:
-  // - place.geometry.location.lat()
-  // - place.geometry.location.lng()
 
   if (window.console && typeof console.log === "function") {
     console.log(place);
