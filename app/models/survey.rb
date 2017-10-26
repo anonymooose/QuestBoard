@@ -36,10 +36,10 @@ class Survey < ApplicationRecord
     #event = self.event
     results = self.event.surveys.where.not(vote_id:nil)
     if results != nil
-      #[1,1,1,1,2,3,4,5,5,5,...]
       votes = results.pluck(:vote_id)
-      # [id, [id,id,id,...]]
+      #[1,1,1,1,2,3,4,5,5,5,...]
       counter = votes.group_by(&:itself).max_by{|_,v|v.size}
+      # [id, [id,id,id,...]]
       if counter != nil
         if counter.last.length > (self.game.max_players)/2
           self.event.win = Player.find(counter.first).user
