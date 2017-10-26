@@ -20,6 +20,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-ui-rails'
+gem 'momentjs-rails'
+
 
 
 group :development, :test do
