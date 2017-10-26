@@ -63,26 +63,27 @@
     text-overflow: ellipsis;
 
   }
-  .rewards-title {
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-  .quest-rewards {
-    display: flex;
-    .reward-slot {
-      background-color: $brand-dark-gray;
-      width: 3.5em;
-      margin-right: 10px;
-      padding: 10px 5px 5px;
-      border-radius: 2px;
-      text-align: center;
-      .reward-amount {
-        color: #fff;
-        font-size: 14px;
-      }
-      img {
-        max-height: 1.5em;
-      }
+}
+
+.rewards-title {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.quest-rewards {
+  display: flex;
+  .reward-slot {
+    background-color: $brand-dark-gray;
+    width: 3.5em;
+    margin-right: 10px;
+    padding: 10px 5px 5px;
+    border-radius: 2px;
+    text-align: center;
+    .reward-amount {
+      color: #fff;
+      font-size: 14px;
+    }
+    img {
+      max-height: 1.5em;
     }
   }
 }
