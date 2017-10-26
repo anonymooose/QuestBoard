@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :surveys
+  has_many :surveys, through: :players
   has_one :host, dependent: :destroy
   has_many :players
   has_many :wins
@@ -31,12 +31,12 @@ class User < ApplicationRecord
   # end
 
   def votes
-    result = Survey.where(vote_id:self.id)[0]
+    result = Survey.where(vote_id:self.id)
     result.nil? ? [] : result
   end
 
   def wins
-    return Event.where(win_id:self.id)[0]
+    return Event.where(win_id:self.id)
   end
 
 

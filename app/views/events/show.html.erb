@@ -1,3 +1,4 @@
+
 <div class="page-wrapper event-show-wpr">
   <div class="container">
     <div class="row is-flex page-card">
@@ -61,9 +62,10 @@
   </div>
 </div>
 
+<p><%= @event.title %></p>
 
-
-
-
-
+<% if current_user.host == @event.host %>
+<%= link_to "Edit Event", edit_event_path %>
+<%= link_to "Delete Event", event_path(@event), method: :delete %>
+<% end %>
 

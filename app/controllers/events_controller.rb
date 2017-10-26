@@ -78,12 +78,20 @@ class EventsController < ApplicationController
   end
 
   def new
+    @games = Game.all
     @event = Event.new
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.owner = current_user.host
+    params = {
+      title: event_params[:title],
+      description: event_params[:description],
+      game: Game.find(event_params[:game]),
+      datetime: event_params.values.last(5).join.to_time,
+      host: current_user.host,
+      address: event_params[:address]
+    }
+    @event = Event.create(params)
     if @event.save
       flash[:notice] = "Event successfully listed!"
       redirect_to event_path(@event)
@@ -94,16 +102,25 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @games = Game.all
     @event = Event.find(params[:id])
-    if @event.owner != current_user.host
+    if @event.host != current_user.host
       flash[:alert] = "You don't own this event."
       redirect_to root_path
     end
   end
 
   def update
+    params = {
+      title: event_params[:title],
+      description: event_params[:description],
+      game: Game.find(event_params[:game]),
+      datetime: event_params.values.last(5).join.to_time,
+      host: current_user.host,
+      address: event_params[:address]
+    }
     @event = Event.find(params[:id])
-    @event.update(event_params)
+    @event.update(params)
     if @event.save
       redirect_to event_path(@event)
     else
@@ -119,7 +136,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :game_id, :address, :datetime)
+    params.require(:event).permit(:title, :description, :game, :address, :datetime)
   end
 
 end
