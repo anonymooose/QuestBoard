@@ -52,11 +52,21 @@
   .quest-show-party {
     background-color: lighten($brand-blue, 50%);
     border-bottom-right-radius: 5px;
-    .host-avatar {
+    .player-block {
       background-color: #fff;
+      display: flex;
+      align-items: center;
+      margin: 2em;
+      border-radius: 5px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
       img {
         width: 150px;
       }
+    }
+    .player-info {
+      flex: 1;
+      margin-right: 40px;
     }
   }
 }
