@@ -23,6 +23,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'jquery-ui-rails'
 gem 'momentjs-rails'
 gem 'country_select'
+gem 'webpacker', '~> 3.0'
 
 group :development, :test do
   gem 'pry-byebug'
