@@ -111,7 +111,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    params = {
+    @event = Event.find(params[:id])
+    eparams = {
       title: event_params[:title],
       description: event_params[:description],
       game: Game.find(event_params[:game]),
@@ -119,8 +120,8 @@ class EventsController < ApplicationController
       host: current_user.host,
       address: event_params[:address]
     }
-    @event = Event.find(params[:id])
-    @event.update(params)
+
+    @event.update(eparams)
     if @event.save
       redirect_to event_path(@event)
     else
