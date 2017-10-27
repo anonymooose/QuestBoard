@@ -1,4 +1,8 @@
 .event-show-wpr {
+  hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   span {
     display: block;
   }
@@ -14,5 +18,15 @@
   .survey_vote label {
     display: none;
   }
-}
+  .survey_attended .checkbox {
+    margin-top: 0;
+  }
+  .survey-block {
+    padding: 35px 30px 30px;
+    .brand-btn-red {
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
 
+}

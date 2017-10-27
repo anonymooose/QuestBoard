@@ -44,8 +44,9 @@
 
         <div class="col-sm-6">
           <div class="quest-attendees">
-            <span class="brand-label">Attendees:</span>
-            <% @event.players.each do  |player|%>
+            <span class="brand-label">Players:</span>
+            <% @event.players.each do |player|%>
+              <hr>
               <span class="player-username"><%= player.user.username %></span>
               <span class="player-level">Level <%= player.user.level.floor %></span>
             <% end %>
@@ -55,14 +56,14 @@
         <div class="col-sm-12">
           <span class="brand-label">Description:</span>
           <blockquote class="small-quote">
-            <%= @event.description %> Me and my friends are planning an awesome game night and we would like some other boardgame lovers to come join us in our quest for victory. I've been a big fan of meeting new people to play with for ages and I would like some of you guys to come join the events!
+            <%= @event.description %>. Me and my friends are planning an awesome game night and we would like some other boardgame lovers to come join us in our quest for victory. I've been a big fan of meeting new people to play with for ages and I would like some of you guys to come join the events!
           </blockquote>
         </div>
       </div>
 
       </div>
 
-      <div class="col-sm-6 quest-show-party">
+      <div class="col-sm-6 quest-show-party survey-block">
         <p>Please confirm the quest details.</p>
         <%= render 'form' %>
       </div>
