@@ -1,8 +1,29 @@
-<% if !@surveys.blank? %>
-  <% for survey in @surveys.where(attended:false) %>
-    <% event = survey.event %>
-    <%= link_to "#{event.title}", event_survey_path(event, survey) %>
-  <% end %>
-<% else %>
-  <p>You haven't attended any events yet! Go find some!</p>
-<% end %>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="row">
+      <% if !@surveys.blank? %>
+          <% for survey in @surveys.where(attended:false) %>
+          <div class="col-sm-12">
+            <div class="card">
+              <% event = survey.event %>
+              <p>
+                <%= link_to "#{event.title}", event_survey_path(event, survey) %>
+                <time class="date" datetime="<%= event.datetime %>"></time>
+                <time class="time" datetime="<%= event.datetime %>"></time>
+                <%= event.game.name %>
+                hosted by: <%= event.host.user.username %>
+              </p>
+            </div>
+            </div>
+          <% end %>
+      <% else %>
+        <p>You haven't attended any events yet! Go find some!</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
