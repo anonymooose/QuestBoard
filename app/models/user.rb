@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :surveys, through: :players
   has_one :host, dependent: :destroy
   has_many :players
+  has_many :events, through: :players
   has_many :wins
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
@@ -37,6 +38,11 @@ class User < ApplicationRecord
 
   def wins
     return Event.where(win_id:self.id)
+  end
+
+  def surveys!
+    self.events.where("datetime < ? AND win_id IS NULL", Time.now).each { |event| event.surveys! }
+    return self.reload.surveys
   end
 
 

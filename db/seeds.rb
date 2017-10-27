@@ -4,15 +4,13 @@
 # TODO: Still need Game model seeder
 
 ADMINS = ['admin','trevor','rose','james','carla']
-Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
-Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
-Game.create!(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
-
-ADMINS.each do |name|
-  tmp = User.new(email:"#{name}@admin.com",password:'123123')
-  tmp.username = "#{name}"
-  tmp.save
+if Game.all.blank?
+  Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
+  Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
+  Game.create!(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
 end
+
+ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
 
 Event.create!(
   {
@@ -26,11 +24,13 @@ Event.create!(
     host: User.first.host
   }
 )
+#carla,rose,trevor join admin event - 4/4
+[5,3,2].each { |id| Event.first.add_user(User.find(id)) }
 
 Event.create!(
   {
     description: "This game will not be fun, operation ruins friendships. BYOB.",
-    datetime: Time.now + 10000,
+    datetime: Time.now + 1000,
     title: "TREVOR HOSTS GAME",
     address: 'Long Beach, CA',
     coins: 10,
@@ -43,7 +43,7 @@ Event.create!(
 Event.create!(
   {
     description: "Monopoly is one of the BEST BOARD GAMES EVER!!!!!!",
-    datetime: Time.now + 10000,
+    datetime: Time.now + 100,
     title: "CARLA HOSTS GAME",
     address: 'Shibuya, Tokyo',
     coins: 10,
@@ -55,9 +55,6 @@ Event.create!(
 
 #trevor, rose, and admin join Carla's event - 4/8
 [2,3,1].each { |id| Event.last.add_user(User.find(id)) }
-
-#carla,rose,trevor join admin event - 4/4
-[5,3,2].each { |id| Event.first.add_user(User.find(id)) }
 
 #random users sign up + join carla's event - 8/8 (will disallow entry after 8/8)
 (1..8).each do |i|
