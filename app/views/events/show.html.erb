@@ -58,6 +58,7 @@
           </div>
         </div>
         <% @event.players.each do  |player|%>
+        <% if player.user != @event.host.user %>
         <span class="player-label">Player 1</span>
         <div class="player-card">
           <div class="player-block">
@@ -72,12 +73,14 @@
           </div>
         </div>
         <% end %>
+        <% end %>
 
-
+        <% if @event.players.where("user_id = ?", current_user.id).blank? %>
         <a class="btn brand-btn brand-btn-red" href="#" role="button">Join quest</a>
+        <% end %>
 
         <!-- Extra snippet -->
-<p><%= @event.title %></p>
+
 
         <% if current_user.host == @event.host %>
         <%= link_to "Edit Event", edit_event_path %>
