@@ -1,18 +1,23 @@
 <div class="page-wrapper">
-  <div class="container">
+  <div class="container survey-index">
+    <div class="ribbon-wrapper">
+      <div class="main-heading-group mrg-bottom">
+        <h1>Quest Followups</h1>
+      </div>
+    </div>
     <div class="row">
+      <div class="col-sm-12">
+        <p>Please click on a card to follow up on your recently attended event.</p>
+      </div>
       <% if !@surveys.blank? %>
           <% for survey in @surveys.where(attended:false) %>
-          <div class="col-sm-12">
-            <div class="card">
+          <div class="col-sm-4">
+            <div class="card card-padding">
               <% event = survey.event %>
-              <p>
-                <%= link_to "#{event.title}", event_survey_path(event, survey) %>
-                <time class="date" datetime="<%= event.datetime %>"></time>
-                <time class="time" datetime="<%= event.datetime %>"></time>
-                <%= event.game.name %>
+                <p><%= link_to "#{event.title}", event_survey_path(event, survey) %></p>
+                <p><time class="date" datetime="<%= event.datetime %>"></time> at <time class="time" datetime="<%= event.datetime %>"></time></p>
+                "<%= event.game.name %>"
                 hosted by: <%= event.host.user.username %>
-              </p>
             </div>
             </div>
           <% end %>
