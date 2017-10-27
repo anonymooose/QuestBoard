@@ -1,0 +1,32 @@
+.event-show-wpr {
+  hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  span {
+    display: block;
+  }
+  .game-title {
+    i {
+      color: $brand-med-gray;
+    }
+  }
+  .post-quest-title {
+    font-size: 21px;
+    font-weight: 600;
+  }
+  .survey_vote label {
+    display: none;
+  }
+  .survey_attended .checkbox {
+    margin-top: 0;
+  }
+  .survey-block {
+    padding: 35px 30px 30px;
+    .brand-btn-red {
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
+
+}

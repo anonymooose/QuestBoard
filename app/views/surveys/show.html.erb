@@ -1,3 +1,73 @@
-<h1>EVENT POSTGAME SURVEY</h1>
-<p><%= @survey.user.id %> this is the user id, this is teh event <%= @event.title %></p>
-<%= render 'form' %>
+<div class="page-wrapper event-show-wpr">
+  <div class="container">
+    <div class="row is-flex page-card">
+
+      <div class="col-xs-12 event-show-heading">
+        <div class="main-heading-group">
+          <h2>Quest Followup</h2>
+        </div>
+      </div>
+
+      <div class="col-sm-6 quest-show-info">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <header>
+            <span class="post-quest-title">
+              <%= @event.title.split.map { |i| i.capitalize }.join(' ') %>
+            </span>
+            <span class="game-title">
+              <i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %>
+            </span>
+          </header>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="quest-content">
+            <span class="brand-label">Date:</span>
+            <time class="date-year" datetime="<%= @event.datetime %>"></time>
+            <span class="brand-label">Address:</span>
+            <span><%= @event.address %></span>
+            <span class="brand-label">Rewards:</span>
+            <div class="quest-rewards">
+              <div class="reward-slot">
+                <%= image_tag("exp.svg") %>
+                <span class="reward-amount"><%= @event.coins %></span>
+              </div>
+              <div class="reward-slot">
+                <%= image_tag("coin.svg") %>
+                <span class="reward-amount"><%= @event.experience %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="quest-attendees">
+            <span class="brand-label">Players:</span>
+            <% @event.players.each do |player|%>
+              <hr>
+              <span class="player-username"><%= player.user.username %></span>
+              <span class="player-level">Level <%= player.user.level.floor %></span>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <span class="brand-label">Description:</span>
+          <blockquote class="small-quote">
+            <%= @event.description %>. Me and my friends are planning an awesome game night and we would like some other boardgame lovers to come join us in our quest for victory. I've been a big fan of meeting new people to play with for ages and I would like some of you guys to come join the events!
+          </blockquote>
+        </div>
+      </div>
+
+      </div>
+
+      <div class="col-sm-6 quest-show-party survey-block">
+        <p>Please confirm the quest details.</p>
+        <%= render 'form' %>
+      </div>
+
+    </div>
+  </div>
+</div>
