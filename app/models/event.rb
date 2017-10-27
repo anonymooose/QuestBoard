@@ -33,8 +33,12 @@ class Event < ApplicationRecord
   end
 
   def surveys!
-    distribute_surveys! if !already_distributed? && past?
-    return self.reload.surveys
+    if !already_distributed? && past?
+      distribute_surveys!
+      return self.reload.surveys
+    else
+      return self.surveys
+    end
   end
 
   def past?

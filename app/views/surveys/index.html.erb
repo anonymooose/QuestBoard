@@ -1,0 +1,8 @@
+<% if !@surveys.blank? %>
+  <% for survey in @surveys.where(attended:false) %>
+    <% event = survey.event %>
+    <%= link_to "#{event.title}", event_survey_path(event, survey) %>
+  <% end %>
+<% else %>
+  <p>You haven't attended any events yet! Go find some!</p>
+<% end %>
