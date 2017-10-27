@@ -4,10 +4,13 @@
 # TODO: Still need Game model seeder
 
 ADMINS = ['admin','trevor','rose','james','carla']
+
 if Game.all.blank?
   Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
   Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
   Game.create!(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
+  Game.create!(max_players:10, name:'Cards Against Humanity', complexity: 0.1, game_length:35)
+  Game.create!(max_players:4, name:'The Settlers of Catan', complexity:8.0, game_length:240)
 end
 
 ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
