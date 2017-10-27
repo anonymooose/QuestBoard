@@ -3,3 +3,42 @@
 <p><%= @user.username %></p>
 <p><%= @user.email %></p>
 <p><%= @user.description %></p>
+<%# Above shows for everyone %>
+
+<% if current_user == @user %>
+  <% if !@user.host.events.blank? %>
+      Your hosting stats:
+      <% if @user.host.events.where('datetime < ?', Time.now).any? %>
+        Upcoming events you are hosting:
+        <ul>
+          <% @user.host.events.each do |event| %>
+            <li><%= link_to "#{event.title}", event_path(event) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>You aren't hosting any events right now.</p>
+    <% end %>
+    <p>Total games hosted: <%= @user.host.events.length %></p>
+    <% else %>
+      <p>You haven't hosted any events! <%= link_to "Let's make one!", new_event_path %></p>
+  <% end %>
+<% else %>
+<%# if you ARE NOT the user %>
+<%# if current_user != @user %>
+  <% if !@user.host.events.blank? %>
+    <%= @user.username %>'s hosting stats:
+    <% if @user.host.events.where('datetime < ?', Time.now).any? %>
+      <p>Upcoming events <%= @user.username %> is hosting:</p>
+      <ul>
+        <% @user.host.events.each do |event| %>
+          <li><%= link_to "#{event.title}", event_path(event) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><%= @user.username %> isn't hosting any events right now.</p>
+    <% end %>
+    <p>Total games hosted: <%= @user.host.events.length %></p>
+  <% else %>
+    <p><%= @user.username %> hasn't hosted any events yet!</p>
+  <% end %>
+<% end %>
