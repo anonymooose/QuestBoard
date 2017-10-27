@@ -12,7 +12,7 @@
 
         <header>
           <span class="quest-date">
-            <time class="date-year" datetime="<%= @event.datetime %>"></time>
+            <time class="date-year" datetime="<%= @event.datetime %>"></time> at <time class ="time" datetime="<%= @event.datetime %>"></time>
           </span>
           <h3><%= @event.title.split.map { |i| i.capitalize }.join(' ') %></h3>
           <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %></span>
@@ -25,11 +25,11 @@
           <div class="quest-rewards">
             <div class="reward-slot">
               <%= image_tag("exp.svg") %>
-              <span class="reward-amount"><%= @event.coins %></span>
+              <span class="reward-amount"><%= @event.experience %></span>
             </div>
             <div class="reward-slot">
               <%= image_tag("coin.svg") %>
-              <span class="reward-amount"><%= @event.experience %></span>
+              <span class="reward-amount"><%= @event.coins %></span>
             </div>
           </div>
           <span class="brand-label">Description:</span>
@@ -55,6 +55,7 @@
           </div>
         </div>
         <% @event.players.each do  |player|%>
+        <% if player.user != @event.host.user %>
         <span class="player-label">Player 1</span>
         <div class="player-card">
           <div class="player-block">
@@ -69,12 +70,15 @@
           </div>
         </div>
         <% end %>
+        <% end %>
 
-
-        <a class="btn brand-btn brand-btn-red" href="#" role="button">Join quest</a>
+        <% if @event.players.where("user_id = ?", current_user.id).blank? && @event.players.length < @event.game.max_players %>
+        <%= link_to "Join quest", event_players_path([@event, current_user]), method: :post, class: "btn brand-btn brand-btn-red", role: "button" %>
+        <%# class="btn brand-btn brand-btn-red" href="" role="button">Join quest</%>
+        <% end %>
 
         <!-- Extra snippet -->
-<p><%= @event.title %></p>
+
 
         <% if current_user.host == @event.host %>
         <%= link_to "Edit Event", edit_event_path %>

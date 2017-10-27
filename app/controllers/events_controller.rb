@@ -89,7 +89,9 @@ class EventsController < ApplicationController
       game: Game.find(event_params[:game]),
       datetime: event_params.values.last(5).join.to_time,
       host: current_user.host,
-      address: event_params[:address]
+      address: event_params[:address],
+      coins: 10,
+      experience: 100
     }
     @event = Event.create(params)
     if @event.save
@@ -118,7 +120,9 @@ class EventsController < ApplicationController
       game: Game.find(event_params[:game]),
       datetime: event_params.values.last(5).join.to_time,
       host: current_user.host,
-      address: event_params[:address]
+      address: event_params[:address],
+      coins: 10,
+      experience: 100
     }
 
     @event.update(eparams)
@@ -129,9 +133,10 @@ class EventsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @event = Event.find(params[:id])
     @event.destroy
+    redirect_to root_path
   end
 
   private
