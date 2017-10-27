@@ -76,7 +76,8 @@
         <% end %>
 
         <% if @event.players.where("user_id = ?", current_user.id).blank? %>
-        <a class="btn brand-btn brand-btn-red" href="#" role="button">Join quest</a>
+        <%= link_to "Join quest", event_players_path([@event, current_user]), method: :post, class: "btn brand-btn brand-btn-red", role: "button" %>
+        <%# class="btn brand-btn brand-btn-red" href="" role="button">Join quest</%>
         <% end %>
 
         <!-- Extra snippet -->
