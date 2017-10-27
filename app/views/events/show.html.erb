@@ -12,8 +12,7 @@
 
         <header>
           <span class="quest-date">
-            <time class="date" datetime="<%= @event.datetime %>"></time>
-          Oct. 31, 2017 at 21:00
+            <time class="date-year" datetime="<%= @event.datetime %>"></time>
           </span>
           <h3><%= @event.title.split.map { |i| i.capitalize }.join(' ') %></h3>
           <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %></span>
