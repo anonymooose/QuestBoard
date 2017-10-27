@@ -1,3 +1,47 @@
-<h1>EVENT POSTGAME SURVEY</h1>
-<p><%= @survey.user.id %> this is the user id, this is teh event <%= @event.title %></p>
-<%= render 'form' %>
+<div class="page-wrapper event-show-wpr">
+  <div class="container">
+    <div class="row is-flex page-card">
+
+      <div class="col-xs-12 event-show-heading">
+        <div class="main-heading-group">
+          <h2>Quest Followup</h2>
+        </div>
+      </div>
+
+      <div class="col-sm-6 quest-show-info">
+
+        <span class="brand-label">Quest details:</span>
+        <blockquote class="small-quote">Here is the information for the quest you accepted.</blockquote>
+
+        <header>
+          <span class="quest-date">Oct. 31, 2017 at 21:00</span>
+          <h3>Hyalloqweegn Game Night</h3>
+          <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Cards Against Humanity</span>
+        </header>
+
+        <div class="quest-content">
+          <span class="brand-label">Address:</span>
+          <span>1st Floor, Insatsu Kojo 2-11-3, Meguro, Meguro-ku, Tokyo</span>
+          <span class="brand-label">Rewards:</span>
+          <div class="quest-rewards">
+            <div class="reward-slot">
+              <%= image_tag("exp.svg") %>
+              <span class="reward-amount">300</span>
+            </div>
+            <div class="reward-slot">
+              <%= image_tag("coin.svg") %>
+              <span class="reward-amount">9</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6 quest-show-party">
+        <p><%= @survey.user.id %> this is the user id, this is the event <%= @event.title %></p>
+        <%= render 'form' %>
+      </div>
+
+    </div>
+  </div>
+</div>

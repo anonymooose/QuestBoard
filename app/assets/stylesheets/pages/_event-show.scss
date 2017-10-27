@@ -36,19 +36,17 @@
       color: $brand-blue;
     }
   }
-  .quest-content {
-    blockquote.small-quote {
-      font-size: 18px;
-      padding-top: 0;
-      padding-bottom: 0;
-      margin-top: 5px;
-      margin-bottom: 0;
-    }
-  }
   .brand-label {
     font-weight: 500;
     display: block;
     margin-top: 15px;
+  }
+  blockquote.small-quote {
+    font-size: 18px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 5px;
+    margin-bottom: 0;
   }
   .quest-show-party {
     background-color: lighten($brand-blue, 50%);
