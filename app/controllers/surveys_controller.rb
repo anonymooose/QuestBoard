@@ -22,7 +22,7 @@ class SurveysController < ApplicationController
     else
       flash[:notice] = "Thanks for being honest! Here's 1 coin!"
     end
-    redirect_to user_path(@survey.user)
+    redirect_to root_path
   end
 
   private
