@@ -1,5 +1,7 @@
 <%= simple_form_for ([@event, @survey]) do |f| %>
+  <label>Did you attend the event?</label>
   <%= f.input :attended, as: :boolean, checked_value: true, unchecked_value: false %>
+  <label>Who was the winner of the board game event?</label>
   <%= f.input :vote, collection: @event.players, label_method: :username %>
   <%= f.submit %>
 <% end %>

@@ -1,0 +1,18 @@
+.event-show-wpr {
+  span {
+    display: block;
+  }
+  .game-title {
+    i {
+      color: $brand-med-gray;
+    }
+  }
+  .post-quest-title {
+    font-size: 21px;
+    font-weight: 600;
+  }
+  .survey_vote label {
+    display: none;
+  }
+}
+

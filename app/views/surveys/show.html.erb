@@ -10,35 +10,60 @@
 
       <div class="col-sm-6 quest-show-info">
 
-        <span class="brand-label">Quest details:</span>
-        <blockquote class="small-quote">Here is the information for the quest you accepted.</blockquote>
+      <div class="row">
+        <div class="col-xs-12">
+          <header>
+            <span class="post-quest-title">
+              <%= @event.title.split.map { |i| i.capitalize }.join(' ') %>
+            </span>
+            <span class="game-title">
+              <i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %>
+            </span>
+          </header>
+        </div>
 
-        <header>
-          <span class="quest-date">Oct. 31, 2017 at 21:00</span>
-          <h3>Hyalloqweegn Game Night</h3>
-          <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Cards Against Humanity</span>
-        </header>
-
-        <div class="quest-content">
-          <span class="brand-label">Address:</span>
-          <span>1st Floor, Insatsu Kojo 2-11-3, Meguro, Meguro-ku, Tokyo</span>
-          <span class="brand-label">Rewards:</span>
-          <div class="quest-rewards">
-            <div class="reward-slot">
-              <%= image_tag("exp.svg") %>
-              <span class="reward-amount">300</span>
-            </div>
-            <div class="reward-slot">
-              <%= image_tag("coin.svg") %>
-              <span class="reward-amount">9</span>
+        <div class="col-sm-6">
+          <div class="quest-content">
+            <span class="brand-label">Date:</span>
+            <time class="date-year" datetime="<%= @event.datetime %>"></time>
+            <span class="brand-label">Address:</span>
+            <span><%= @event.address %></span>
+            <span class="brand-label">Rewards:</span>
+            <div class="quest-rewards">
+              <div class="reward-slot">
+                <%= image_tag("exp.svg") %>
+                <span class="reward-amount"><%= @event.coins %></span>
+              </div>
+              <div class="reward-slot">
+                <%= image_tag("coin.svg") %>
+                <span class="reward-amount"><%= @event.experience %></span>
+              </div>
             </div>
           </div>
         </div>
 
+        <div class="col-sm-6">
+          <div class="quest-attendees">
+            <span class="brand-label">Attendees:</span>
+            <% @event.players.each do  |player|%>
+              <span class="player-username"><%= player.user.username %></span>
+              <span class="player-level">Level <%= player.user.level.floor %></span>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <span class="brand-label">Description:</span>
+          <blockquote class="small-quote">
+            <%= @event.description %> Me and my friends are planning an awesome game night and we would like some other boardgame lovers to come join us in our quest for victory. I've been a big fan of meeting new people to play with for ages and I would like some of you guys to come join the events!
+          </blockquote>
+        </div>
+      </div>
+
       </div>
 
       <div class="col-sm-6 quest-show-party">
-        <p><%= @survey.user.id %> this is the user id, this is the event <%= @event.title %></p>
+        <p>Please confirm the quest details.</p>
         <%= render 'form' %>
       </div>
 

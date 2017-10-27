@@ -53,58 +53,58 @@
     border-bottom-right-radius: 5px;
     padding-top: 35px;
     padding-bottom: 30px;
-    .player-card {
-      background-color: #fff;
-      margin: 2em;
-      border-radius: 0 5px 5px 5px;
-      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
-      box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
-      margin: 0 15px 15px 15px;
-      .player-block {
-        display: flex;
-        align-items: center;
-      }
-      img {
-        width: 150px;
-      }
+  }
+  .player-card {
+    background-color: #fff;
+    margin: 2em;
+    border-radius: 0 5px 5px 5px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+    margin: 0 15px 15px 15px;
+    .player-block {
+      display: flex;
+      align-items: center;
     }
-    .player-label {
-      display: block;
-      width: fit-content;
-      background-color: $brand-dark-gray;
-      border-top-left-radius: 2px;
-      border-top-right-radius: 2px;
-      font-weight: 500;
-      color: #fff;
-      padding: 3px 15px 2px;
-      text-transform: uppercase;
-      font-size: 14px;
-      margin-left: 15px;
+    img {
+      width: 150px;
     }
-    .player-info {
-      flex: 1;
-      margin-right: 40px;
-    }
-    .player-username {
-      font-weight: 600;
-      color: #205dcc;
-      display: block;
-    }
-    .player-level {
-      text-transform: uppercase;
-    }
-    .progress {
-      margin-top: 15px;
-      margin-bottom: 0;
-    }
-    .progress-bar {
-      background-color: $brand-purple;
-    }
-    .brand-btn-red {
-      margin-top: 15px;
-      margin-left: 15px;
-      display: inline-table;
-    }
+  }
+  .player-label {
+    display: block;
+    width: fit-content;
+    background-color: $brand-dark-gray;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    font-weight: 500;
+    color: #fff;
+    padding: 3px 15px 2px;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-left: 15px;
+  }
+  .player-info {
+    flex: 1;
+    margin-right: 40px;
+  }
+  .player-username {
+    font-weight: 600;
+    color: #205dcc;
+    display: block;
+  }
+  .player-level {
+    text-transform: uppercase;
+  }
+  .progress {
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+  .progress-bar {
+    background-color: $brand-purple;
+  }
+  .brand-btn-red {
+    margin-top: 15px;
+    margin-left: 15px;
+    display: inline-table;
   }
 }
 
