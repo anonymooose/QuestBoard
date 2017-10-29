@@ -1,0 +1,23 @@
+<%# If user hosted at least one event %>
+<% def current_same?
+  current_user == @user
+end %>
+<% if !@user.host.events.blank? %>
+    <p><%= current_same? ? 'Your' : "#{@user.username}'s" %> hosting stats:</p>
+    <%# if user has active events %>
+    <% if @user.host.events.where('datetime < ?', Time.now).any? %>
+      <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> hosting:</p>
+      <ul>
+        <% @user.host.events.each do |event| %>
+          <li><%= link_to "#{event.title}", event_path(event) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%# If user has no active events %>
+      <p><%= current_same? ? "You aren't" : "#{@user.username} isn't" %> hosting any events right now.</p>
+  <% end %>
+  <p>Total events hosted: <%= @user.host.events.length %></p>
+  <% else %>
+    <%# If never hosted %>
+    <p><%= current_same? ? "You haven't" : "#{@user.username} hasn't" %> hosted any games yet!</p>
+<% end %>
