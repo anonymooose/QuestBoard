@@ -5,6 +5,18 @@
 
 ADMINS = ['admin','trevor','rose','james','carla']
 
+
+if Achievement.all.blank?
+   Achievement.create(name: "Welcome to the Party", description: "Attend your first event")
+   Achievement.create(name: "Socialite", description: "Attend your fifth event")
+   Achievement.create(name: "Junior Host", description: "Host your first event")
+   Achievement.create(name: "Accomplished Host", description: "Host your five event")
+   Achievement.create(name: "One small step..", description: "Reach level 2")
+   Achievement.create(name: "Lord of the Board", description: "Reach level 5")
+ end
+
+
+
 if Game.all.blank?
   Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
   Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
