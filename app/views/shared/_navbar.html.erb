@@ -12,7 +12,7 @@
       <!-- Links when logged in -->
       <%#= link_to "Edit User",  edit_user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%#= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Surveys (#{current_user.surveys.where(attended:false).length})", surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Tasks (<b>#{current_user.surveys.where(attended:false).length}</b>)".html_safe, surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
