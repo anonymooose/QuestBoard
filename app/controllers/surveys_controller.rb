@@ -18,13 +18,7 @@ class SurveysController < ApplicationController
     attendance = survey_params[:attended] == 'true'
     attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
     if attendance
-      if level_up?(current_user.level)
-        add_rewards
-        if new_achievements?(current_user.achievements)
-        end
-      else
-        add_reward
-      end
+      determine_change(current_user)
       flash[:notice] = "Thanks for answering! Here's 5 coins!"
     else
       flash[:notice] = "Thanks for being honest! Here's 1 coin!"
@@ -37,7 +31,11 @@ class SurveysController < ApplicationController
     params.require(:survey).permit(:vote, :attended)
   end
 
-  def new_achievements?(achieve_array)
+  def determine_change(initial_user_status)
+    base = initial_user_status
+    #treat all answered surveys as attended events
+    base.surveys.length
+
   end
 
   def level_up?(initial_level)
@@ -46,8 +44,8 @@ class SurveysController < ApplicationController
     return false
   end
 
-  def add_rewards
-    @survey.user.level += @survey.event.experience
+  def add_event_rewards
+    @survey.user.level += (@survey.event.experience)/100.0
     @survey.user.coins += @survey.event.coins
   end
 end
