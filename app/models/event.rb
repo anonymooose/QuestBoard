@@ -9,7 +9,7 @@ class Event < ApplicationRecord
 
 
   after_create :initialize_event
-  before_save :ensure_gamesize
+  before_save :ensure_gamesize, :set_rewards
 
   acts_as_mappable :default_units => :kms,
                    :default_formula => :sphere,
@@ -71,6 +71,18 @@ class Event < ApplicationRecord
 
   def ensure_gamesize
     correct_players! unless valid_players?
+  end
+
+  def set_rewards
+    unless self.game.game_length == 0
+      modifier = ((self.game.complexity)+((self.game.game_length)/15))
+    else
+      modifier = self.game.complexity
+    end
+    pre = 22*self.game.complexity*modifier*(((self.game.max_players)*0.1)/0.6)
+    self.experience = pre.to_i
+    pre = 4*self.game.max_players*modifier
+    self.coins = pre.to_i
   end
 
   def valid_players?
