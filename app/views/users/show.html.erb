@@ -10,7 +10,9 @@
   <p><%= link_to "Edit your profile", edit_user_path(current_user) %></p>
   <p><%= link_to "Edit your avatar", edit_avatar_path(current_user.avatar) %></p>
   <%= render 'hostedstats' %>
+  <%= render 'attendingevents' %>
 <% else %>
   <%# if NOT your profile %>
   <%= render 'hostedstats' %>
+  <%= render 'attendingevents' %>
 <% end %>
