@@ -28,13 +28,14 @@
 
 .hp-info {
   background-color: #fff;
+  padding-left: 30px;
   h3 {
     font-size: 36px;
     text-transform: lowercase;
     padding-top: 20px;
     padding-bottom: 10px;
   }
-  p {
+  p:last-of-type {
     margin-bottom: 40px;
   }
 }
