@@ -1,8 +1,15 @@
 .profile-wpr {
+  .page-card {
+    margin-bottom: 30px;
+  }
+  .page-card:last-of-type {
+    margin-bottom: 0;
+  }
   .main-content {
     border-radius: 0;
   }
   .user-block {
+    border-bottom-left-radius: 5px;
     background-color: lighten($brand-blue, 50%);
   }
   .player-block {
@@ -12,7 +19,7 @@
     position: absolute;
     font-size: 12px;
     text-transform: uppercase;
-    top: 5px;
+    top: 2px;
     left: 5px;
     color: #ccc;
     font-weight: 500;
@@ -23,7 +30,7 @@
   }
   .sub-content {
     background-color: #fff;
-    border-radius: 0;
+    border-radius: 0 0 5px 0;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -41,6 +48,8 @@
     background-color: #fff;
     border-top: solid 1px #eff3fd;
     padding: 30px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 }
 
