@@ -3,5 +3,5 @@
   <%= f.input :attended, as: :boolean, checked_value: true, unchecked_value: false %>
   <label>Who was the winner of the event?</label>
   <%= f.input :vote, collection: @event.players, label_method: :username %>
-  <%= f.submit "Submit", class: "btn brand-btn brand-btn-red" %>
+  <%= f.submit "Claim rewards", class: "btn brand-btn brand-btn-red" %>
 <% end %>

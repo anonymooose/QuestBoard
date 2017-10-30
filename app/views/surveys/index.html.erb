@@ -2,33 +2,40 @@
   <div class="container survey-index">
     <div class="ribbon-wrapper">
       <div class="main-heading-group mrg-bottom">
-        <h1>Quest Followups</h1>
+        <h1>Quest Follow-ups</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row is-flex">
       <div class="col-sm-12">
-        <p>Please click on a card to follow up on your recently attended event.</p>
+        <p>Please follow up on your recently completed quest(s) and <b>claim your rewards</b>.</p>
       </div>
       <% if !@surveys.blank? %>
-          <% for survey in @surveys.where(attended:false) %>
+        <% for survey in @surveys.where(attended:false) %>
           <div class="col-sm-4">
             <div class="card card-padding">
               <% event = survey.event %>
-                <p><%= link_to "#{event.title}", event_survey_path(event, survey) %></p>
-                <p><time class="date" datetime="<%= event.datetime %>"></time> at <time class="time" datetime="<%= event.datetime %>"></time></p>
-                "<%= event.game.name %>"
-                hosted by: <%= event.host.user.username %>
+                <span class="event-title"><%= event.title.split.map { |i| i.capitalize }.join(' ') %></span>
+                  <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= event.game.name %> </span>
+                <div class="quest-details">
+                  <div class="detail-one">
+                    <span class="brand-label">Occurred on:</span>
+                    <span>
+                      <time class="date" datetime="<%= event.datetime %>"></time> at <time class="time" datetime="<%= event.datetime %>"></time>
+                    </span>
+                  </div>
+                  <div class="detail-two">
+                    <span class="brand-label">Hosted by:</span>
+                    <span><%= event.host.user.username %></span>
+                  </div>
+                </div>
+
+                <%= link_to "Follow up", event_survey_path(event, survey), class: "btn brand-btn brand-btn-red" %>
             </div>
-            </div>
-          <% end %>
+          </div>
+        <% end %>
       <% else %>
-        <p>You haven't attended any events yet! Go find some!</p>
+        <p>You haven't joined any quests yet! Go find some!</p>
       <% end %>
     </div>
   </div>
 </div>
-
-
-
-
-

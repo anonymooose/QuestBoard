@@ -7,7 +7,8 @@
 
 <%# If viewing own profile %>
 <% if current_user == @user %>
-  <p><%= link_to "Edit your profile", edit_user_path(@user) %></p>
+  <p><%= link_to "Edit your profile", edit_user_path(current_user) %></p>
+  <p><%= link_to "Edit your avatar", edit_avatar_path(current_user.avatar) %></p>
   <%= render 'hostedstats' %>
 <% else %>
   <%# if NOT your profile %>
