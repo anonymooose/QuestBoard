@@ -4,13 +4,17 @@ class AvatarsController < ApplicationController
   end
 
   def update
-    @avatar.update(params[:avatar])
+    @avatar.update(avatar_params)
     flash[:notice] = "Avatar successfully updated!"
-    redirect_to user_page(current_user)
+    redirect_to user_path(current_user)
   end
 
   private
   def set_current_avatar
     @avatar = current_user.avatar
+  end
+
+  def avatar_params
+    params.require(:avatar).permit(:gender, :hair, :top, :bottom, :shoes)
   end
 end
