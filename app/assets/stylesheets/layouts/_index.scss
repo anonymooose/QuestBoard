@@ -4,6 +4,10 @@
 // @import "profile";
 // @import "map";
 
+body {
+  background: $brand-light-gray url(image-path('pixel-bg.png')) repeat fixed center center;
+}
+
 .page-wrapper {
   padding: 3em 0 2em 0;
 }
