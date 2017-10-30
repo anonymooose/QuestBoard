@@ -16,7 +16,6 @@ class User < ApplicationRecord
   before_create :ensure_new
   after_create :initialize_host
 
-
   acts_as_mappable :default_units => :kms,
                    :default_formula => :sphere,
                    :distance_field_name => :distance,
@@ -53,7 +52,7 @@ class User < ApplicationRecord
     #self.level = 1.0
     self.coins = 0
     self.description = "I'm a QuestBoard noob!"
-    self.avatar = Avatar.create!({gender:0,hair:0,shoes:0,top:0,bottom:0})
+    self.avatar = Avatar.create({gender:0,hair:0,shoes:0,top:0,bottom:0})
   end
 
   def initialize_host
