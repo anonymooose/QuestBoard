@@ -72,3 +72,10 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
 }
+
+.back-link {
+  font-weight: 500;
+  &:hover {
+    text-decoration: none;
+  }
+}

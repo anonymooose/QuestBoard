@@ -18,7 +18,7 @@
 
           <div class="account-footer">
             <p>Unhappy? <%= link_to "Cancel my Account.", user_path(@user), data: { confirm: "Are you sure? Once deleted, an account may NEVER be recovered!" }, method: :delete %></p>
-            <%= link_to :back do %>
+            <%= link_to :back, class: "back-link" do %>
               <i class="fa fa-chevron-left" aria-hidden="true"></i> BACK
             <% end %>
           </div>

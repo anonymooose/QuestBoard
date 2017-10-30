@@ -46,7 +46,7 @@
     padding-top: 0;
     padding-bottom: 0;
     margin-top: 5px;
-    margin-bottom: 0;
+    margin-bottom: 15px;
   }
   .quest-show-party {
     background-color: lighten($brand-blue, 50%);
@@ -86,6 +86,26 @@
     flex: 1;
     margin-right: 40px;
   }
+  .attendees-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    img {
+      width: 100px;
+    }
+    .player-block {
+      flex-basis: auto;
+      margin: 15px 30px 15px 0;
+    }
+    .player-info {
+      padding-right: 0;
+      margin-right: 0;
+    }
+    .progress {
+      height: 10px;
+      margin-top: 5px;
+    }
+  }
   .player-username {
     font-weight: 600;
     color: #205dcc;
@@ -95,7 +115,7 @@
     text-transform: uppercase;
   }
   .progress {
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 0;
   }
   .progress-bar {
@@ -103,6 +123,20 @@
   }
   .brand-btn-red {
     margin: 0 15px 15px auto;
+  }
+  .edit-link {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 15px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .party-links {
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
   }
 }
 
