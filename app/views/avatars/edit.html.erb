@@ -26,8 +26,8 @@
               <% Avatar::GENDER_CHOICE.each do |gender| %>
                 <label class="avatar-choice">
                   <input type="radio" name="avatar[gender]" value="<%= gender[0] %>" <%= @avatar.gender == gender[0] ? 'checked' : '' %>>
-                  <img src="/assets/avatar/gender/<%= gender[0] %>.svg">
-                  <%#= image_tag "avatar/gender/#{gender[0]}.svg" %>
+                  <!-- <img src="/assets/avatar/gender/<%= gender[0] %>.svg"> -->
+                  <%= image_tag "avatar/gender/#{gender[0]}.svg" %>
                 </label>
               <% end %>
             </div>
