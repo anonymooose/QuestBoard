@@ -5,6 +5,12 @@
       <div class="col-xs-12 event-show-heading">
         <div class="main-heading-group">
           <h2>Quest Details</h2>
+          <div class="quest-buttons pull-right">
+<!--             <% if current_user.host == @event.host %>
+              <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_event_path %>
+              <%= link_to '<i class="fa fa-times"></i>'.html_safe, event_path(@event), method: :delete %>
+            <% end %> -->
+          </div>
         </div>
       </div>
 
@@ -75,16 +81,10 @@
         <% end %>
         <% end %>
 
-        <!-- Extra snippet -->
-
-        <% if current_user.host == @event.host %>
-        <%= link_to "Edit Event", edit_event_path %>
-        <%= link_to "Delete Event", event_path(@event), method: :delete %>
-        <% end %>
-
       </div>
 
     </div>
   </div>
 </div>
+
 

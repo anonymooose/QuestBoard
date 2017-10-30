@@ -18,8 +18,8 @@ ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",pa
 Event.create!(
   {
     description: "Mouse trap has such a low complexity because nobody ever really played it, they just set up the traps and watched them",
-    datetime: Time.now + 10,
-    title: "ADMIN HOSTS GAME",
+    datetime: Time.now,
+    title: "Mouse Trap at my house!!!",
     address: 'Shibuya, Tokyo',
     coins: 10,
     experience: 100,
@@ -33,8 +33,8 @@ Event.create!(
 Event.create!(
   {
     description: "This game will not be fun, operation ruins friendships. BYOB.",
-    datetime: Time.now + 1000,
-    title: "TREVOR HOSTS GAME",
+    datetime: Time.now - 100000,
+    title: "Trevor's Burger King Bash",
     address: 'Long Beach, CA',
     coins: 10,
     experience: 100,
@@ -46,12 +46,12 @@ Event.create!(
 Event.create!(
   {
     description: "Monopoly is one of the BEST BOARD GAMES EVER!!!!!!",
-    datetime: Time.now + 100,
-    title: "CARLA HOSTS GAME",
+    datetime: Time.now + 100000,
+    title: "Post pitch party!! LeWagon ONLY",
     address: 'Shibuya, Tokyo',
     coins: 10,
     experience: 100,
-    game: Game.get_by_name('Monopoly'),
+    game: Game.get_by_name('Cards Against Humanity'),
     host: User.find(5).host
   }
 )
@@ -70,8 +70,8 @@ Event.create!(
   {
     description: "I just wanna play mouse trap with trevor",
     datetime: Time.now + 10000,
-    title: "Come play mouse trap with james",
-    address: 'Adelaide University',
+    title: "Come play mouse trap with James",
+    address: 'Otsuka Station, Tokyo',
     coins: 15,
     experience: 120,
     game: Game.first,
@@ -79,12 +79,25 @@ Event.create!(
   }
 )
 
+Event.create!(
+  {
+    description: "Mouse trap has an extremely high skill cap due to the many interconnected components",
+    datetime: Time.now,
+    title: "Mouse Trap on the STREET",
+    address: 'Shinjuku, Tokyo',
+    coins: 10,
+    experience: 100,
+    game: Game.first,
+    host: User.first.host
+  }
+)
+
 
 Event.create!(
   {
-    description: "Mouse trap is pretty popular recently, so I'll host one",
-    datetime: Time.now + 10000,
-    title: "CARLA HOSTS GAME",
+    description: "Mouse trap is pretty popular recently, so I'll get in on the action",
+    datetime: Time.now + 1000000,
+    title: "Game night at Impact Hub",
     address: 'Impact Hub Tokyo',
     coins: 10,
     experience: 100,
