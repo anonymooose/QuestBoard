@@ -1,0 +1,8 @@
+<%= simple_form_for(@avatar) do |f| %>
+  <%= f.input :gender, collection: Avatar::GENDER_CHOICE.keys, label_method: Avatar::GENDER_CHOICE.values %>
+  <%= f.input :hair, collection: Avatar::HAIR_CHOICE.keys, label_method: Avatar::HAIR_CHOICE.values %>
+  <%= f.input :top, collection: Avatar::TOP_CHOICE.keys, label_method: Avatar::TOP_CHOICE.values %>
+  <%= f.input :bottom, collection: Avatar::BOTTOM_CHOICE.keys, label_method: Avatar::BOTTOM_CHOICE.values %>
+  <%= f.input :shoes, collection: Avatar::SHOE_CHOICE.keys, label_method: Avatar::SHOE_CHOICE.values %>
+  <%= f.submit %>
+<% end %>
