@@ -25,7 +25,7 @@
               <span class="player-username"><%= @user.username %></span>
               <span class="player-level">Level <%= @user.level.floor %></span>
               <div class="progress">
-                <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+                <div class="progress-bar progress-bar-info" style="width:<%= (@user.level.modulo(1)*100).to_i %>%"></div>
               </div>
             </div>
           </div>
@@ -47,7 +47,9 @@
       <div class="col-sm-6 sub-content">
         <span class="brand-label">Badges:</span>
         <ul>
-          <li>On Your Way! (Signed up for QuestBoard)</li>
+          <% @user.achievements.each do |achievement| %>
+            <li><%= "#{achievement.name} (#{achievement.description})" %></li>
+          <% end %>
         </ul>
 
         <% if current_user == @user %>
@@ -56,6 +58,9 @@
           <li>Quest win rate: 42%</li>
           <li>Completed quests: 12</li>
           <li>Quest wins: 5</li>
+          <% if @user.events.any? %>
+            <li><%= link_to "View full history", user_history_path(@user) %></li>
+          <% end %>
         </ul>
 
         <span class="brand-label">Inventory:</span>

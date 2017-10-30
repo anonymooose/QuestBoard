@@ -50,7 +50,6 @@ class SurveysController < ApplicationController
       end
     end
     add_event_rewards
-    current_user.save
   end
 
   def level_up?(initial_level)
@@ -60,11 +59,12 @@ class SurveysController < ApplicationController
   end
 
   def add_event_rewards
-    @survey.user.level += (@survey.event.experience)/100.0
-    @survey.user.coins += @survey.event.coins
+    current_user.update(level:current_user.level + ((@survey.event.experience)/100.0))
+    current_user.update(coins:current_user.coins + @survey.event.coins)
   end
 
   def add_achievement(id)
     current_user.achievements << Achievement.find(id)
+    current_user.save
   end
 end
