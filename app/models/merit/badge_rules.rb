@@ -22,7 +22,7 @@ module Merit
 
     def initialize
 
-      grant_on 'User#edit', badge_id: 1, model_name: Avatar
+      grant_on 'user#update', badge_id: 1, :to :avatar
 
 
       # If it creates user, grant badge
