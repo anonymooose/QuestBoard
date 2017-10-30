@@ -33,6 +33,9 @@
     border-radius: 0 0 5px 0;
     padding-left: 30px;
     padding-right: 30px;
+    .brand-label:first-of-type {
+      margin-top: 0;
+    }
   }
   .profile-link {
     text-align: right;
