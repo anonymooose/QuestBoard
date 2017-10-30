@@ -1,45 +1,16 @@
-.edit-avatar-wpr {
-  .event-show-heading {
-    background-color: $brand-dark-gray;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  .main-heading-group {
-    h2 {
-      color: $brand-light-gray;
-    }
-    padding: 30px 0;
-  }
-  .avatar {
+.avatar {
   width: 300px;
   height: 300px;
   position: relative;
 
-    img {
-      width: 300px;
-      height: 300px;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+  img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
-.avatar-choice {
-  width: 80px;
-  input {
-    display: none;
-  }
-
-}
-
-.event-show-heading {
-  background-color: $brand-dark-gray;
-}
-
-.page-card {
-  background-color: white;
-}
 
 
 
