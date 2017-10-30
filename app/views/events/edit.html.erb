@@ -1,24 +1,45 @@
-<h2>hello, this is the event edit page. good luck.</h2>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('#datepicker').datepicker();
+  });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
 
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <script type="text/javascript">
-        jQuery(document).ready(function($) {
-          $('#datepicker').datepicker();
-        });
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="account-box">
+          <div class="main-heading-group">
+            <h2>Edit quest</h2>
+          </div>
+
+          <div class="account-form-main">
+            <%= simple_form_for(@event) do |f| %>
+              <%= f.input :title %>
+              <%= f.input :game, collection: @games, :input_html => { :value => nil } %>
+              <%= f.input :description, as: :text %>
+              <%= f.input :address, input_html: { :class => 'search-location' }%>
+              <% # note  - game field will ideally not be straight text input. stay tuned %>
+              <%= f.input :datetime, data:{ provide:'datepicker'}, :input_html => { :value => Date.today } %>
+              <%= f.button :submit, "Update" %>
+            <% end %>
+          </div>
+
+          <div class="account-footer">
+            <%= link_to :back do %>
+              <i class="fa fa-chevron-left" aria-hidden="true"></i> BACK
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
-<%= simple_form_for(@event) do |f| %>
-<%= f.input :title %>
-<%= f.input :game, collection: @games, :input_html => { :value => nil } %>
-<%= f.label :description %>
-<%= f.text_area :description, :cols => "30", :rows => "5" %>
-<%= f.input :address, input_html: { :class => 'search-location' }%>
-<% # note  - game field will ideally not be straight text input. stay tuned %>
-<%= f.input :datetime, data:{ provide:'datepicker'}, :input_html => { :value => Date.today } %>
-<%= f.submit :submit %>
 
-<% end %>

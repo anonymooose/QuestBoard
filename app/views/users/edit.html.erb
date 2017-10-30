@@ -1,14 +1,29 @@
-<h2>edit page</h2>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="account-box">
+          <div class="main-heading-group">
+            <h2>Edit profile</h2>
+          </div>
 
-<%= simple_form_for(@user) do |f| %>
-  <%= f.input :username, required: true, autofocus: true %>
-  <%= f.input :email, required: true %>
-  <%= f.input :description, as: :text, required: true %>
-  <%= f.button :submit, "Update" %>
-<% end %>
+          <div class="account-form-main">
+          <%= simple_form_for(@user) do |f| %>
+            <%= f.input :username, required: true, autofocus: true %>
+            <%= f.input :email, required: true %>
+            <%= f.input :description, as: :text, required: true %>
+            <%= f.button :submit, "Update" %>
+          <% end %>
+          </div>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my Account", user_path(@user), data: { confirm: "Are you sure? Once deleted, an account may NEVER be recovered!" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+          <div class="account-footer">
+            <p>Unhappy? <%= link_to "Cancel my Account.", user_path(@user), data: { confirm: "Are you sure? Once deleted, an account may NEVER be recovered!" }, method: :delete %></p>
+            <%= link_to :back do %>
+              <i class="fa fa-chevron-left" aria-hidden="true"></i> BACK
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
