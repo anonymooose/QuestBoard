@@ -80,7 +80,9 @@ class Event < ApplicationRecord
       modifier = self.game.complexity
     end
     pre = 22*self.game.complexity*modifier*(((self.game.max_players)*0.1)/0.6)
-    self.experience pre.to_i
+    self.experience = pre.to_i
+    pre = 4*self.game.max_players*modifier
+    self.coins = pre.to_i
   end
 
   def valid_players?
