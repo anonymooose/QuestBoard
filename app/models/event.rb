@@ -45,6 +45,15 @@ class Event < ApplicationRecord
     self.datetime < Time.now ? true : false
   end
 
+  def ultra_delete!
+    #when a user truly can no longer host the event, and players must be notified
+    #there cannot be any surveys
+    if self.past?
+      #self.players.each do |player| {player.cancelled << Cancel.new(event:self.title)}
+      return true
+    end
+  end
+
   private
 
   def initialize_event

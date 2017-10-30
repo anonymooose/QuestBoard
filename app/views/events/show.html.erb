@@ -15,72 +15,11 @@
       </div>
 
       <div class="col-sm-6 quest-show-info">
-
-        <header>
-          <span class="quest-date">
-            <time class="date-year" datetime="<%= @event.datetime %>"></time> at <time class ="time" datetime="<%= @event.datetime %>"></time>
-          </span>
-          <h3><%= @event.title.split.map { |i| i.capitalize }.join(' ') %></h3>
-          <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %></span>
-        </header>
-
-        <div class="quest-content">
-          <span class="brand-label">Address:</span>
-          <span><%= @event.address %></span>
-          <span class="brand-label">Rewards:</span>
-          <div class="quest-rewards">
-            <div class="reward-slot">
-              <%= image_tag("exp.svg") %>
-              <span class="reward-amount"><%= @event.experience %></span>
-            </div>
-            <div class="reward-slot">
-              <%= image_tag("coin.svg") %>
-              <span class="reward-amount"><%= @event.coins %></span>
-            </div>
-          </div>
-          <span class="brand-label">Description:</span>
-          <blockquote class="small-quote">
-            <%= @event.description %> Me and my friends are planning an awesome game night and we would like some other boardgame lovers to come join us in our quest for victory. I've been a big fan of meeting new people to play with for ages and I would like some of you guys to come join the events!
-          </blockquote>
-        </div>
+        <%= render 'eventdetails' %>
       </div>
 
       <div class="col-sm-6 quest-show-party">
-        <% if @event.players.where("user_id = ?", current_user.id).blank? && @event.players.length < @event.game.max_players %>
-        <%= link_to "Join quest", event_players_path([@event, current_user]), method: :post, class: "btn brand-btn brand-btn-red", role: "button" %>
-        <% end %>
-
-        <span class="player-label">Host</span>
-        <div class="player-card">
-          <div class="player-block">
-            <%= image_tag("placeholder-female.svg") %>
-            <div class="player-info">
-              <span class="player-username"><%= @event.host.user.username %></span>
-              <span class="player-level">Level <%= @event.host.user.level.floor %></span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% @event.players.each do  |player|%>
-        <% if player.user != @event.host.user %>
-        <span class="player-label">Player</span>
-        <div class="player-card">
-          <div class="player-block">
-            <%= image_tag("placeholder-male.svg") %>
-            <div class="player-info">
-              <span class="player-username"><%= player.user.username %></span>
-              <span class="player-level">Level <%= player.user.level.floor %></span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-info" style="width: 90%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% end %>
-        <% end %>
-
+        <%= render 'partydetails' %>
       </div>
 
     </div>

@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     @events = Player.where(user_id:@user.id)
   end
 
+  def history
+    @user = User.find(params[:user_id])
+    @events = @user.events.where('datetime < ?', Time.now)
+  end
+
   def edit
     @user = User.find(params[:id])
   end

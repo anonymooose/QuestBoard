@@ -1,0 +1,6 @@
+<p><%= current_user == @user ? 'Your' : "#{@user.username}'s"%> event history:</p>
+<ul>
+  <% @events.each do |event| %>
+    <li><%= link_to "#{event.title}", event_path(event) %></li>
+  <% end %>
+</ul>

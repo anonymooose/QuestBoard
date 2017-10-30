@@ -214,6 +214,8 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
+    utf8-cleaner (0.2.5)
+      activesupport
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.1)
@@ -258,6 +260,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   uglifier
+  utf8-cleaner
   web-console (>= 3.3.0)
   webpacker (~> 3.0)
 

@@ -1,16 +1,95 @@
-<h1><%= @user.username  %>show page</h2>
 
-<p><%= @user.username %></p>
-<p><%= @user.email %></p>
-<p><%= @user.description %></p>
-<%# Above shows for everyone %>
+<div class="page-wrapper page-show-wpr profile-wpr">
+  <div class="container">
+    <div class="row is-flex page-card">
 
-<%# If viewing own profile %>
-<% if current_user == @user %>
-  <p><%= link_to "Edit your profile", edit_user_path(current_user) %></p>
-  <p><%= link_to "Edit your avatar", edit_avatar_path(current_user.avatar) %></p>
-  <%= render 'hostedstats' %>
-<% else %>
-  <%# if NOT your profile %>
-  <%= render 'hostedstats' %>
-<% end %>
+      <div class="col-xs-12 page-show-heading">
+        <div class="main-heading-group">
+          <h2><%= @user.username %>'s Profile</h2>
+        </div>
+      </div>
+
+      <div class="col-sm-6 main-content user-block">
+
+        <div class="player-card">
+          <div class="player-block">
+            <%# If viewing own profile %>
+            <% if current_user == @user %>
+              <%= link_to edit_avatar_path(current_user.avatar), class: "av-edit" do %>
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+              <% end %>
+            <% end %>
+
+            <%= image_tag("placeholder-female.svg") %>
+            <div class="player-info">
+              <span class="player-username"><%= @user.username %></span>
+              <span class="player-level">Level <%= @user.level.floor %></span>
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" style="width:<%= (@user.level.modulo(1)*100).to_i %>%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# If viewing own profile %>
+        <% if current_user == @user %>
+          <%= link_to edit_user_path(current_user), class: "profile-link" do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i> Edit your profile
+          <% end %>
+        <% end %>
+
+        <span class="brand-label">Biography:</span>
+        <span><%= @user.description %></span>
+        <%# Above shows for everyone %>
+
+      </div>
+
+      <div class="col-sm-6 sub-content">
+        <span class="brand-label">Badges:</span>
+        <ul>
+          <% @user.achievements.each do |achievement| %>
+            <li><%= "#{achievement.name} (#{achievement.description})" %></li>
+          <% end %>
+        </ul>
+
+        <% if current_user == @user %>
+        <span class="brand-label">History/Stats:</span>
+        <ul>
+          <li>Quest win rate: 42%</li>
+          <li>Completed quests: 12</li>
+          <li>Quest wins: 5</li>
+          <% if @user.events.any? %>
+            <li><%= link_to "View full history", user_history_path(@user) %></li>
+          <% end %>
+        </ul>
+
+        <span class="brand-label">Inventory:</span>
+          <ul>
+            <li>Shiny Pants of Awesomeness</li>
+            <li>Robe</li>
+            <li>Wizard Hat</li>
+          </ul>
+        <% end %>
+      </div>
+
+    </div>
+
+    <% if current_user == @user %>
+    <div class="row is-flex page-card">
+
+      <div class="col-xs-12 page-show-heading">
+        <div class="main-heading-group">
+          <h2>Your Quests</h2>
+        </div>
+      </div>
+
+      <%# If viewing own profile %>
+      <div class="col-sm-12 quest-info">
+          <%= render 'hostedstats' %>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>
+

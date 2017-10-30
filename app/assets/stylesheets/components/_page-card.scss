@@ -1,0 +1,113 @@
+.page-show-wpr {
+  .page-show-heading {
+    background-color: $brand-dark-gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .main-heading-group {
+    h2 {
+      color: $brand-light-gray;
+    }
+    padding: 30px 0;
+  }
+  .main-content {
+    padding: 35px 30px 30px;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+    h3 {
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+  }
+  .quest-date {
+    display: inline-table;
+    background-color: $brand-blue;
+    color: #fff;
+    font-weight: 600;
+    padding: 3px 15px 2px;
+    border-radius: 2px;
+  }
+  .game-title {
+    text-transform: uppercase;
+    color: $brand-med-gray;
+    font-weight: 500;
+    margin-top: -2px;
+    i {
+      color: $brand-blue;
+    }
+  }
+  .brand-label {
+    font-weight: 500;
+    display: block;
+    margin-top: 15px;
+  }
+  blockquote.small-quote {
+    font-size: 18px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+  .sub-content{
+    background-color: lighten($brand-blue, 50%);
+    border-bottom-right-radius: 5px;
+    padding-top: 35px;
+    padding-bottom: 30px;
+  }
+  .player-card {
+    background-color: #fff;
+    margin: 2em;
+    border-radius: 0 5px 5px 5px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+    margin: 0 15px 15px 15px;
+    .player-block {
+      display: flex;
+      align-items: center;
+    }
+    img {
+      width: 150px;
+    }
+  }
+  .player-label {
+    display: block;
+    width: fit-content;
+    background-color: $brand-dark-gray;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    font-weight: 500;
+    color: #fff;
+    padding: 3px 15px 2px;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-left: 15px;
+  }
+  .player-info {
+    flex: 1;
+    margin-right: 40px;
+  }
+  .player-username {
+    font-weight: 600;
+    color: #205dcc;
+    display: block;
+  }
+  .player-level {
+    text-transform: uppercase;
+  }
+  .progress {
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+  .progress-bar {
+    background-color: $brand-purple;
+  }
+  .brand-btn-red {
+    margin: 0 15px 15px auto;
+  }
+}
+
+.page-card {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
+  border-radius: 5px;
+}

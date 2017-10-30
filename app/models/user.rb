@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :players
   has_many :events, through: :players
   has_many :wins
+  has_many :achievements, as: :achieveable
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
   }
