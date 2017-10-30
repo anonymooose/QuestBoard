@@ -1,4 +1,4 @@
-<% if current_user == @event.host.user %>
+<% if current_user == @event.host.user && !@event.past? %>
 <div class="row">
   <div class="col-sm-6">
     <%= link_to "edit event", edit_event_path(@event), class: "btn brand-btn brand-btn-red", role: "button"  %>
@@ -10,7 +10,7 @@
   <% elsif @event.players.where("user_id = ?", current_user.id).any? && !@event.past? %>
     <%= link_to "Leave quest", event_player_path([@event, current_user]), method: :delete, class: "btn brand-btn brand-btn-red", role: "button" %>
 <% end %>
-<% if @event.players.where("user_id = ?", current_user.id).blank? && @event.players.length < @event.game.max_players %>
+<% if @event.players.where("user_id = ?", current_user.id).blank? && @event.players.length < @event.game.max_players && !@event.past? %>
   <%= link_to "Join quest", event_players_path([@event, current_user]), method: :post, class: "btn brand-btn brand-btn-red", role: "button" %>
 <% end %>
 <span class="player-label">Host</span>
@@ -18,7 +18,7 @@
   <div class="player-block">
     <%= image_tag("placeholder-female.svg") %>
     <div class="player-info">
-      <span class="player-username"><%= @event.host.user.username %></span>
+      <span class="player-username"><%= link_to "#{@event.host.user.username}", user_path(@event.host.user) %></span>
       <span class="player-level">Level <%= @event.host.user.level.floor %></span>
       <div class="progress">
         <div class="progress-bar progress-bar-info" style="width:<%= (@event.host.user.level.modulo(1)*100).to_i %>%"></div>
@@ -33,7 +33,7 @@
       <div class="player-block">
         <%= image_tag("placeholder-male.svg") %>
         <div class="player-info">
-          <span class="player-username"><%= player.user.username %></span>
+          <span class="player-username"><%= link_to "#{player.user.username}", user_path(player.user) %></span>
           <span class="player-level">Level <%= player.user.level.floor %></span>
           <div class="progress">
             <div class="progress-bar progress-bar-info" style="width:<%= (player.user.level.modulo(1)*100).to_i %>%"></div>
