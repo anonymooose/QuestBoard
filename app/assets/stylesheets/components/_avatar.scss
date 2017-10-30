@@ -1,0 +1,21 @@
+.avatar {
+  width: 300px;
+  height: 300px;
+  position: relative;
+
+  img {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.avatar-choice {
+  width: 80px;
+  input {
+    display: none;
+  }
+
+}

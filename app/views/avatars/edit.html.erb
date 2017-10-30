@@ -1,3 +1,71 @@
+
+<div class="page-wrapper">
+  <div class="container">
+    <div class="row is-flex page-card">
+      <%= form_for (@avatar) do |f| %>
+        <div class="avatar-box">
+          <div class="avatar-image">
+            <div class="avatar"
+              data-gender="<%= @avatar.gender %>"
+              data-hair="<%= @avatar.hair %>"
+              data-top="<%= @avatar.top %>"
+              data-bottom="<%= @avatar.bottom %>"
+              data-shoes="<%= @avatar.shoes %>"></div>
+          </div>
+          <div class="avatar-male-or-female">
+            <div class="avatar-selection-menu avatar-gender">
+            <% Avatar::GENDER_CHOICE.each do |gender| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[gender]" value="<%= gender[0] %>">
+                <img src="/assets/avatar/gender/<%= gender[0] %>.svg">
+              </label>
+            <% end %>
+          </div>
+
+          </div>
+        </div>
+        <div class="avatar-selection">
+          <div class="avatar-selection-menu avatar-hair">
+            <% Avatar::HAIR_CHOICE.each do |hair| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[hair]" value="<%= hair[0] %>">
+                <img src="/assets/avatar/hair/<%= hair[0] %>.svg">
+              </label>
+            <% end %>
+          </div>
+          <div class="avatar-selection-menu avatar-top">
+            <% Avatar::TOP_CHOICE.each do |top| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[top]" value="<%= top[0] %>">
+                  <img class="avatar-choice" data-type="top" data-value="<%= top[0] %>" src="/assets/avatar/top/<%= top[0] %>.svg">
+              </label>
+            <% end %>
+          </div>
+          <div class="avatar-selection-menu avatar-bottom">
+            <% Avatar::BOTTOM_CHOICE.each do |bottom| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[bottom]" value="<%= bottom[0] %>">
+                  <img class="avatar-choice" data-type="bottom" data-value="<%= bottom[0] %>" src="/assets/avatar/bottom/<%= bottom[0] %>.svg">
+              </label>
+            <% end %>
+          </div>
+          <div class="avatar-selection-menu avatar-shoes">
+            <% Avatar::SHOE_CHOICE.each do |shoes| %>
+             <label class="avatar-choice">
+                <input type="radio" name="avatar[shoes]" value="<%= shoes[0] %>">
+                  <img class="avatar-choice" data-type="shoes" data-value="<%= shoes[0] %>" src="/assets/avatar/shoes/<%= shoes[0] %>.svg">
+            </label>
+            <% end %>
+          </div>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
 <%= simple_form_for(@avatar) do |f| %>
   <%= f.input :gender,
   collection: Avatar::GENDER_CHOICE,
@@ -17,3 +85,7 @@
   value_method: :first %>
   <%= f.submit %>
 <% end %>
+
+
+
+
