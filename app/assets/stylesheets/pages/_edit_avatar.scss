@@ -1,0 +1,67 @@
+.edit-avatar-wpr {
+  .event-show-heading {
+    background-color: $brand-dark-gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .center {
+      display: flex;
+      justify-content: center;
+    }
+
+  .main-heading-group {
+    h2 {
+      color: $brand-light-gray;
+    }
+    padding: 30px 0;
+
+    .edit-avatar-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .avatar-box {
+    padding: 35px 60px 60px;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+
+    .avatar-image {
+      margin: 30px;
+
+    }
+
+    p {
+      text-align: center;
+      font-weight: bolder;
+    }
+  }
+
+  .avatar-selection {
+    background-color: lighten($brand-blue, 50%);
+    border-bottom-right-radius: 5px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+  }
+
+}
+
+.avatar-choice {
+  width: 80px;
+  input {
+    display: none;
+  }
+
+  input:checked ~ img {
+    box-shadow: 0 0 0 2px $brand-light-gray inset;
+    border-radius: 8px;
+  }
+
+}
+
+.event-show-heading {
+  background-color: $brand-dark-gray;
+}

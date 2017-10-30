@@ -1,19 +1,81 @@
-<%= simple_form_for(@avatar) do |f| %>
-  <%= f.input :gender,
-  collection: Avatar::GENDER_CHOICE,
-  label_method: :last,
-  value_method: :first %>
-  <%= f.input :hair, collection: Avatar::HAIR_CHOICE,
-  label_method: :last,
-  value_method: :first %>
-  <%= f.input :top, collection: Avatar::TOP_CHOICE,
-  label_method: :last,
-  value_method: :first %>
-  <%= f.input :bottom, collection: Avatar::BOTTOM_CHOICE,
-  label_method: :last,
-  value_method: :first %>
-  <%= f.input :shoes, collection: Avatar::SHOE_CHOICE,
-  label_method: :last,
-  value_method: :first %>
-  <%= f.submit %>
-<% end %>
+<div class="page-wrapper edit-avatar-wpr">
+  <div class="container">
+    <div class="row is-flex page-card">
+      <div class="col-xs-12 event-show-heading">
+
+        <%= simple_form_for(@avatar) do |f| %>
+        <div class="main-heading-group">
+          <div class="edit-avatar-heading">
+            <h2>Edit your avatar</h2>
+            <%= f.submit class: "btn brand-btn brand-btn-red" %>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-6 avatar-box">
+          <div class="avatar-image center">
+            <div class="avatar"
+              data-gender="<%= @avatar.gender %>"
+              data-hair="<%= @avatar.hair %>"
+              data-top="<%= @avatar.top %>"
+              data-bottom="<%= @avatar.bottom %>"
+              data-shoes="<%= @avatar.shoes %>"></div>
+          </div>
+          <div class="avatar-male-or-female">
+            <p>gender</p>
+            <div class="avatar-gender center">
+              <% Avatar::GENDER_CHOICE.each do |gender| %>
+                <label class="avatar-choice">
+                  <input type="radio" name="avatar[gender]" value="<%= gender[0] %>" <%= @avatar.gender == gender[0] ? 'checked' : '' %>>
+                  <img src="/assets/avatar/gender/<%= gender[0] %>.svg">
+                  <%#= image_tag "avatar/gender/#{gender[0]}.svg" %>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 avatar-selection center">
+          <div class="avatar-selection-menu avatar-hair">
+            <p>hair</p>
+            <% Avatar::HAIR_CHOICE.each do |hair| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[hair]" value="<%= hair[0] %>" <%= @avatar.hair == hair[0] ? 'checked' : '' %>>
+                <img src="/assets/avatar/hair/<%= hair[0] %>.svg">
+                <%#= image_tag "avatar/hair/#{hair[0]}.svg" %>
+              </label>
+            <% end %>
+          </div>
+          <div class="avatar-selection-menu avatar-top">
+            <p>tops</p>
+            <% Avatar::TOP_CHOICE.each do |top| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[top]" value="<%= top[0] %>"  <%= @avatar.top == top[0] ? 'checked' : '' %>>
+                 <img class="avatar-choice" data-type="top" data-value="<%= top[0] %>" src="/assets/avatar/top/<%= top[0] %>.svg">
+              </label>
+            <% end %>
+          </div>
+          <div class="avatar-selection-menu avatar-bottom">
+            <p>bottoms</p>
+            <% Avatar::BOTTOM_CHOICE.each do |bottom| %>
+              <label class="avatar-choice">
+                <input type="radio" name="avatar[bottom]" value="<%= bottom[0] %>"  <%= @avatar.bottom == bottom[0] ? 'checked' : '' %>>
+                <img class="avatar-choice" data-type="bottom" data-value="<%= bottom[0] %>" src="/assets/avatar/bottom/<%= bottom[0] %>.svg">
+              </label>
+            <% end %>
+          </div>
+          <div class="avatar-selection-menu avatar-shoes">
+            <p>shoes</p>
+            <% Avatar::SHOE_CHOICE.each do |shoes| %>
+             <label class="avatar-choice">
+                <input type="radio" name="avatar[shoes]" value="<%= shoes[0] %>" <%= @avatar.shoes == shoes[0] ? 'checked' : '' %>>
+                <img class="avatar-choice" data-type="shoes" data-value="<%= shoes[0] %>" src="/assets/avatar/shoes/<%= shoes[0] %>.svg">
+            </label>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
