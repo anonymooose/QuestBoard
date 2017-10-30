@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
   private
   def ensure_new
-    self.level = 1.0
+    #self.level = 1.0
     self.coins = 0
     self.description = "I'm a QuestBoard noob!"
     self.avatar = Avatar.create({gender:0,hair:0,shoes:0,top:0,bottom:0})
