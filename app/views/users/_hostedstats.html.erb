@@ -8,7 +8,7 @@ end %>
     <% if @user.host.events.where('datetime > ?', Time.now).any? %>
       <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> hosting:</p>
       <ul>
-        <% @user.host.events.each do |event| %>
+        <% @user.host.events.where('datetime > ?', Time.now).each do |event| %>
           <li><%= link_to "#{event.title}", event_path(event) %></li>
         <% end %>
       </ul>
