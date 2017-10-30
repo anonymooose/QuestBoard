@@ -50,7 +50,7 @@
             <%= image_tag("placeholder-female.svg") %>
             <div class="player-info">
               <span class="player-username"><%= @event.host.user.username %></span>
-              <span class="player-level">Level <%= @event.host.user.level.floor %></span>
+              <span class="player-level">Level <%= @event.host.user.avatar.level.floor %></span>
               <div class="progress">
                 <div class="progress-bar progress-bar-info" style="width: 20%"></div>
               </div>
@@ -65,7 +65,7 @@
             <%= image_tag("placeholder-male.svg") %>
             <div class="player-info">
               <span class="player-username"><%= player.user.username %></span>
-              <span class="player-level">Level <%= player.user.level.floor %></span>
+              <span class="player-level">Level <%= player.user.avatar.level.floor %></span>
               <div class="progress">
                 <div class="progress-bar progress-bar-info" style="width: 90%"></div>
               </div>
