@@ -3,6 +3,26 @@
 # instead of directly calling rails db:seed
 # TODO: Still need Game model seeder
 
+
+require 'csv'
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'utf8.csv'))
+csv = CSV.parse(csv_text, :headers => true)
+games = 0
+csv.each do |row|
+  Game.create!({
+    name: row['names'],
+    max_players: row['max_players'],
+    complexity: row['weight'],
+    game_length: row['avg_time']
+    })
+  games += 1
+  puts "#{games} Games Created"
+end
+
+
+
+
 ADMINS = ['admin','trevor','rose','james','carla']
 
 
@@ -13,17 +33,15 @@ if Achievement.all.blank?
    Achievement.create(name: "Accomplished Host", description: "Host your five event")
    Achievement.create(name: "One small step..", description: "Reach level 2")
    Achievement.create(name: "Lord of the Board", description: "Reach level 5")
+   puts "achievements seeded"
  end
 
 
-
-if Game.all.blank?
   Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
   Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
   Game.create!(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
   Game.create!(max_players:10, name:'Cards Against Humanity', complexity: 0.1, game_length:35)
   Game.create!(max_players:4, name:'The Settlers of Catan', complexity:8.0, game_length:240)
-end
 
 ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
 
@@ -117,6 +135,8 @@ Event.create!(
     host: User.find(5).host
   }
 )
+
+
 
 #rose joins carla's event (rose joins everything) - 2/8
 Event.last.add_user(User.find(3))
