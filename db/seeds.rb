@@ -45,7 +45,7 @@ Event.create!(
 
 Event.create!(
   {
-    description: "Monopoly is one of the BEST BOARD GAMES EVER!!!!!!",
+    description: "Cards Against Humanity is a game for good people",
     datetime: Time.now + 100000,
     title: "Post pitch party!! LeWagon ONLY",
     address: 'Shibuya, Tokyo',

@@ -8,6 +8,18 @@ class PlayersController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def destroy
+    @event = Event.find(params[:event_id])
+    unless @event.past?
+      @player = @event.players.where("user_id = ?", current_user.id).first
+      @player.destroy
+      flash[:notice] = "You've successfully left this event."
+      redirect_to event_path(@event)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
   def player_params
     params.require(:player)

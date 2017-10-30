@@ -1,0 +1,27 @@
+<header>
+  <span class="quest-date">
+    <time class="date-year" datetime="<%= @event.datetime %>"></time> at <time class ="time" datetime="<%= @event.datetime %>"></time>
+  </span>
+  <h3><%= @event.title.split.map { |i| i.capitalize }.join(' ') %></h3>
+  <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %></span>
+</header>
+
+<div class="quest-content">
+  <span class="brand-label">Address:</span>
+  <span><%= @event.address %></span>
+  <span class="brand-label">Rewards:</span>
+  <div class="quest-rewards">
+    <div class="reward-slot">
+      <%= image_tag("exp.svg") %>
+      <span class="reward-amount"><%= @event.experience %></span>
+    </div>
+    <div class="reward-slot">
+      <%= image_tag("coin.svg") %>
+      <span class="reward-amount"><%= @event.coins %></span>
+    </div>
+  </div>
+  <span class="brand-label">Description:</span>
+  <blockquote class="small-quote">
+    <%= @event.description %>
+  </blockquote>
+</div>

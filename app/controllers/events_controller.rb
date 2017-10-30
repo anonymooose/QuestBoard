@@ -135,8 +135,16 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy
-    redirect_to root_path
+    if (@event.datetime + 86400) < Time.now
+      flash[:alert] = "This event has been over for a while, it is no longer available to delete."
+      redirect_to root_path
+    elsif @event.host != current_user.host
+      redirect_to root_path
+    else
+      @event.destroy
+      flash[:notice] = "Event deleted."
+      redirect_to root_path
+    end
   end
 
   private

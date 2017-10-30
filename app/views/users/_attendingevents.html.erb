@@ -4,10 +4,10 @@ end %>
 <% if !@user.events.blank? %>
     <p><%= current_same? ? 'Your' : "#{@user.username}'s" %> attended event stats:</p>
     <%# if user has active events %>
-    <% if @user.events.where('datetime < ?', Time.now).any? %>
+    <% if @user.events.where('datetime > ?', Time.now).any? %>
       <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> going to:</p>
       <ul>
-        <% @user.events.each do |event| %>
+        <% @user.events.where('datetime > ?', Time.now).each do |event| %>
           <li><%= link_to "#{event.title}", event_path(event) %></li>
         <% end %>
       </ul>
