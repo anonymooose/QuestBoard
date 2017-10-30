@@ -18,8 +18,11 @@ ActiveRecord::Schema.define(version: 20171030072552) do
   create_table "achievements", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "achieveable_type"
+    t.integer  "achieveable_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["achieveable_type", "achieveable_id"], name: "index_achievements_on_achieveable_type_and_achieveable_id", using: :btree
   end
 
   create_table "avatars", force: :cascade do |t|
@@ -98,6 +101,8 @@ ActiveRecord::Schema.define(version: 20171030072552) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "achieveable_type"
+    t.integer  "achieveable_id"
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
     t.string   "username"
@@ -113,6 +118,7 @@ ActiveRecord::Schema.define(version: 20171030072552) do
     t.string   "last_name"
     t.string   "token"
     t.datetime "token_expiry"
+    t.index ["achieveable_type", "achieveable_id"], name: "index_users_on_achieveable_type_and_achieveable_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
