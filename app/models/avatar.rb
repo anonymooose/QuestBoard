@@ -1,6 +1,4 @@
 class Avatar < ApplicationRecord
-  has_merit
-
   belongs_to :user
   validates :gender, :bottom, :top, :shoes, :hair, presence: true
   before_save :reset_avatar!, unless: :valid_items?

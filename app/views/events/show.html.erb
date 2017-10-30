@@ -5,6 +5,12 @@
       <div class="col-xs-12 event-show-heading">
         <div class="main-heading-group">
           <h2>Quest Details</h2>
+          <div class="quest-buttons pull-right">
+<!--             <% if current_user.host == @event.host %>
+              <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_event_path %>
+              <%= link_to '<i class="fa fa-times"></i>'.html_safe, event_path(@event), method: :delete %>
+            <% end %> -->
+          </div>
         </div>
       </div>
 
@@ -50,7 +56,7 @@
             <%= image_tag("placeholder-female.svg") %>
             <div class="player-info">
               <span class="player-username"><%= @event.host.user.username %></span>
-              <span class="player-level">Level <%= @event.host.user.avatar.level.floor %></span>
+              <span class="player-level">Level <%= @event.host.user.level.floor %></span>
               <div class="progress">
                 <div class="progress-bar progress-bar-info" style="width: 20%"></div>
               </div>
@@ -65,7 +71,7 @@
             <%= image_tag("placeholder-male.svg") %>
             <div class="player-info">
               <span class="player-username"><%= player.user.username %></span>
-              <span class="player-level">Level <%= player.user.avatar.level.floor %></span>
+              <span class="player-level">Level <%= player.user.level.floor %></span>
               <div class="progress">
                 <div class="progress-bar progress-bar-info" style="width: 90%"></div>
               </div>
@@ -76,7 +82,9 @@
         <% end %>
 
       </div>
+
     </div>
   </div>
 </div>
+
 
