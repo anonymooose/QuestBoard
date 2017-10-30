@@ -18,6 +18,7 @@ class SurveysController < ApplicationController
     attendance = survey_params[:attended] == 'true'
     attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
     if attendance
+
       flash[:notice] = "Thanks for answering! Here's 5 coins!"
     else
       flash[:notice] = "Thanks for being honest! Here's 1 coin!"
@@ -28,5 +29,8 @@ class SurveysController < ApplicationController
   private
   def survey_params
     params.require(:survey).permit(:vote, :attended)
+  end
+
+  def check_for_achievements
   end
 end
