@@ -3,9 +3,14 @@ class PlayersController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    @event.add_user(current_user)
-    flash[:notice] = "You signed up for #{@event.title}! Have fun!!!!!!!"
-    redirect_to event_path(@event)
+    if @event.players.where('user_id = ?', current_user.id).blank?
+      @event.add_user(current_user)
+      flash[:notice] = "You signed up for #{@event.title}! Have fun!!!!!!!"
+      redirect_to event_path(@event)
+    else
+      flash[:alert] = "You are already signed up for {@event.title}!!"
+      redirect_to event_path(@event)
+    end
   end
 
   def destroy
