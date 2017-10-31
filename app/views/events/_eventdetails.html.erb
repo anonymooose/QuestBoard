@@ -7,6 +7,10 @@
 </header>
 
 <div class="quest-content">
+  <% unless @event.win.nil? %>
+  <span class="brand-label">Quest Winner:</span>
+  <span><%= link_to "#{@event.win.username}", user_path(@event.win) %></span>
+  <% end %>
   <span class="brand-label">Address:</span>
   <span><%= @event.address %></span>
   <span class="brand-label">Rewards:</span>

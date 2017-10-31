@@ -1,8 +1,8 @@
 $("time").each((i, el)=>{
   const current=$(el).attr("datetime");
-  $(el).filter(".date").text(moment(current).format("MMM Do"));
+  $(el).filter(".date").text(moment(current).format("MMM DD"));
   $(el).filter(".time").text(moment(current).format("HH:mm"));
-  $(el).filter(".date-year").text(moment(current).format("MMM D YYYY"));
+  $(el).filter(".date-year").text(moment(current).format("MMM D, YYYY"));
 });
 
 
