@@ -21,11 +21,11 @@
             <% end %>
 
             <div class="avatar profile-size"
-              data-gender="<%= current_user.avatar.gender %>"
-              data-hair="<%= current_user.avatar.hair %>"
-              data-top="<%= current_user.avatar.top %>"
-              data-bottom="<%= current_user.avatar.bottom %>"
-              data-shoes="<%= current_user.avatar.shoes %>"></div>
+              data-gender="<%= @user.avatar.gender %>"
+              data-hair="<%= @user.avatar.hair %>"
+              data-top="<%= @user.avatar.top %>"
+              data-bottom="<%= @user.avatar.bottom %>"
+              data-shoes="<%= @user.avatar.shoes %>"></div>
             <div class="player-info">
               <span class="player-username"><%= @user.username %></span>
               <span class="player-level">Level <%= @user.level.floor %></span>
