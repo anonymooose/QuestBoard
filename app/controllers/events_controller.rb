@@ -86,7 +86,7 @@ class EventsController < ApplicationController
     params = {
       title: event_params[:title],
       description: event_params[:description],
-      game: Game.find(event_params[:game]),
+      game: Game.where(name: event_params[:game]).first,
       datetime: event_params.values.last(5).join.to_time,
       host: current_user.host,
       address: event_params[:address],

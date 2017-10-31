@@ -29,13 +29,14 @@
     </div>
   </div>
 </div>
-<span class="player-label">Players</span>
+<% if @event.players.where('user_id != ?', @event.host.user.id).any? %>
+<span class="player-label">Players (<%= @event.players.count %>/<%= @event.game.max_players %>)</span>
 <div class="player-card">
   <div class="row">
     <div class="attendees-card">
     <% @event.players.each do |player|%>
       <% if player.user != @event.host.user %>
-
+          <div class="col-sm-6">
             <div class="player-block">
               <div class="avatar player-size"
                 data-gender="<%= player.user.avatar.gender %>"
@@ -51,9 +52,10 @@
                 </div>
               </div>
             </div>
-
+          </div>
       <% end %>
     <% end %>
     </div>
   </div>
 </div>
+<% end %>

@@ -65,7 +65,11 @@
 
       <div class="col-sm-6 quest-show-party survey-block">
         <p>Please confirm the quest details and claim your rewards.</p>
-        <%= render 'form' %>
+        <% if current_user.host == @event.host %>
+          <%= render 'hostform' %>
+        <% else %>
+          <%= render 'form' %>
+        <% end %>
       </div>
 
     </div>

@@ -1,12 +1,16 @@
 class Game < ApplicationRecord
   has_many :events
-  #validates :name, presence: true
+  validates :name, presence: true
   before_create :ensure_valid
 
   def self.get_by_name(title)
     #must match case perfectly
     return Game.where(name:title.to_s)[0]
   end
+
+  def self.search(word)
+  where('LOWER(title) ILIKE :word', word: "%#{word.downcase}%")
+end
 
   private
   def ensure_valid
