@@ -18,7 +18,8 @@
               data-hair="<%= @avatar.hair %>"
               data-top="<%= @avatar.top %>"
               data-bottom="<%= @avatar.bottom %>"
-              data-shoes="<%= @avatar.shoes %>"></div>
+              data-shoes="<%= @avatar.shoes %>">
+            </div>
           </div>
           <div class="avatar-male-or-female">
             <p>gender</p>
@@ -78,4 +79,47 @@
   </div>
 </div>
 
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+    const avatar = () => {
+      $('.avatar').each((i, el) => {
+        $(el).html('');
 
+        let gender_svg = "";
+        switch ($(el).data('gender')) {
+          case 0:
+            gender_svg = '<%= image_tag "avatar/gender/0.svg" %>';
+            break;
+          case 1:
+            gender_svg = '<%= image_tag "avatar/gender/1.svg" %>';
+            break;
+        };
+
+        const avatar = {
+          gender: gender_svg,
+          hair: $(el).data('hair'),
+          top: $(el).data('top'),
+          bottom: $(el).data('bottom'),
+          shoes: $(el).data('shoes'),
+        };
+        console.log(avatar)
+        for (let type in avatar) {
+          if (type === 'gender' || avatar[type] > 0) {
+            $(el).append(avatar[type]);
+          }
+        }
+      });
+    }
+
+    avatar();
+
+    $('.avatar-choice input').change(e => {
+      // "avatar[hair]" => "hair"
+      const type = $(e.currentTarget).attr('name').split('[')[1].slice(0, -1);
+      const value = parseInt($(e.currentTarget).val());
+      $('.avatar').data(type, value);
+      avatar();
+    });
+
+  <% end %>
+<% end %>
