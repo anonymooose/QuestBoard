@@ -15,7 +15,6 @@ end %>
       <%# If user has no active events %>
       <p><%= current_same? ? "You aren't" : "#{@user.username} isn't" %> attending any upcoming events.</p>
   <% end %>
-  <p>Total events joined: <%= @user.events.length %></p>
   <% else %>
     <%# If never played %>
     <p><%= current_same? ? "You haven't" : "#{@user.username} hasn't" %> joined any events yet!</p>
