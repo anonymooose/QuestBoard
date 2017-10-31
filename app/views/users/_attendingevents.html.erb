@@ -18,5 +18,5 @@ end %>
   <p>Total events joined: <%= @user.events.length %></p>
   <% else %>
     <%# If never played %>
-    <p><%= current_same? ? "You haven't" : "#{@user.username} hasn't" %> joind any events yet!</p>
+    <p><%= current_same? ? "You haven't" : "#{@user.username} hasn't" %> joined any events yet!</p>
 <% end %>
