@@ -66,11 +66,8 @@
                 </span>
                 <span class="quest-distance">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  <% if @location != nil %>
-                    <%= event.distance_from(@location, :units=>:kms).round(1) %> km from you
-                  <% else @location = "Tokyo Station" %>
-                    No location specified
-                  <% end %>
+                  <% loc = Geokit::Geocoders::GoogleGeocoder.reverse_geocode "#{event.lat},#{event.lng}" %>
+                  <span style="font-size:12pt;"><%= loc.city %>, <%= loc.country %></span>
                 </span>
               </div>
             </div>
