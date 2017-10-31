@@ -1,9 +1,6 @@
 # In order to have a proper development environment,
 # please use rails db:reset from the terminal
 # instead of directly calling rails db:seed
-# TODO: Still need Game model seeder
-
-
 require 'csv'
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'utf8.csv'))
@@ -20,9 +17,6 @@ csv.each do |row|
   puts "#{games} Games Created"
 end
 
-
-
-
 ADMINS = ['admin','trevor','rose','james','carla']
 
 
@@ -36,39 +30,30 @@ if Achievement.all.blank?
    puts "achievements seeded"
  end
 
-
-  Game.create!(max_players:4, name:'Mouse Trap', complexity:0.6, game_length:5)
-  Game.create!(max_players:2, name:'Operation', complexity:9.6, game_length:180)
-  Game.create!(max_players:8, name:'Monopoly', complexity:5.6, game_length:60)
-  Game.create!(max_players:10, name:'Cards Against Humanity', complexity: 0.1, game_length:35)
-  Game.create!(max_players:4, name:'The Settlers of Catan', complexity:8.0, game_length:240)
-
 ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
 
+tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "Mouse trap has such a low complexity because nobody ever really played it, they just set up the traps and watched them",
+    game: Game.find(tmp),
+    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
     datetime: Time.now,
-    title: "Mouse Trap at my house!!!",
-    address: 'Shibuya, Tokyo',
-    coins: 10,
-    experience: 100,
-    game: Game.first,
+    title: "Let's play #{tmp.name}",
+    address: 'Otsuka Station, Tokyo',
     host: User.first.host
   }
 )
 #carla,rose,trevor join admin event - 4/4
 [5,3,2].each { |id| Event.first.add_user(User.find(id)) }
 
+tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "This game will not be fun, operation ruins friendships. BYOB.",
+    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
     datetime: Time.now - 100000,
-    title: "Trevor's Burger King Bash",
+    title: "Let's play #{tmp.name}",
     address: 'Long Beach, CA',
-    coins: 10,
-    experience: 100,
-    game: Game.get_by_name('Operation'),
+    game: tmp,
     host: User.find(2).host
   }
 )
@@ -78,9 +63,7 @@ Event.create!(
     description: "Cards Against Humanity is a game for good people",
     datetime: Time.now + 100000,
     title: "Post pitch party!! LeWagon ONLY",
-    address: 'Shibuya, Tokyo',
-    coins: 10,
-    experience: 100,
+    address: '2 Chome-2 Dogenzaka, Shibuya, Tokyo 150-0043',
     game: Game.get_by_name('Cards Against Humanity'),
     host: User.find(5).host
   }
@@ -96,42 +79,39 @@ Event.create!(
   tmp.save
   Event.last.add_user(tmp)
 end
+
+tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "I just wanna play mouse trap with trevor",
+    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
     datetime: Time.now + 10000,
-    title: "Come play mouse trap with James",
-    address: 'Otsuka Station, Tokyo',
-    coins: 15,
-    experience: 120,
-    game: Game.first,
+    title: "Let's play #{tmp.name}",
+    address: '21-2, Kabukicho 1-chome, Shinjuku-ku, Tokyo',
+    game: tmp,
     host: User.find(4).host
   }
 )
 
+tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "Mouse trap has an extremely high skill cap due to the many interconnected components",
+    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
     datetime: Time.now,
-    title: "Mouse Trap on the STREET",
-    address: 'Shinjuku, Tokyo',
-    coins: 10,
-    experience: 100,
-    game: Game.first,
+    title: "Let's play #{tmp.name}",
+    address: '14-14歌舞伎町',
+    game: tmp,
     host: User.first.host
   }
 )
 
-
+tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "Mouse trap is pretty popular recently, so I'll get in on the action",
+    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
     datetime: Time.now + 1000000,
-    title: "Game night at Impact Hub",
-    address: 'Impact Hub Tokyo',
-    coins: 10,
-    experience: 100,
-    game: Game.first,
+    title: "Let's play #{tmp.name}",
+    address: '2-11-3目黒区目黒',
+    game: tmp,
     host: User.find(5).host
   }
 )
