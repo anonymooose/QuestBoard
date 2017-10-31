@@ -18,6 +18,14 @@
   .player-block {
     position: relative;
   }
+  .coin-count {
+    float: right;
+    img {
+      width: 11px;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+  }
   .av-edit {
     position: absolute;
     font-size: 12px;

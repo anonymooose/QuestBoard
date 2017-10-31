@@ -16,7 +16,6 @@ end %>
       <%# If user has no active events %>
       <p><%= current_same? ? "You aren't" : "#{@user.username} isn't" %> hosting any events right now.</p>
   <% end %>
-  <p>Total events hosted: <%= @user.host.events.length %></p>
   <% else %>
     <%# If never hosted %>
     <p><%= current_same? ? "You haven't" : "#{@user.username} hasn't" %> hosted any games yet!</p>
