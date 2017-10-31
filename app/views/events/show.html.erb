@@ -21,3 +21,6 @@
 </div>
 
 
+<% unless @event.win.nil? %>
+  <p>EVENT WINNER: <%= link_to "#{@event.win.username}", user_path(@event.win) %></p>
+<% end %>
