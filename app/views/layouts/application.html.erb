@@ -19,5 +19,6 @@
        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDYxX1wMEeIeqQv2sDq7w3sTB_jbhImCHo"></script>
       <%= javascript_include_tag 'application' %>
       <%= custom_bootstrap_flash %>
+      <%= yield(:js) %>
   </body>
 </html>
