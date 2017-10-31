@@ -14,7 +14,7 @@
             <div class="form-group">
               <%= text_field_tag :search_loc, params[:search_loc], placeholder: "where?", class: "search-location form-control input-size-large" %>
               <%= text_field_tag :search_date, params[:search_date], data:{ provide:'datepicker'}, placeholder: "date", class: "form-control input-size-large datepicker", placeholder: "when?" %>
-              <%= text_field_tag :search_game, params[:search_game], placeholder: "what game?", class: "form-control input-size-large" %>
+              <%= autocomplete_field_tag :search_game, params[:search_game], autocomplete_game_name_games_path, placeholder: "what game?", class: "form-control input-size-large" %>
               <%= submit_tag "search", :name => nil, class: "btn brand-alt-btn brand-btn-yellow" %>
             </div>
           <% end %>

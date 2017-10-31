@@ -20,7 +20,7 @@
           <div class="account-form-main">
             <%= simple_form_for(@event) do |f| %>
               <%= f.input :title %>
-              <%= f.input :game, collection: @games %>
+              <%= f.input :game, :url => autocomplete_game_name_games_path, :as => :autocomplete %>
               <%= f.input :description, as: :text %>
               <%= f.input :address, input_html: { :class => 'search-location' }%>
               <% # note  - game field will ideally not be straight text input. stay tuned %>
