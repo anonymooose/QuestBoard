@@ -63,8 +63,6 @@
           <% end %>
         </div>
 
-
-
         <div class="quest-stats-header">
           <span class="brand-label">Quest Statistics:</span>
 
@@ -79,17 +77,23 @@
         </div>
 
         <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>#</th>
+          </tr>
+        </thead>
           <tbody>
             <tr>
-              <th scope="row">Attended</th>
+              <td>Attended</td>
               <td><%= @user.events.length %></td>
             </tr>
             <tr>
-              <th scope="row">Wins</th>
+              <td>Wins</td>
               <td><%= @user.wins.length %></td>
             </tr>
             <tr>
-              <th scope="row">Hosted</th>
+              <td>Hosted</td>
               <td><%= @user.host.events.length %></td>
             </tr>
           </tbody>

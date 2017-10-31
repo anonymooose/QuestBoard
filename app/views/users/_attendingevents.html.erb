@@ -2,19 +2,43 @@
   current_user == @user
 end %>
 <% if !@user.events.blank? %>
-    <p><%= current_same? ? 'Your' : "#{@user.username}'s" %> attended event stats:</p>
+<!--     <p><%= current_same? ? 'Your' : "#{@user.username}'s" %> attended event stats:</p> -->
     <%# if user has active events %>
     <% if @user.events.where('datetime > ?', Time.now).any? %>
-      <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> going to:</p>
-      <ul>
-        <% @user.events.where('datetime > ?', Time.now).each do |event| %>
-          <li><%= link_to "#{event.title}", event_path(event) %></li>
-        <% end %>
-      </ul>
+<!--       <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> going to:</p> -->
+
+      <span class="brand-label">Quests I'm Attending:</span>
+
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Quest Name</th>
+            <th>Date/Time</th>
+            <th>Host</th>
+            <th>Players</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.events.where('datetime > ?', Time.now).each do |event| %>
+          <tr>
+            <td><%= link_to "#{event.title}", event_path(event) %></td>
+            <td><time class="date" datetime="<%= event.datetime %>"></time> <time class="time" datetime="<%= event.datetime %>"></time></td>
+            <td>
+              <%= link_to "#{event.host.user.username}", user_path(event.host.user) %>
+            </td>
+            <td>
+              <%= event.players.length %>/<%= event.game.max_players %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     <% else %>
       <%# If user has no active events %>
       <p><%= current_same? ? "You aren't" : "#{@user.username} isn't" %> attending any upcoming events.</p>
   <% end %>
+ <!--  <p>Total events joined: <%= @user.events.length %></p> -->
   <% else %>
     <%# If never played %>
     <p><%= current_same? ? "You haven't" : "#{@user.username} hasn't" %> joined any events yet!</p>

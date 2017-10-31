@@ -3,15 +3,35 @@
   current_user == @user
 end %>
 <% if !@user.host.events.blank? %>
-    <p><%= current_same? ? 'Your' : "#{@user.username}'s" %> hosting stats:</p>
+<!--     <p><%= current_same? ? 'Your' : "#{@user.username}'s" %> hosting stats:</p> -->
     <%# if user has active events %>
     <% if @user.host.events.where('datetime > ?', Time.now).any? %>
-      <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> hosting:</p>
-      <ul>
-        <% @user.host.events.where('datetime > ?', Time.now).each do |event| %>
-          <li><%= link_to "#{event.title}", event_path(event) %></li>
-        <% end %>
-      </ul>
+<!--       <p>Upcoming events <%= current_same? ? 'you are' : "#{@user.username} is" %> hosting:</p> -->
+
+      <span class="brand-label">Quests I'm Hosting:</span>
+
+
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Quest Name</th>
+            <th>Date/Time</th>
+            <th>Players</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.host.events.where('datetime > ?', Time.now).each do |event| %>
+          <tr>
+            <td><%= link_to "#{event.title}", event_path(event) %></td>
+            <td><time class="date" datetime="<%= event.datetime %>"></time> <time class="time" datetime="<%= event.datetime %>"></time></td>
+            <td>
+              <%= event.players.length %>/<%= event.game.max_players %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     <% else %>
       <%# If user has no active events %>
       <p><%= current_same? ? "You aren't" : "#{@user.username} isn't" %> hosting any events right now.</p>
