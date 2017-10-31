@@ -1,0 +1,123 @@
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+    const avatar = () => {
+      $('.avatar').each((i, el) => {
+        $(el).html('');
+
+        let gender_svg = "";
+        switch ($(el).data('gender')) {
+          case 0:
+            gender_svg = '<%= image_tag "avatar/gender/0.svg" %>';
+            break;
+          case 1:
+            gender_svg = '<%= image_tag "avatar/gender/1.svg" %>';
+            break;
+        };
+
+        let hair_svg = "";
+        switch ($(el).data('hair')) {
+          case 0:
+            hair_svg = '<%= image_tag "avatar/hair/0.svg" %>';
+            break;
+          case 1:
+            hair_svg = '<%= image_tag "avatar/hair/1.svg" %>';
+            break;
+          case 2:
+            hair_svg = '<%= image_tag "avatar/hair/2.svg" %>';
+            break;
+          case 3:
+            hair_svg = '<%= image_tag "avatar/hair/3.svg" %>';
+            break;
+          case 4:
+            hair_svg = '<%= image_tag "avatar/hair/4.svg" %>';
+            break;
+          case 5:
+            hair_svg = '<%= image_tag "avatar/hair/5.svg" %>';
+            break;
+          case 6:
+            hair_svg = '<%= image_tag "avatar/hair/6.svg" %>';
+            break;
+        };
+
+        let top_svg = "";
+        switch ($(el).data('top')) {
+          case 0:
+            top_svg = '<%= image_tag "avatar/top/0.svg" %>';
+            break;
+          case 1:
+            top_svg = '<%= image_tag "avatar/top/1.svg" %>';
+            break;
+          case 2:
+            top_svg = '<%= image_tag "avatar/top/2.svg" %>';
+            break;
+          case 3:
+            top_svg = '<%= image_tag "avatar/top/3.svg" %>';
+            break;
+          case 4:
+            top_svg = '<%= image_tag "avatar/top/4.svg" %>';
+            break;
+        }
+
+        let bottom_svg = "";
+        switch ($(el).data('bottom')) {
+          case 0:
+            bottom_svg = '<%= image_tag "avatar/bottom/0.svg" %>';
+            break;
+          case 1:
+            bottom_svg = '<%= image_tag "avatar/bottom/1.svg" %>';
+            break;
+          case 2:
+            bottom_svg = '<%= image_tag "avatar/bottom/2.svg" %>';
+            break;
+          case 3:
+            bottom_svg = '<%= image_tag "avatar/bottom/3.svg" %>';
+            break;
+          case 4:
+            bottom_svg = '<%= image_tag "avatar/bottom/4.svg" %>';
+            break;
+      }
+
+      let shoes_svg = "";
+      switch ($(el).data('shoes')) {
+        case 0:
+          shoes_svg = '<%= image_tag "avatar/shoes/0.svg" %>';
+          break;
+        case 1:
+          shoes_svg = '<%= image_tag "avatar/shoes/1.svg" %>';
+          break;
+        case 2:
+          shoes_svg = '<%= image_tag "avatar/shoes/2.svg" %>';
+          break;
+    }
+
+
+        const avatar = {
+          gender: gender_svg,
+          hair: hair_svg,
+          top: top_svg,
+          bottom: bottom_svg,
+          shoes: shoes_svg,
+        };
+
+        console.log(avatar);
+
+        for (let type in avatar) {
+          if (type === 'gender' || $(el).data(type) > 0) {
+            $(el).append(avatar[type]);
+          }
+        }
+      });
+    }
+
+    avatar();
+
+    $('.avatar-choice input').change(e => {
+      // "avatar[hair]" => "hair"
+      const type = $(e.currentTarget).attr('name').split('[')[1].slice(0, -1);
+      const value = parseInt($(e.currentTarget).val());
+      $('.avatar').data(type, value);
+      avatar();
+    });
+
+  <% end %>
+<% end %>
