@@ -14,7 +14,12 @@
 <span class="player-label">Host</span>
 <div class="player-card">
   <div class="player-block">
-    <%= image_tag("placeholder-female.svg") %>
+    <div class="avatar show-size"
+      data-gender="<%= @event.host.user.avatar.gender %>"
+      data-hair="<%= @event.host.user.avatar.hair %>"
+      data-top="<%= @event.host.user.avatar.top %>"
+      data-bottom="<%= @event.host.user.avatar.bottom %>"
+      data-shoes="<%= @event.host.user.avatar.shoes %>"></div>
     <div class="player-info">
       <span class="player-username"><%= link_to "#{@event.host.user.username}", user_path(@event.host.user) %></span>
       <span class="player-level">Level <%= @event.host.user.level.floor %></span>
@@ -32,7 +37,12 @@
       <% if player.user != @event.host.user %>
 
             <div class="player-block">
-              <%= image_tag("placeholder-male.svg") %>
+              <div class="avatar player-size"
+                data-gender="<%= player.user.avatar.gender %>"
+                data-hair="<%= player.user.avatar.hair %>"
+                data-top="<%= player.user.avatar.top %>"
+                data-bottom="<%= player.user.avatar.bottom %>"
+                data-shoes="<%= player.user.avatar.shoes %>"></div>
               <div class="player-info">
                 <span class="player-username"><%= link_to "#{player.user.username}", user_path(player.user) %></span>
                 <span class="player-level">Level <%= player.user.level.floor %></span>

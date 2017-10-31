@@ -54,7 +54,12 @@
                   <div class="quest-footer">
 
                     <div class="event-host">
-                      <%= image_tag("coin.svg") %>
+                      <div class="avatar card-size"
+                        data-gender="<%= event.host.user.avatar.gender %>"
+                        data-hair="<%= event.host.user.avatar.hair %>"
+                        data-top="<%= event.host.user.avatar.top %>"
+                        data-bottom="<%= event.host.user.avatar.bottom %>"
+                        data-shoes="<%= event.host.user.avatar.shoes %>"></div>
                       <span class="host-pin">GM</span>
                     </div>
 
@@ -73,6 +78,7 @@
     </div>
   </div>
 </div>
+<%= render 'shared/avatar_javascript' %>
 
 <!-- <ul>
   <% if !@events.blank? %>
