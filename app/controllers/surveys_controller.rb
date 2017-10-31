@@ -38,7 +38,7 @@ class SurveysController < ApplicationController
       determine_change!
       flash[:notice] = "Thanks for hosting. Here's #{@event.coins} coins and #{@event.experience} xp!"
     end
-    redirect_to surveys
+    redirect_to surveys_path
   end
 
   private
@@ -55,23 +55,24 @@ class SurveysController < ApplicationController
     blacklist = []
     current_user.achievements.each { |ach| blacklist << ach.id }
     #treat all answered surveys as attended events
-    case base.surveys.length
-    when 1 then add_achievement(1)
-    when 5 then add_achievement(2)
+    if (new_level(current_user.level) <=> 5) >= 0
+      batch_add_achievement([5,6], blacklist)
+    elsif (new_level(current_user.level) <=> 1) >= 0
+      add_achievement(5) unless blacklist.include?(3)
     end
-    case base.host.events.where('datetime < ?', Time.now).length
-    when 1 then add_achievement(3)
-    when 5 then add_achievement(4)
-    end
-    if level_up?(current_user.level)
-      curr_lev = current_user.level
-      if new_level(curr_lev) - curr_lev > 1.0
-        if new_level(curr_lev) > 5.0
-          add_achievement(5) unless blacklist.include?(5)
-          add_achievement(6) unless blacklist.include?(6)
-        elsif new_level(curr_lev) + 1 == 2
-          add_achievement(5)
-        end
+    if current_user.host == @event.host
+      hosted_comparator = base.host.events.where('datetime < ?', Time.now).length
+      if (hosted_comparator <=> 5) >= 0
+        batch_add_achievement([3,4], blacklist)
+      elsif (hosted_comparator <=> 1) >= 0
+        add_achievement(3) unless blacklist.include?(3)
+      end
+    else
+      attended_comparator = base.events.where('datetime < ?', Time.now).length
+      if (attended_comparator <=> 5) >= 0
+        batch_add_achievement([1,2], blacklist)
+      elsif (attended_comparator <=> 1) >= 0
+        add_achievement(1) unless blacklist.include?(1)
       end
     end
     add_event_rewards
@@ -93,6 +94,12 @@ class SurveysController < ApplicationController
   def add_event_rewards
     current_user.update(level:current_user.level + ((@survey.event.experience)/100.0))
     current_user.update(coins:current_user.coins + @survey.event.coins)
+  end
+
+  def batch_add_achievement(arr, blacklist)
+    arr.each do |id|
+      add_achievement(id) unless blacklist.include?(id)
+    end
   end
 
   def add_achievement(id)
