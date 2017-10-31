@@ -23,6 +23,24 @@ class Survey < ApplicationRecord
     return false
   end
 
+  def host_win=(player)
+    self.event.win = (player.user)
+    self.vote=(player)
+  end
+
+  def host_attendance=(player)
+    self.event.win = (player.user)
+  end
+
+  def host_attendance
+    self.event.players
+  end
+
+  def host_win
+    winner = self.event.win.id unless self.event.win.nil?
+    winner.nil? ? nil : self.event.players.where('user_id = ?', self.event.win.id)
+  end
+
   private
   def valid_player?(player_instance)
     self.event.players.include?(player_instance)
