@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-     @events = Event.all
+     @events = Event.where('datetime > ?', Time.now)
 
     if params[:search_loc] != "" && params[:search_date] != "" && params[:search_game] != ""
       @location = params[:search_loc]
