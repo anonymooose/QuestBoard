@@ -51,9 +51,15 @@
   }
   table {
     margin-bottom: 0;
+    thead {
+      background-color: lighten($brand-blue, 50%);
+    }
     th {
       font-variant: all-small-caps;
     }
+  }
+  .table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 1px;
   }
   .profile-link {
     text-align: right;
