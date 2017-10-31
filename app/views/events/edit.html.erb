@@ -19,11 +19,10 @@
           <div class="account-form-main">
             <%= simple_form_for(@event) do |f| %>
               <%= f.input :title %>
-              <%= f.association :game, collection: @games, selected: @event.game %>
+              <%= f.input :game, :url => autocomplete_game_name_games_path, :as => :autocomplete%>
               <%= f.input :description, as: :text %>
               <%= f.input :address, input_html: { :class => 'search-location' }%>
-              <% # note  - game field will ideally not be straight text input. stay tuned %>
-              <%= f.input :datetime, data:{ provide:'datepicker'}, :input_html => { :value => Date.today } %>
+              <%= f.input :datetime, data: { provide:'datepicker'}, :input_html => { :value => Time.now } %>
               <%= f.button :submit, "Update" %>
             <% end %>
           </div>

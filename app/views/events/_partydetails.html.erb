@@ -3,7 +3,7 @@
     <%= link_to edit_event_path(@event), class: "edit-link" do %>
       <i class="fa fa-pencil" aria-hidden="true"></i> edit event
     <% end %>
-    <%= link_to "delete event", event_path(@event), method: :delete, class: "btn brand-btn brand-btn-red", role: "button"  %>
+    <%= link_to "delete event", event_path(@event), method: :delete, class: "btn brand-btn brand-btn-red", role: "button", data: { confirm: "Really delete this event?" }  %>
   </div>
   <% elsif @event.players.where("user_id = ?", current_user.id).any? && !@event.past? %>
     <%= link_to "Leave quest", event_player_path([@event, current_user]), method: :delete, class: "btn brand-btn brand-btn-red", role: "button" %>
