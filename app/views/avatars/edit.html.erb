@@ -13,7 +13,7 @@
       </div>
         <div class="col-sm-6 avatar-box">
           <div class="avatar-image center">
-            <div class="avatar"
+            <div class="avatar edit-page"
               data-gender="<%= @avatar.gender %>"
               data-hair="<%= @avatar.hair %>"
               data-top="<%= @avatar.top %>"
@@ -33,10 +33,15 @@
               <% end %>
             </div>
           </div>
+          <%= link_to :back, class: "back-link" do %>
+            <i class="fa fa-chevron-left" aria-hidden="true"></i> BACK
+          <% end %>
         </div>
         <div class="col-sm-6 avatar-selection center">
           <div class="avatar-selection-menu avatar-hair">
-            <p>hair</p>
+
+            <span class="player-label">hair</span>
+            <div class="player-card">
             <% Avatar::HAIR_CHOICE.each do |hair| %>
               <label class="avatar-choice">
                 <input type="radio" name="avatar[hair]" value="<%= hair[0] %>" <%= @avatar.hair == hair[0] ? 'checked' : '' %>>
@@ -45,35 +50,42 @@
               </label>
             <% end %>
           </div>
+          </div>
           <div class="avatar-selection-menu avatar-top">
-            <p>tops</p>
-            <% Avatar::TOP_CHOICE.each do |top| %>
-              <label class="avatar-choice">
-                <input type="radio" name="avatar[top]" value="<%= top[0] %>"  <%= @avatar.top == top[0] ? 'checked' : '' %>>
-                <!--  <img class="avatar-choice" data-type="top" data-value="<%= top[0] %>" src="/assets/avatar/top/<%= top[0] %>.svg"> -->
-                <%= image_tag "avatar/top/#{top[0]}.svg" %>
-              </label>
-            <% end %>
+            <span class="player-label">tops</span>
+              <div class="player-card">
+                <% Avatar::TOP_CHOICE.each do |top| %>
+                  <label class="avatar-choice">
+                    <input type="radio" name="avatar[top]" value="<%= top[0] %>"  <%= @avatar.top == top[0] ? 'checked' : '' %>>
+                    <!--  <img class="avatar-choice" data-type="top" data-value="<%= top[0] %>" src="/assets/avatar/top/<%= top[0] %>.svg"> -->
+                    <%= image_tag "avatar/top/#{top[0]}.svg" %>
+                  </label>
+                <% end %>
+              </div>
           </div>
           <div class="avatar-selection-menu avatar-bottom">
-            <p>bottoms</p>
-            <% Avatar::BOTTOM_CHOICE.each do |bottom| %>
-              <label class="avatar-choice">
-                <input type="radio" name="avatar[bottom]" value="<%= bottom[0] %>"  <%= @avatar.bottom == bottom[0] ? 'checked' : '' %>>
-               <!--  <img class="avatar-choice" data-type="bottom" data-value="<%= bottom[0] %>" src="/assets/avatar/bottom/<%= bottom[0] %>.svg"> -->
-               <%= image_tag "avatar/bottom/#{bottom[0]}.svg" %>
-              </label>
-            <% end %>
+            <span class="player-label">bottoms</span>
+              <div class="player-card">
+              <% Avatar::BOTTOM_CHOICE.each do |bottom| %>
+                <label class="avatar-choice">
+                  <input type="radio" name="avatar[bottom]" value="<%= bottom[0] %>"  <%= @avatar.bottom == bottom[0] ? 'checked' : '' %>>
+                 <!--  <img class="avatar-choice" data-type="bottom" data-value="<%= bottom[0] %>" src="/assets/avatar/bottom/<%= bottom[0] %>.svg"> -->
+                 <%= image_tag "avatar/bottom/#{bottom[0]}.svg" %>
+                </label>
+              <% end %>
+            </div>
           </div>
           <div class="avatar-selection-menu avatar-shoes">
-            <p>shoes</p>
-            <% Avatar::SHOE_CHOICE.each do |shoes| %>
-             <label class="avatar-choice">
-                <input type="radio" name="avatar[shoes]" value="<%= shoes[0] %>" <%= @avatar.shoes == shoes[0] ? 'checked' : '' %>>
-                <!-- <img class="avatar-choice" data-type="shoes" data-value="<%= shoes[0] %>" src="/assets/avatar/shoes/<%= shoes[0] %>.svg"> -->
-                <%= image_tag "avatar/shoes/#{shoes[0]}.svg" %>
-            </label>
-            <% end %>
+            <span class="player-label">shoes</span>
+              <div class="player-card">
+              <% Avatar::SHOE_CHOICE.each do |shoes| %>
+               <label class="avatar-choice">
+                  <input type="radio" name="avatar[shoes]" value="<%= shoes[0] %>" <%= @avatar.shoes == shoes[0] ? 'checked' : '' %>>
+                  <!-- <img class="avatar-choice" data-type="shoes" data-value="<%= shoes[0] %>" src="/assets/avatar/shoes/<%= shoes[0] %>.svg"> -->
+                  <%= image_tag "avatar/shoes/#{shoes[0]}.svg" %>
+              </label>
+              <% end %>
+            </div>
           </div>
         </div>
 
