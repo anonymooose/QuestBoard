@@ -6,30 +6,42 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
-    if @survey.attended
-      flash[:alert] = "You've already answered this survey."
-      session[:return_to] ||= request.referer
-    end
     @event = Event.find(params[:event_id])
+    unless @survey.attended
+      flash[:alert] = "The host (#{@event.host.user.username}) said you did not attend. If this is an error please contact an admin."
+    end
   end
 
   def update
     @survey = Survey.find(params[:id])
-    attendance = survey_params[:attended] == 'true'
-    attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
-    if attendance
-      determine_change!
-      flash[:notice] = "Thanks for answering! Here's #{@survey.event.coins} coins and #{@survey.event.experience} xp!"
+    @event = @survey.event
+    if current_user.host != @event.host
+      attendance = survey_params[:attended] == 'true'
+      attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
+      if attendance
+        determine_change!
+        flash[:notice] = "Thanks for answering! Here's #{@event.coins} coins and #{@event.experience} xp!"
+      else
+        current_user.coins += 1
+        current_user.players.where('event_id = ?', @event.id)[0].destroy
+        error_check!
+        flash[:notice] = "Thanks for being honest! Here's 1 coin!"
+      end
     else
-      current_user.coins += 1
-      flash[:notice] = "Thanks for being honest! Here's 1 coin!"
+      @survey.vote = Player.find(survey_params[:host_win].to_i)
+      @event.update(win:@survey.vote.user)
+      flash[:notice] = "Thanks for hosting. Here's #{@event.coins} coins and #{@event.experience} xp!"
     end
-    redirect_to root_path
+    session[:return_to] ||= request.referer
   end
 
   private
   def survey_params
-    params.require(:survey).permit(:vote, :attended)
+    if current_user.host == @survey.event.host
+      params.require(:survey).permit(:vote, :attended, :host_win, :host_attendance)
+    else
+      params.require(:survey).permit(:vote, :attended)
+    end
   end
 
   def determine_change!
@@ -56,6 +68,10 @@ class SurveysController < ApplicationController
     new_level = initial_level + (@survey.event.experience)/100
     return true if initial_level.floor < new_level.floor
     return false
+  end
+
+  def error_check!
+    @survey.event.win = nil if @survey.event.win == current_user?
   end
 
   def add_event_rewards
