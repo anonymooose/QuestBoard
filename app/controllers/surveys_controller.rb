@@ -7,7 +7,10 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @event = Event.find(params[:event_id])
-    unless @survey.attended
+    if @survey.vote != nil && @survey.attended
+      flash[:alert] = "You've already answered this."
+      redirect_to root_path
+    elsif @survey.vote != nil
       flash[:alert] = "The host (#{@event.host.user.username}) said you did not attend. If this is an error please contact an admin."
     end
   end
@@ -28,17 +31,20 @@ class SurveysController < ApplicationController
         flash[:notice] = "Thanks for being honest! Here's 1 coin!"
       end
     else
-      @survey.vote = Player.find(survey_params[:host_win].to_i)
-      @event.update(win:@survey.vote.user)
+      survey_params[:host_attendance].drop(1).each do |survey_id|
+        Survey.find(survey_id.to_i).update(vote_id: survey_params[:host_win].to_i)
+      end
+      @survey.host_win = Player.find(survey_params[:host_win].to_i)
+      determine_change!
       flash[:notice] = "Thanks for hosting. Here's #{@event.coins} coins and #{@event.experience} xp!"
     end
-    session[:return_to] ||= request.referer
+    redirect_to surveys_path
   end
 
   private
   def survey_params
     if current_user.host == @survey.event.host
-      params.require(:survey).permit(:vote, :attended, :host_win, :host_attendance)
+      params.require(:survey)
     else
       params.require(:survey).permit(:vote, :attended)
     end
@@ -46,28 +52,39 @@ class SurveysController < ApplicationController
 
   def determine_change!
     base = current_user
+    blacklist = []
+    current_user.achievements.each { |ach| blacklist << ach.id }
     #treat all answered surveys as attended events
-    case base.surveys.length
-    when 1 then add_achievement(1)
-    when 5 then add_achievement(2)
+    if (new_level(current_user.level) <=> 5) >= 0
+      batch_add_achievement([5,6], blacklist)
+    elsif (new_level(current_user.level) <=> 1) >= 0
+      add_achievement(5) unless blacklist.include?(3)
     end
-    case base.host.events.where('datetime < ?', Time.now).length
-    when 1 then add_achievement(3)
-    when 5 then add_achievement(4)
-    end
-    if level_up?(current_user.level)
-      case current_user.level + 1
-      when 2 then add_achievement(5)
-      when 5 then add_achievement(6)
+    if current_user.host == @event.host
+      hosted_comparator = base.host.events.where('datetime < ?', Time.now).length
+      if (hosted_comparator <=> 5) >= 0
+        batch_add_achievement([3,4], blacklist)
+      elsif (hosted_comparator <=> 1) >= 0
+        add_achievement(3) unless blacklist.include?(3)
+      end
+    else
+      attended_comparator = base.events.where('datetime < ?', Time.now).length
+      if (attended_comparator <=> 5) >= 0
+        batch_add_achievement([1,2], blacklist)
+      elsif (attended_comparator <=> 1) >= 0
+        add_achievement(1) unless blacklist.include?(1)
       end
     end
     add_event_rewards
   end
 
   def level_up?(initial_level)
-    new_level = initial_level + (@survey.event.experience)/100
-    return true if initial_level.floor < new_level.floor
+    return true if initial_level.floor < new_level(initial_level).floor
     return false
+  end
+
+  def new_level(initial_level)
+    return initial_level + (@survey.event.experience)/100
   end
 
   def error_check!
@@ -77,6 +94,12 @@ class SurveysController < ApplicationController
   def add_event_rewards
     current_user.update(level:current_user.level + ((@survey.event.experience)/100.0))
     current_user.update(coins:current_user.coins + @survey.event.coins)
+  end
+
+  def batch_add_achievement(arr, blacklist)
+    arr.each do |id|
+      add_achievement(id) unless blacklist.include?(id)
+    end
   end
 
   def add_achievement(id)

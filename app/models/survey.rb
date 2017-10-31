@@ -24,7 +24,7 @@ class Survey < ApplicationRecord
   end
 
   def host_win=(player)
-    self.event.win = (player.user)
+    self.event.win = (player.user) if self.event.win == nil
     self.vote=(player)
   end
 
