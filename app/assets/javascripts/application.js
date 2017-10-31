@@ -7,6 +7,7 @@
 //= require autocomplete-rails
 //= require toastr
 //= require moment
+//= require tooltips
 //= require_tree .
 
 console.log("hello from js")
