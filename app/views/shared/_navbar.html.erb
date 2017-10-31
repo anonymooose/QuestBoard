@@ -13,7 +13,34 @@
       <%#= link_to "Edit User",  edit_user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%#= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Create Quest", new_event_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Tasks (<b>#{current_user.surveys.where(attended:false).length}</b>)".html_safe, surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%#= link_to "Tasks (<b>#{current_user.surveys.where(attended:false).length}</b>)".html_safe, surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <% if !current_user.surveys.where(attended:false).blank? %>
+          <i class="fa fa-globe dropdown-toggle drop-down-globe" data-toggle="dropdown"></i>
+            <span class= "notification-icon"><%= current_user.surveys.where(attended:false).length %></span>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <% if !current_user.surveys.blank? %>
+                <% current_user.surveys.where(attended:false).each do |survey| %>
+                  <li>
+                    <%= link_to "#{survey.event.title}", event_survey_path(survey.event, survey) %>
+                  </li>
+                <% end %>
+                <%= link_to "See all Tasks ( #{current_user.surveys.where(attended:false).length} )", surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+              <% end %>
+               <% else %>
+                <i class="fa fa-globe dropdown-toggle" data-toggle="dropdown"></i>
+                  <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+                    <li class= "task-class">
+                    You have no tasks.
+                    </li>
+                    </i><%= link_to "See all Tasks ( #{current_user.surveys.where(attended:false).length} )", surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+                  </ul>
+              <% end %>
+          </ul>
+        </div>
+      </div>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">

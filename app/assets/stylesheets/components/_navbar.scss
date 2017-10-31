@@ -75,3 +75,30 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+.drop-down-globe {
+  position: relative;
+
+}
+.notification-icon {
+    position: absolute;
+    background-color: red;
+    font-size: 8px;
+    font-weight: bolder;
+    color: white;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    top: -0;
+    right: -4px;
+
+  }
+.task-class {
+  padding: 10px;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
