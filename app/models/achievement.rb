@@ -1,3 +1,3 @@
 class Achievement < ApplicationRecord
-  belongs_to :achieveable, polymorphic: true
+  has_many :badgelists
 end
