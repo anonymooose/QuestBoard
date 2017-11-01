@@ -16,9 +16,7 @@
     flex-direction: column;
     padding: 18px 15px 15px 15px;
     font-weight: 600;
-  }
-  .quest-date {
-    font-size: 15px;
+    min-width: 80px;
   }
   .blue-box {
     background-color: $brand-blue;

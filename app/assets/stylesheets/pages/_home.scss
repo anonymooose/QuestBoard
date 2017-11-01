@@ -1,6 +1,23 @@
 // Specific CSS for your home-page
 
-#hero-wrapper {
+.page-wrapper.home-version {
+  padding: 30px 0 0 0;
+  .page-show-heading {
+    display: none;
+  }
+  .page-card {
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .user-block {
+    border-bottom-left-radius: 0;
+  }
+  .sub-content {
+    border-radius: 0;
+  }
+}
+
+.hero-wrapper {
   padding-top: 70px;
   padding-bottom: 70px;
   background-color: $brand-dark-gray;
@@ -24,6 +41,14 @@
   }
   .hero-search {
     margin-top: 30px;
+  }
+}
+
+.hero-wrapper-alt {
+  padding-top: 45px;
+  padding-bottom: 50px;
+  .hero-search {
+    margin-top: 15px;
   }
 }
 
