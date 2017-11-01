@@ -57,7 +57,7 @@
           <% @user.achievements.each do |achievement| %>
             <div class="achievement-slot">
               <div data-toggle="tooltip" data-placement="top" title="<%= achievement.name %>">
-                <%= image_tag("first_event_badge-01.svg") %>
+                <%= image_tag "badges/#{achievement.id}.svg" %>
               </div>
             </div>
           <% end %>
