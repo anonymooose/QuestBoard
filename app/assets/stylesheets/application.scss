@@ -6,15 +6,16 @@
 // External libraries
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datepicker";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import 'bootstrap-datepicker';
 @import "toastr";
 
 // Your CSS partials
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
+@import "components/datepicker";
 
 /* ...
 *= require_self

@@ -83,6 +83,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    binding.pry
     params = {
       title: event_params[:title],
       description: event_params[:description],
@@ -119,7 +120,7 @@ class EventsController < ApplicationController
       title: event_params[:title],
       description: event_params[:description],
       game: Game.where(name: event_params[:game]).first,
-      datetime: event_params.values.last(5).join.to_time,
+      datetime: parse_datetime(event_params),
       host: current_user.host,
       address: event_params[:address],
       coins: 10,
@@ -151,7 +152,18 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :game, :address, :datetime)
+    params.require(:event).permit(:title, :description, :game, :address, :datetime, :time)
+  end
+
+  def parse_datetime(e_param)
+    mdy_arr = e_param[:datetime].split('/')
+    m = mdy_arr[0].to_i
+    d = mdy_arr[1].to_i
+    y = mdy_arr[2].to_i
+    time = e_param.values.last(2)
+    hour = time[0].to_i
+    min = time[1].to_i
+    Time.new(y,m,d,hour,min)
   end
 
 end
