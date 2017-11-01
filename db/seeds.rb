@@ -2,6 +2,7 @@
 # please use rails db:reset from the terminal
 # instead of directly calling rails db:seed
 require 'csv'
+require 'faker'
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'utf8.csv'))
 csv = CSV.parse(csv_text, :headers => true)
@@ -37,22 +38,23 @@ tmp = Game.find(rand(5000))
 Event.create!(
   {
     game: Game.find(tmp),
-    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
+    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
     datetime: Time.now,
-    title: "Let's play #{tmp.name}",
-    address: 'Otsuka Station, Tokyo',
+    title: "Come play with me! #{tmp.name}",
+    address: '2-11-3目黒区目黒',
     host: User.first.host
   }
 )
+
 #carla,rose,trevor join admin event - 4/4
 [5,3,2].each { |id| Event.first.add_user(User.find(id)) }
 
 tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
+    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
     datetime: Time.now - 100000,
-    title: "Let's play #{tmp.name}",
+    title: "#{tmp.name} at my house",
     address: 'Long Beach, CA',
     game: tmp,
     host: User.find(2).host
@@ -75,8 +77,8 @@ Event.create!(
 
 #random users sign up + join carla's event - 8/8 (will disallow entry after 8/8)
 (1..8).each do |i|
-  tmp = User.new(email:"random#{i}@gmail.com",password:"123123")
-  tmp.username = "Rando#{i}"
+  tmp = User.new(email:"#{Faker::Internet.user_name}@gmail.com",password:"123123")
+  tmp.username = "#{Faker::Internet.user_name}"
   tmp.save
   Event.last.add_user(tmp)
 end
@@ -84,7 +86,7 @@ end
 tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
+    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
     datetime: Time.now + 10000,
     title: "Let's play #{tmp.name}",
     address: '21-2, Kabukicho 1-chome, Shinjuku-ku, Tokyo',
@@ -96,9 +98,9 @@ Event.create!(
 tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
+    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
     datetime: Time.now,
-    title: "Let's play #{tmp.name}",
+    title: "I want to play some #{tmp.name}",
     address: '14-14歌舞伎町',
     game: tmp,
     host: User.first.host
@@ -110,7 +112,7 @@ Event.create!(
   {
     description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
     datetime: Time.now + 1000000,
-    title: "Let's play #{tmp.name}",
+    title: "#{tmp.name.capitalize} FANS JOIN",
     address: '2-11-3目黒区目黒',
     game: tmp,
     host: User.find(5).host

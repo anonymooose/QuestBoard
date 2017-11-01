@@ -27,6 +27,7 @@ gem 'toastr-rails'
 gem 'momentjs-rails'
 gem 'country_select'
 gem 'webpacker', '~> 3.0'
+gem 'faker'
 
 group :development, :test do
   gem 'pry-byebug'

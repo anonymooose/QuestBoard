@@ -68,6 +68,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.8.4)
+      i18n (~> 0.5)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -244,6 +246,7 @@ DEPENDENCIES
   bootstrap-sass
   country_select
   devise
+  faker
   figaro
   font-awesome-sass
   geokit-rails
