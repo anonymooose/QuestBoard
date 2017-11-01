@@ -83,12 +83,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     params = {
       title: event_params[:title],
       description: event_params[:description],
       game: Game.where(name: event_params[:game]).first,
-      datetime: event_params.values.last(5).join.to_time,
+      datetime: parse_datetime(event_params),
       host: current_user.host,
       address: event_params[:address],
       coins: 10,
@@ -163,7 +162,7 @@ class EventsController < ApplicationController
     time = e_param.values.last(2)
     hour = time[0].to_i
     min = time[1].to_i
-    Time.new(y,m,d,hour,min)
+    return Time.new(y,m,d,hour,min)
   end
 
 end
