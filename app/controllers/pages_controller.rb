@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   def home
     @games = Game.all
-    @events = Event.where('datetime > ?', Time.now).order(created_at: :desc).first(3)
+    @events = Event.all.order(created_at: :desc).first(3)
   end
 
   private
