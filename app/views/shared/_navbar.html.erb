@@ -72,13 +72,51 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
+   <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+          <% if !current_user.surveys.where(attended:false).blank? %>
+          <i class="fa fa-globe dropdown-toggle drop-down-globe" data-toggle="dropdown"></i>
+            <span class= "notification-icon"><%= current_user.surveys.where(attended:false).length %></span>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <% if !current_user.surveys.blank? %>
+                <% current_user.surveys.where(attended:false).each do |survey| %>
+                  <li>
+                    <%= link_to "#{survey.event.title}", event_survey_path(survey.event, survey) %>
+                  </li>
+                <% end %>
+                <%= link_to "See all Tasks ( #{current_user.surveys.where(attended:false).length} )", surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+              <% end %>
+               <% else %>
+                <i class="fa fa-globe dropdown-toggle" data-toggle="dropdown"></i>
+                  <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+                    <li class= "task-class">
+                    You have no tasks.
+                    </li>
+                    </i><%= link_to "See all Tasks ( #{current_user.surveys.where(attended:false).length} )", surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
+                  </ul>
+              <% end %>
+          </ul>
+        </div>
+      </div>
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li>
+          <%= link_to user_path(current_user) do %>
+              <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <% end %>
+        </li>
+         <li>
+              <%= link_to root_path do %>
+                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+              <% end %>
+            </li>
+          <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+          </li>
       </ul>
     </div>
   </div>
