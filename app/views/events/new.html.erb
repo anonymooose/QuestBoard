@@ -1,8 +1,8 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $('#datepicker').datepicker();
+  $(document).ready(function() {
+    $('.datepicker').datepicker();
   });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
@@ -24,7 +24,8 @@
               <%= f.input :description, as: :text %>
               <%= f.input :address, input_html: { :class => 'search-location' }%>
               <% # note  - game field will ideally not be straight text input. stay tuned %>
-              <%= f.input :datetime, data:{ provide:'datepicker'}, :input_html => { :value => Date.today } %>
+              <%= f.input :datetime, as: :string, data:{ provide:'datepicker'}, input_html: { value: Date.today, class: "form-control input-size-large datepicker" } %>
+              <%= f.time_select :time %>
               <%= f.button :submit, "Create" %>
 
             <% end %>
