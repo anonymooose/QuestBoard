@@ -8,6 +8,11 @@ body {
   background: $brand-light-gray url(image-path('pixel-bg.png')) repeat fixed center center;
 }
 
+a:hover {
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
 .page-wrapper {
   padding: 3em 0 2em 0;
 }
