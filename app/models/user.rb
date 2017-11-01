@@ -7,10 +7,11 @@ class User < ApplicationRecord
   has_many :surveys, through: :players
   has_one :host, dependent: :destroy
   has_one :avatar
+  has_one :badgelist
   has_many :players
   has_many :events, through: :players
   has_many :wins
-  has_many :achievements, as: :achieveable
+  has_many :achievements, through: :badgelist
   validates :username, presence: true, :uniqueness => {
     :case_sensitive => false
   }
