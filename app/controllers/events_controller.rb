@@ -156,7 +156,6 @@ class EventsController < ApplicationController
 
   def parse_datetime(e_param)
     datepicker = e_param[:datetime]
-    binding.pry
     mdy_arr = datepicker.split(/\D/) if datepicker.class == String
     mdy_arr = datepicker[0].split(/\D/) if datepicker.class == Array
     m = mdy_arr[0].to_i
