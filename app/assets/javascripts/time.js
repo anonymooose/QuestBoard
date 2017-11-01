@@ -4,5 +4,3 @@ $("time").each((i, el)=>{
   $(el).filter(".time").text(moment(current).format("HH:mm"));
   $(el).filter(".date-year").text(moment(current).format("MMM D, YYYY"));
 });
-
-
