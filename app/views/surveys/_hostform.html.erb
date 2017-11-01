@@ -3,5 +3,5 @@
   <%= f.input :host_win, collection: @event.players, label_method: :username, label: "Select Player:" %>
   <label>Were any players absent?</label>
   <%= f.input :host_attendance, collection: @event.players.where('user_id != ?', current_user.id), as: :check_boxes, label_method: :username, include_blank: "Choose a winner", label: "" %>
-  <%= f.submit "Claim rewards", class: "btn brand-btn brand-btn-red" %>
+  <%= f.submit "Claim rewards", class: "btn brand-btn brand-btn-red", method: :patch %>
 <% end %>
