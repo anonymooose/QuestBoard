@@ -139,8 +139,7 @@
                 </span>
                 <span class="quest-distance">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  <% loc = Geokit::Geocoders::GoogleGeocoder.reverse_geocode "#{event.lat},#{event.lng}" %>
-                  <span style="font-size:12pt;"><%= loc.city %>, <%= loc.country %></span>
+                  <span style="font-size:12pt;"><%= event.citycountry %></span>
                 </span>
               </div>
             </div>
