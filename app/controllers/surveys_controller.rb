@@ -86,7 +86,7 @@ class SurveysController < ApplicationController
   end
 
   def new_level(initial_level)
-    return initial_level + (@survey.event.experience)/100
+    return initial_level + (@survey.event.experience)/100.0
   end
 
   def error_check!
