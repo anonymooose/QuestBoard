@@ -31,7 +31,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # t.datetime :locked_at
 
       ## Achieveable ;) (manual achievements)
-      t.references :achieveable, polymorphic: true, index: true
+      #t.references :achieveable, polymorphic: true, index: true
 
 
       t.timestamps null: false
