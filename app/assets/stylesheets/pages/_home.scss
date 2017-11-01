@@ -2,18 +2,37 @@
 
 .page-wrapper.home-version {
   padding: 30px 0 0 0;
-  .page-show-heading {
-    display: none;
-  }
   .page-card {
     box-shadow: none;
     border-radius: 0;
   }
+  .player-card {
+    border-radius: 0 5px 5px 5px;
+  }
+  .avatar {
+    position: relative;
+    display: inline-block;
+  }
+  .avatar-wpr:hover .av-edit {
+    display: block;
+  }
+  .av-edit {
+    padding-top: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+  }
   .user-block {
     border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+  }
+  .xp-amount {
+    float: right;
+    font-size: 14px;
   }
   .sub-content {
-    border-radius: 0;
+    border-radius: 0 5px 0 0;
   }
 }
 
