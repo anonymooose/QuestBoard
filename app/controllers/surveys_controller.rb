@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @surveys = current_user.surveys!
   end
@@ -9,7 +10,7 @@ class SurveysController < ApplicationController
     @event = Event.find(params[:event_id])
     if @survey.vote != nil && @survey.attended
       flash[:alert] = "You've already answered this."
-      redirect_to root_path
+        redirect_to root_path
     elsif @survey.vote != nil
       flash[:alert] = "The host (#{@event.host.user.username}) said you did not attend. If this is an error please contact an admin."
     end
@@ -23,12 +24,12 @@ class SurveysController < ApplicationController
       attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
       if attendance
         determine_change!
-        flash[:notice] = "Thanks for answering! Here's #{@event.coins} coins and #{@event.experience} xp!"
+        message = "Thanks for answering! Here's #{@event.coins} coins and #{@event.experience} xp!"
       else
         current_user.coins += 1
         current_user.players.where('event_id = ?', @event.id)[0].destroy
         error_check!
-        flash[:notice] = "Thanks for being honest! Here's 1 coin!"
+        message = "Thanks for being honest! Here's 1 coin!"
       end
     else
       survey_params[:host_attendance].drop(1).each do |survey_id|
@@ -36,8 +37,9 @@ class SurveysController < ApplicationController
       end
       @survey.host_win = Player.find(survey_params[:host_win].to_i)
       determine_change!
-      flash[:notice] = "Thanks for hosting. Here's #{@event.coins} coins and #{@event.experience} xp!"
+      message = "Thanks for hosting. Here's #{@event.coins} coins and #{@event.experience} xp!"
     end
+    flash[:info] = message
     redirect_to surveys_path
   end
 
