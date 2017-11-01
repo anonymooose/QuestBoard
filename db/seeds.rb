@@ -27,6 +27,7 @@ if Achievement.all.blank?
    Achievement.create(name: "Accomplished Host", description: "Host your five event")
    Achievement.create(name: "One small step..", description: "Reach level 2")
    Achievement.create(name: "Lord of the Board", description: "Reach level 5")
+   Achievement.create(name: "Forever Alone", description: "It's going to be ok..")
    puts "achievements seeded"
  end
 
