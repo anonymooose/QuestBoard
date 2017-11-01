@@ -3,7 +3,7 @@
     <div class="row is-flex page-card">
 
       <div class="col-xs-12 page-show-heading">
-        <div class="main-heading-group">
+        <div class="main-heading-group alt-heading-group">
           <h2><%= @user.username %>'s Profile</h2>
         </div>
       </div>
@@ -26,7 +26,7 @@
               data-bottom="<%= @user.avatar.bottom %>"
               data-shoes="<%= @user.avatar.shoes %>"></div>
             <div class="player-info">
-              <span class="player-username"><%= @user.username %></span>
+              <%= link_to "#{current_user.username}", user_path(current_user), class: "player-username" %><br/>
               <span class="player-level">Level <%= @user.level.floor %></span>
               <%# If viewing own profile %>
               <% if current_user == @user %>
@@ -107,7 +107,7 @@
     <div class="row is-flex page-card">
 
       <div class="col-xs-12 page-show-heading">
-        <div class="main-heading-group">
+        <div class="main-heading-group alt-heading-group">
           <h2>Upcoming Quests</h2>
         </div>
       </div>

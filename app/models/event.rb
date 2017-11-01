@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   belongs_to :win, class_name: 'User', optional: true
   has_many :players, dependent: :destroy
   has_many :surveys, through: :players
-  validates :game, :title, :address, :description, presence: true
+  validates :game, :title, :address, :description, :datetime, presence: true
   before_validation :geocode_address, :on => :create
 
 
@@ -103,6 +103,7 @@ class Event < ApplicationRecord
       self.lng = 0.0
       #remove
     end
+    self.citycountry = "#{geo.city}, #{geo.country}"
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
 

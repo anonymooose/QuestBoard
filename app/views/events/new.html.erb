@@ -1,4 +1,4 @@
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
@@ -7,6 +7,7 @@
   });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDANjx3bosEtIyzJaoWs50Wnt6nt_1rmxU"></script>
+
 <div class="page-wrapper">
   <div class="container">
     <div class="row">
@@ -22,8 +23,7 @@
               <%= f.input :game, :url => autocomplete_game_name_games_path, :as => :autocomplete %>
               <%= f.input :description, as: :text %>
               <%= f.input :address, input_html: { :class => 'search-location' }%>
-              <% # note  - game field will ideally not be straight text input. stay tuned %>
-              <%= f.input :datetime, as: :string, data:{ provide:'datepicker'}, input_html: { value: Date.today, class: "form-control input-size-large datepicker" } %>
+              <%= f.input :datetime, as: :search, data:{ provide:'datepicker'}, input_html: { value: Date.today.strftime('%m/%d/%Y'), class: "form-control input-size-large datepicker" } %>
               <%= f.time_select :time %>
               <%= f.button :submit, "Create" %>
 
