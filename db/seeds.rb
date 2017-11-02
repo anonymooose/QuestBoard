@@ -15,10 +15,10 @@ csv.each do |row|
     game_length: row['avg_time']
     })
   games += 1
-  puts "#{games} Games Created"
+  if games%250 == 0 puts "#{games} Games Created"
 end
 
-ADMINS = ['admin','trevor','rose','james','carla']
+ADMINS = ['babyface_joe','trevor','rose','james','carla']
 
 
 if Achievement.all.blank?
@@ -33,64 +33,47 @@ if Achievement.all.blank?
  end
 
 ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
+User.first.avatar.update(top:1)
+{2=>[0,719], 3=>[1,444], 4=>[0,123], 5=>[1,666]}.each { |k,v| User.find(k).avatar.update(gender:v[0], hair:v[1], top:v[1], bottom:v[1], shoes:v[1]) }
 
-tmp = Game.find(rand(5000))
+tmp = Game.get_by_name('Cowboys: The Way of the Gun')
 Event.create!(
   {
     game: Game.find(tmp),
     description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
-    datetime: Time.now,
-    title: "Come play with me! #{tmp.name}",
-    address: '2-11-3目黒区目黒',
+    datetime: Time.now + 30,
+    title: "Come play Cowboys with me!",
+    address: '1 Chome-11-1 Nishishinjuku',
     host: User.first.host
   }
 )
 
-#carla,rose,trevor join admin event - 4/4
+#carla,rose,trevor join admin event
 [5,3,2].each { |id| Event.first.add_user(User.find(id)) }
 
-tmp = Game.find(rand(5000))
-Event.create!(
-  {
-    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
-    datetime: Time.now - 100000,
-    title: "#{tmp.name} at my house",
-    address: 'Long Beach, CA',
-    game: tmp,
-    host: User.find(2).host
-  }
-)
 
 Event.create!(
   {
-    description: "Cards Against Humanity is a game for good people",
-    datetime: Time.now + 100000,
-    title: "Post pitch party!! LeWagon ONLY",
-    address: '2 Chome-2 Dogenzaka, Shibuya, Tokyo 150-0043',
+    description: "This is the event for the Lewagon Demo night!! We're playing a really short game just to showcase the functionality of QuestBoard, and the survey system!! Feel free to join this before it ends!",
+    datetime: Time.new(2017, 11, 3, 23, 45, 0, "+09:00"),
+    title: "Lewagon DEMO DAY!! Cards Against Humanity!",
+    address: '2-11-3目黒区目黒',
     game: Game.get_by_name('Cards Against Humanity'),
     host: User.find(5).host
   }
 )
 
-#trevor, rose, and admin join Carla's event - 4/8
-[2,3,1].each { |id| Event.last.add_user(User.find(id)) }
+#trevor, rose, and james join Carla's event - 4/30
+[2,3,4].each { |id| Event.last.add_user(User.find(id)) }
 
-#random users sign up + join carla's event - 8/8 (will disallow entry after 8/8)
-(1..8).each do |i|
-  tmp = User.new(email:"#{Faker::Internet.user_name}@gmail.com",password:"123123")
-  tmp.username = "#{Faker::Internet.user_name}"
-  tmp.save
-  Event.last.add_user(tmp)
-end
 
-tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
-    datetime: Time.now + 10000,
-    title: "Let's play #{tmp.name}",
+    description: "I Love Kabukicho. I love boardgames. I love you. Come join for some drinks and good times!",
+    datetime: Time.new(2017, 11, 11, 19, 0, 0, "+9:00"),
+    title: "Carcassonnes night in Kabukicho.",
     address: '21-2, Kabukicho 1-chome, Shinjuku-ku, Tokyo',
-    game: tmp,
+    game: Game.get_by_name('Carcassonnes'),
     host: User.find(4).host
   }
 )
@@ -98,14 +81,39 @@ Event.create!(
 tmp = Game.find(rand(5000))
 Event.create!(
   {
-    description: "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
-    datetime: Time.now,
-    title: "I want to play some #{tmp.name}",
-    address: '14-14歌舞伎町',
+    description: "I'm hosting an event for landing my first job as a web developer!! I'm now working for a great company, and what better way to celebrate than a boardgame night with QuestBoard ;)",
+    datetime: Time.new(2017, 11, 10, 18, 45, 0, "+09:00"),
+    title: "#{tmp.name} in Hachioji",
+    address: '八王子市郷土資料館 1階第一展示場',
     game: tmp,
-    host: User.first.host
+    host: User.find(2).host
   }
 )
+
+12.times do |i|
+  tmp = Game.find(rand(5000))
+  SAMPLE_DESC = [
+    "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
+    "#{rand(2) == 1 ? 'My house, my rules.' : "Hello Questers! Please be considerate of the neighbors and I'm sure we'll have a good time."} #{rand(2) == 1 ? 'BYOB.' : 'NO ALCOHOL!' }",
+    "#{rand(2) == 1 ? 'hey im new to the site and' : 'im kindda new here n'} i just wanna meet sum ppl who like #{tmp.name} as much as i do... bring friends too if u have some",
+    "#{rand(2) == 1 ? "yo how's it goin" : "Hello there, fellow Questers. This web service has been brough to my attention by a close friend of mine, and I'd like to partake in some 'Questing'. Please RSVP to assure entry. Thank you."}",
+    "WELCOME #{rand(2) == 1 ? '' : 'TO MY EVENT'}!! #{rand(2) == 1 ? '' : 'The community I live in is gated, just'} type in #{(rand()*1000).to_i}** and it should open... If not just message me and I'll buzz you in."
+  ]
+  SAMPLE_TITLE = [
+    "Calling all #{tmp.name} players",
+
+  ]
+  Event.create!(
+    {
+      description: SAMPLE_DESC.sample,
+      datetime: Time.now,
+      title: SAMPLE_TITLE.sample,
+      address: '14-14歌舞伎町',
+      game: tmp,
+      host: User.first.host
+    }
+  )
+end
 
 tmp = Game.find(rand(5000))
 Event.create!(
@@ -119,7 +127,3 @@ Event.create!(
   }
 )
 
-
-
-#rose joins carla's event (rose joins everything) - 2/8
-Event.last.add_user(User.find(3))
