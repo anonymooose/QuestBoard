@@ -7,6 +7,8 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+     <button class="toggleit">toggle</button>
+
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
@@ -76,3 +78,64 @@
 
 </div>
 
+<% if user_signed_in? %>
+<div class="page-wrapper page-show-wpr profile-wpr home-version" id="dashboard">
+  <div class="container">
+    <div class="row is-flex page-card">
+
+      <div class="col-sm-6 main-content user-block">
+
+        <span class="player-label">You</span>
+        <div class="player-card">
+          <div class="player-block">
+            <div class="avatar-wpr">
+              <div class="avatar profile-size"
+                data-gender="<%= current_user.avatar.gender %>"
+                data-hair="<%= current_user.avatar.hair %>"
+                data-top="<%= current_user.avatar.top %>"
+                data-bottom="<%= current_user.avatar.bottom %>"
+                data-shoes="<%= current_user.avatar.shoes %>"></div>
+              <%= link_to edit_avatar_path(current_user.avatar), class: "av-edit" do %>
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+              <% end %>
+            </div>
+
+            <div class="player-info">
+              <%= link_to "#{current_user.username}", user_path(current_user), class: "player-username" %><br/>
+              <span class="player-level">Level <%= current_user.level.floor %></span>
+              <%# If viewing own profile %>
+              <% if current_user == current_user %>
+                 <span class="coin-count"><%= image_tag("coin.svg") %> <%= current_user.coins %></span>
+              <% end %>
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" style="width:<%= (current_user.level.modulo(1)*100).to_i %>%">
+                </div>
+              </div>
+              <span class="xp-amount"><%= (current_user.level.modulo(1)*100).to_i %>/100</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-6 sub-content">
+        <span class="brand-label">Achievements:</span>
+        <div class="achievement-block">
+          <% if current_user.achievements.blank? %>
+            <span style="color: #ccc;"><br>None yet <i class="fa fa-frown-o" aria-hidden="true"></i></span>
+          <% else %>
+            <% current_user.achievements.each do |achievement| %>
+              <div class="achievement-slot">
+                <div data-toggle="tooltip" data-placement="top" title="<%= achievement.name %>">
+                  <%= image_tag "badges/#{achievement.id}.svg" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= render 'shared/avatar_javascript' %>
