@@ -23,7 +23,7 @@ end %>
           <% @user.host.events.where('datetime > ?', Time.now).each do |event| %>
           <tr>
             <td><%= link_to "#{event.title}", event_path(event) %></td>
-            <td><time class="date" datetime="<%= event.datetime %>"></time> <time class="time" datetime="<%= event.datetime %>"></time></td>
+            <td><p class="date" style="margin-bottom:0px;"><%= event.datetime.strftime("%b %e, %Y") %></p> <p class="time" style="margin-bottom:0px;"><%= event.datetime.strftime("@%H:%M") %></p></td>
             <td>
               <%= event.players.length %>/<%= event.game.max_players %>
             </td>
