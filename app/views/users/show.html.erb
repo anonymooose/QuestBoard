@@ -86,15 +86,15 @@
           <tbody>
             <tr>
               <td>Attended</td>
-              <td><%= @user.events.length %></td>
+              <td><%= @user.surveys.where(attended: true).count %></td>
             </tr>
             <tr>
               <td>Wins</td>
-              <td><%= @user.wins.length %></td>
+              <td><%= @user.wins.count %></td>
             </tr>
             <tr>
               <td>Hosted</td>
-              <td><%= @user.host.events.length %></td>
+              <td><%= @user.host.events.where('datetime < ?', Time.now).count %></td>
             </tr>
           </tbody>
         </table>
