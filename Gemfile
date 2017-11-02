@@ -28,6 +28,7 @@ gem 'momentjs-rails'
 gem 'country_select'
 gem 'webpacker', '~> 3.0'
 gem 'faker'
+gem 'gimei'
 
 group :development, :test do
   gem 'pry-byebug'

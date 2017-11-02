@@ -3,19 +3,22 @@
 # instead of directly calling rails db:seed
 require 'csv'
 require 'faker'
+require 'gimei'
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'utf8.csv'))
 csv = CSV.parse(csv_text, :headers => true)
 games = 0
-csv.each do |row|
-  Game.create!({
-    name: row['names'],
-    max_players: row['max_players'],
-    complexity: row['weight'],
-    game_length: row['avg_time']
-    })
-  games += 1
-  if games%250 == 0 puts "#{games} Games Created"
+if Game.all.blank?
+  csv.each do |row|
+    Game.create!({
+      name: row['names'],
+      max_players: row['max_players'],
+      complexity: row['weight'],
+      game_length: row['avg_time']
+      })
+    games += 1
+    puts "#{games} Games Created"
+  end
 end
 
 ADMINS = ['babyface_joe','trevor','rose','james','carla']
@@ -70,10 +73,10 @@ Event.create!(
 Event.create!(
   {
     description: "I Love Kabukicho. I love boardgames. I love you. Come join for some drinks and good times!",
-    datetime: Time.new(2017, 11, 11, 19, 0, 0, "+9:00"),
+    datetime: Time.new(2017, 11, 11, 19, 0, 0, "+09:00"),
     title: "Carcassonnes night in Kabukicho.",
     address: '21-2, Kabukicho 1-chome, Shinjuku-ku, Tokyo',
-    game: Game.get_by_name('Carcassonnes'),
+    game: Game.get_by_name('Carcassonne'),
     host: User.find(4).host
   }
 )
@@ -90,40 +93,43 @@ Event.create!(
   }
 )
 
-12.times do |i|
+6.times do |i|
+  tmp = Faker::Internet.user_name
+  User.create(username:"#{tmp}",email:"#{tmp}@gmail.com",password:'123123')
+  gender = [0,1].sample
+  {
+    hair: [[0,1,2,3],[4,5,6]],
+    top: [[0,1,2],[3,4]],
+    bottom: [[0,1,2],[3,4]],
+    shoes: [[0,1],[2]]
+  }.each do |k,v|
+    User.last.avatar.update(k => v[gender].sample)
+  end
+end
+
+18.times do |i|
   tmp = Game.find(rand(5000))
-  SAMPLE_DESC = [
+  sample_d = [
     "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
     "#{rand(2) == 1 ? 'My house, my rules.' : "Hello Questers! Please be considerate of the neighbors and I'm sure we'll have a good time."} #{rand(2) == 1 ? 'BYOB.' : 'NO ALCOHOL!' }",
     "#{rand(2) == 1 ? 'hey im new to the site and' : 'im kindda new here n'} i just wanna meet sum ppl who like #{tmp.name} as much as i do... bring friends too if u have some",
     "#{rand(2) == 1 ? "yo how's it goin" : "Hello there, fellow Questers. This web service has been brough to my attention by a close friend of mine, and I'd like to partake in some 'Questing'. Please RSVP to assure entry. Thank you."}",
-    "WELCOME #{rand(2) == 1 ? '' : 'TO MY EVENT'}!! #{rand(2) == 1 ? '' : 'The community I live in is gated, just'} type in #{(rand()*1000).to_i}** and it should open... If not just message me and I'll buzz you in."
+    "WELCOME #{rand(2) == 1 ? '' : 'TO MY EVENT'}!! #{rand(2) == 1 ? 'You need a keycode to enter' : 'The community I live in is gated, just'} type in #{(rand()*1000).to_i}** and it should open... If not just message me and I'll buzz you in."
   ]
-  SAMPLE_TITLE = [
+  sample_t = [
     "Calling all #{tmp.name} players",
-
+    "#{rand(7) == 1 ? "#{rand(2) == 1 ? 'how do i do this' : 'test'}" : "#{rand(2) == 1 ? 'Come p' : 'P' }lay #{tmp.name}#{rand(2) == 1 ? '' : ' with me' }" }",
+    "#{rand(2) == 1 ? "It's" : ''}#{tmp.name} #{rand(2) == 1 ? 'night!!!' : 'time!'}"
   ]
   Event.create!(
     {
-      description: SAMPLE_DESC.sample,
-      datetime: Time.now,
-      title: SAMPLE_TITLE.sample,
-      address: '14-14歌舞伎町',
+      description: sample_d.sample,
+      datetime: Time.new(2017, 11, (rand(18)+4), (rand(10)+8), ([15,30,25].sample), "+09:00"),
+      title: sample_t.sample,
+      address: Gimei.address.city.kanji,
       game: tmp,
-      host: User.first.host
+      host: Host.find(rand(6) + 1)
     }
   )
+  puts "game #{i} seeded"
 end
-
-tmp = Game.find(rand(5000))
-Event.create!(
-  {
-    description: "I just did rand(5000) and this is the game that came up. You're gonna play and you're gonna like it.",
-    datetime: Time.now + 1000000,
-    title: "#{tmp.name.capitalize} FANS JOIN",
-    address: '2-11-3目黒区目黒',
-    game: tmp,
-    host: User.find(5).host
-  }
-)
-
