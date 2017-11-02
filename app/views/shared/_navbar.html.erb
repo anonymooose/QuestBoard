@@ -7,14 +7,29 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-     <button class="toggleit">toggle</button>
-
     <% if user_signed_in? %>
+
+      <button class="toggleit">
+        <div class="player-info">
+        <div class="nav-player">
+          <span class="player-level">Level <%= current_user.level.floor %></span>
+          <%# If viewing own profile %>
+          <% if current_user == current_user %>
+             <span class="coin-count"><%= image_tag("coin.svg") %> <%= current_user.coins %></span>
+          <% end %>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-info" style="width:<%= (current_user.level.modulo(1)*100).to_i %>%">
+          </div>
+        </div>
+
+        </div>
+      </button>
 
       <!-- Links when logged in -->
       <%#= link_to "Edit User",  edit_user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%#= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Create Quest", new_event_path, class: "navbar-wagon-item navbar-wagon-link" %>
+<!--       <%= link_to "Create Quest", new_event_path, class: "navbar-wagon-item navbar-wagon-link" %> -->
       <%#= link_to "Tasks (<b>#{current_user.surveys.where(attended:false).length}</b>)".html_safe, surveys_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <div class="navbar-wagon-item">
@@ -54,9 +69,14 @@
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
-            <li>
+<!--             <li>
               <%= link_to root_path do %>
                 <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+              <% end %>
+            </li> -->
+            <li>
+               <%= link_to new_event_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Create Quest
               <% end %>
             </li>
             <li>
@@ -75,11 +95,10 @@
 
   <!-- Dropdown list appearing on mobile only -->
 
-
 </div>
 
 <% if user_signed_in? %>
-<div class="page-wrapper page-show-wpr profile-wpr home-version" id="dashboard">
+<div class="page-wrapper page-show-wpr profile-wpr nav-version" id="dashboard">
   <div class="container">
     <div class="row is-flex page-card">
 

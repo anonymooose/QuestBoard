@@ -1,41 +1,5 @@
 // Specific CSS for your home-page
 
-.page-wrapper.home-version {
-  padding: 30px 0 0 0;
-  .page-card {
-    box-shadow: none;
-    border-radius: 0;
-  }
-  .player-card {
-    border-radius: 0 5px 5px 5px;
-  }
-  .avatar {
-    position: relative;
-    display: inline-block;
-  }
-  .avatar-wpr:hover .av-edit {
-    display: block;
-  }
-  .av-edit {
-    padding-top: 5px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: none;
-  }
-  .user-block {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 5px;
-  }
-  .xp-amount {
-    float: right;
-    font-size: 14px;
-  }
-  .sub-content {
-    border-radius: 0 5px 0 0;
-  }
-}
-
 .hero-wrapper {
   padding-top: 70px;
   padding-bottom: 70px;
@@ -74,6 +38,9 @@
 .hp-info {
   background-color: #fff;
   padding-left: 30px;
+  a {
+    font-weight: 600;
+  }
   h3 {
     font-size: 36px;
     text-transform: lowercase;
@@ -83,15 +50,19 @@
   p:last-of-type {
     margin-bottom: 40px;
   }
+  i {
+    color: $brand-yellow;
+  }
 }
 
 .signup-accent {
   background-color: $brand-red;
+  justify-content: center;
   span {
     color: #fff;
     font-size: 24px;
     font-weight: 600;
-    padding: 45px 20px 20px 20px;
+    padding: 0 20px 20px;
   }
   .btn {
     display: inline-table;
