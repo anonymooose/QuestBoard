@@ -14,11 +14,14 @@ class Avatar < ApplicationRecord
   end
 
   def valid_items?
-    return false unless GENDER_CHOICE.keys.include?(self.gender)
-    return false unless SHOE_CHOICE.keys.include?(self.shoes)
-    return false unless TOP_CHOICE.keys.include?(self.top)
-    return false unless BOTTOM_CHOICE.keys.include?(self.bottom)
-    return false unless HAIR_CHOICE.keys.include?(self.hair)
+    admins = [2,3,4,5]
+    unless admins.include?(self.user.id)
+      return false unless GENDER_CHOICE.keys.include?(self.gender)
+      return false unless SHOE_CHOICE.keys.include?(self.shoes)
+      return false unless TOP_CHOICE.keys.include?(self.top)
+      return false unless BOTTOM_CHOICE.keys.include?(self.bottom)
+      return false unless HAIR_CHOICE.keys.include?(self.hair)
+    end
     return true
   end
 end
