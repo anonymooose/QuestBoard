@@ -101,3 +101,70 @@
   font-size: 15px;
   margin-left: 10px;
 }
+
+.page-wrapper.nav-version {
+  padding: 30px 0 0 0;
+  .page-card {
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .player-card {
+    border-radius: 0 5px 5px 5px;
+  }
+  .avatar {
+    position: relative;
+    display: inline-block;
+  }
+  .avatar-wpr:hover .av-edit {
+    display: block;
+  }
+  .av-edit {
+    padding-top: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+  }
+  .user-block {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+  }
+  .xp-amount {
+    float: right;
+    font-size: 14px;
+  }
+  .sub-content {
+    border-radius: 0 5px 0 0;
+  }
+}
+
+.navbar-wagon-right {
+  .toggleit {
+    width: 120px;
+    background: #fff;
+    border: 1px solid #f5f5f5;
+    margin-right: 20px;
+  }
+  .nav-player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .player-info {
+    font-size: 12px;
+  }
+  .coin-count img {
+    height: 10px;
+    margin-bottom: 3px;
+  }
+  .progress {
+    margin-bottom: 3px;
+    height: 10px;
+    .progress-bar {
+      background-color: #AB68E7;
+    }
+  }
+  .xp-amount {
+    font-size: 8px;
+  }
+}
