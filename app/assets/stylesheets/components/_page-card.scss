@@ -1,5 +1,4 @@
 .page-show-wpr {
-  display: none;
   .page-show-heading {
     background-color: $brand-dark-gray;
     border-top-left-radius: 5px;
@@ -112,4 +111,8 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px;
   border-radius: 5px;
+}
+
+#dashboard {
+  display: none;
 }
