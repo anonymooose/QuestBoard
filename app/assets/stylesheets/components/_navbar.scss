@@ -168,3 +168,13 @@
     font-size: 8px;
   }
 }
+
+.intro-help {
+  margin-top: 30px;
+  i {
+    color: $brand-yellow;
+  }
+  i.fa-exclamation-circle {
+    color: $brand-red;
+  }
+}
