@@ -10,20 +10,21 @@ end %>
 
       <span class="brand-label">Quests I'm Hosting:</span>
 
-
       <table class="table table-hover table-bordered">
         <thead>
           <tr>
-            <th>Quest Name</th>
             <th>Date/Time</th>
+            <th>Quest Name</th>
+            <th>Game Title</th>
             <th>Players</th>
           </tr>
         </thead>
         <tbody>
           <% @user.host.events.where('datetime > ?', Time.now).each do |event| %>
           <tr>
+            <td><time class="date-year" datetime="<%= event.datetime %>"></time> @<time class="time" datetime="<%= event.datetime %>"></time></td>
             <td><%= link_to "#{event.title}", event_path(event) %></td>
-            <td><time class="date" datetime="<%= event.datetime %>"></time> <time class="time" datetime="<%= event.datetime %>"></time></td>
+            <td><%= event.game.name %></td>
             <td>
               <%= event.players.length %>/<%= event.game.max_players %>
             </td>

@@ -88,6 +88,7 @@
   .achievement-block {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
   }
   .achievement-slot {
     border: solid 1px $brand-light-gray;

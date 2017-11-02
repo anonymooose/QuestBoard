@@ -12,8 +12,9 @@ end %>
       <table class="table table-hover table-bordered">
         <thead>
           <tr>
-            <th>Quest Name</th>
             <th>Date/Time</th>
+            <th>Quest Name</th>
+            <th>Game Title</th>
             <th>Host</th>
             <th>Players</th>
           </tr>
@@ -21,8 +22,9 @@ end %>
         <tbody>
           <% @user.events.where('datetime > ?', Time.now).each do |event| %>
           <tr>
+            <td><time class="date-year" datetime="<%= event.datetime %>"></time> @<time class="time" datetime="<%= event.datetime %>"></time></td>
             <td><%= link_to "#{event.title}", event_path(event) %></td>
-            <td><time class="date" datetime="<%= event.datetime %>"></time> <time class="time" datetime="<%= event.datetime %>"></time></td>
+            <td><%= event.game.name %></td>
             <td>
               <%= link_to "#{event.host.user.username}", user_path(event.host.user) %>
             </td>
