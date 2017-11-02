@@ -51,7 +51,7 @@ class EventsController < ApplicationController
 
     elsif params[:search_loc] != ""
       @location = params[:search_loc]
-      @events = Event.by_distance(:origin => "#{@location}")
+      @events = Event.by_distance(:origin => "#{@location}").first(10)
 
 
     elsif params[:search_date] != ""
@@ -65,10 +65,10 @@ class EventsController < ApplicationController
 
     elsif params[:search_game] != ""
       @game = Game.where('name ILIKE ?', "%#{params[:search_game]}%")
-      @events = Event.where(game: @game)
+      @events = Event.where(game: @game).first(10)
 
     else
-      @events = Event.all.order("created_at DESC")
+      @events = Event.all.order("created_at DESC").first(15)
     end
 
   end

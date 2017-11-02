@@ -37,7 +37,7 @@ if Achievement.all.blank?
 
 ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
 User.first.avatar.update(top:1)
-{2=>[0,719], 3=>[1,444], 4=>[0,123], 5=>[1,666]}.each { |k,v| User.find(k).avatar.update(gender:v[0], hair:v[1], top:v[1], bottom:v[1], shoes:v[1]) }
+{2=>[0,719], 3=>[1,444], 4=>[0,666], 5=>[1,123]}.each { |k,v| User.find(k).avatar.update(gender:v[0], hair:v[1], top:v[1], bottom:v[1], shoes:v[1]) }
 
 tmp = Game.get_by_name('Cowboys: The Way of the Gun')
 Event.create!(
@@ -107,8 +107,8 @@ Event.create!(
   end
 end
 
-18.times do |i|
-  tmp = Game.find(rand(5000))
+50.times do |i|
+  tmp = Game.find(rand(4999) +1 )
   sample_d = [
     "I've always wanted to play #{tmp.name} for the longest time! But I've never been able to find #{tmp.max_players - 1 == 1 ? 'a friend' : 'some people' } who want to play... Come join! I'll have enough drinks for at least #{tmp.max_players} people!",
     "#{rand(2) == 1 ? 'My house, my rules.' : "Hello Questers! Please be considerate of the neighbors and I'm sure we'll have a good time."} #{rand(2) == 1 ? 'BYOB.' : 'NO ALCOHOL!' }",
@@ -119,7 +119,7 @@ end
   sample_t = [
     "Calling all #{tmp.name} players",
     "#{rand(7) == 1 ? "#{rand(2) == 1 ? 'how do i do this' : 'test'}" : "#{rand(2) == 1 ? 'Come p' : 'P' }lay #{tmp.name}#{rand(2) == 1 ? '' : ' with me' }" }",
-    "#{rand(2) == 1 ? "It's" : ''}#{tmp.name} #{rand(2) == 1 ? 'night!!!' : 'time!'}"
+    "#{rand(2) == 1 ? "It's " : ''}#{tmp.name} #{rand(2) == 1 ? 'night!!!' : 'time!'}"
   ]
   Event.create!(
     {
@@ -131,5 +131,5 @@ end
       host: Host.find(rand(6) + 1)
     }
   )
-  puts "game #{i} seeded"
+  puts "event #{i} seeded"
 end
