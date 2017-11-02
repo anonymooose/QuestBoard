@@ -1,3 +1,5 @@
+<% provide(:nav_style, "homepage-player-dashboard") %>
+
 <div class="hero-wrapper <%= 'hero-wrapper-alt' if user_signed_in? %>">
   <div class="container">
     <div class="row">
@@ -6,7 +8,12 @@
 
         <div class="main-heading-group">
           <% if user_signed_in? %>
-            <h2>find a quest</h2>
+          <div class="intro-wpr intro-wpr-alt">
+              <%= image_tag("questboard_mascot_fornow-01.svg") %>
+              <div class="intro-text">
+                <h2>find a quest</h2>
+              </div>
+            </div>
           <% else %>
             <div class="intro-wpr">
               <%= image_tag("questboard_mascot_fornow-01.svg") %>

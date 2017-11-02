@@ -6,26 +6,28 @@
       </div>
     </div>
     <div class="row is-flex">
-      <div class="col-sm-12">
-        <p>Please follow up on your recently completed quest(s) and <b>claim your rewards</b>.</p>
-      </div>
       <% if !@surveys.blank? %>
         <% for survey in @surveys.where(attended:false) %>
+          <div class="col-sm-12">
+            <p>Please follow up on your recently completed quest(s) and <b>claim your rewards</b>.</p>
+          </div>
           <div class="col-sm-4">
             <div class="card card-padding">
               <% event = survey.event %>
-                <span class="event-title"><%= event.title.split.map { |i| i.capitalize }.join(' ') %></span>
+
+            <%= link_to "#{event.title.split.map { |i| i.capitalize }.join(' ')}", event_path(event), class: "event-title" %>
+
                   <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= event.game.name %> </span>
                 <div class="quest-details">
                   <div class="detail-one">
                     <span class="brand-label">Occurred on:</span>
                     <span>
-                      <time class="date" datetime="<%= event.datetime %>"></time> at <time class="time" datetime="<%= event.datetime %>"></time>
+                      <time class="date-year" datetime="<%= event.datetime %>"></time> at <time class="time" datetime="<%= event.datetime %>"></time>
                     </span>
                   </div>
                   <div class="detail-two">
                     <span class="brand-label">Hosted by:</span>
-                    <span><%= event.host.user.username %></span>
+                    <span><%= link_to "#{event.host.user.username}", user_path(event.host.user) %></span>
                   </div>
                 </div>
 
@@ -34,7 +36,9 @@
           </div>
         <% end %>
       <% else %>
-        <p>You haven't joined any quests yet! Go find some!</p>
+        <div class="col-sm-12">
+          <p>You haven't joined any quests yet! Go find some!</p>
+        </div>
       <% end %>
     </div>
   </div>

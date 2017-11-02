@@ -98,7 +98,7 @@
 </div>
 
 <% if user_signed_in? %>
-<div class="page-wrapper page-show-wpr profile-wpr nav-version" id="dashboard">
+<div class="page-wrapper page-show-wpr profile-wpr nav-version <%= yield(:nav_style) %>" id="dashboard">
   <div class="container">
     <div class="row is-flex page-card">
 

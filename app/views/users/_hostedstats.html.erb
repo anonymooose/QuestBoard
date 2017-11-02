@@ -22,7 +22,7 @@ end %>
         <tbody>
           <% @user.host.events.where('datetime > ?', Time.now).each do |event| %>
           <tr>
-            <td><time class="date-year" datetime="<%= event.datetime %>"></time> @<time class="time" datetime="<%= event.datetime %>"></time></td>
+            <td style="width: 105px;"><time class="date-year" datetime="<%= event.datetime %>"></time> @<time class="time" datetime="<%= event.datetime %>"></time></td>
             <td><%= link_to "#{event.title}", event_path(event) %></td>
             <td><%= event.game.name %></td>
             <td>
