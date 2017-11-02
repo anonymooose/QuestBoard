@@ -60,7 +60,7 @@ class SurveysController < ApplicationController
     if (new_level(current_user.level) <=> 5) >= 0
       batch_add_achievement([5,6], blacklist)
     elsif (new_level(current_user.level) <=> 1) >= 0
-      add_achievement(5) unless blacklist.include?(3)
+      add_achievement(5) unless blacklist.include?(5)
     end
     if current_user.host == @event.host
       hosted_comparator = base.host.events.where('datetime < ?', Time.now).length
