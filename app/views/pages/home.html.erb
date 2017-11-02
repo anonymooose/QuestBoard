@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-<div class="page-wrapper page-show-wpr profile-wpr home-version">
+<div class="page-wrapper page-show-wpr profile-wpr home-version" id="dashboard">
   <div class="container">
     <div class="row is-flex page-card">
 
@@ -19,6 +19,7 @@
                 <i class="fa fa-pencil" aria-hidden="true"></i> Edit
               <% end %>
             </div>
+
             <div class="player-info">
               <%= link_to "#{current_user.username}", user_path(current_user), class: "player-username" %><br/>
               <span class="player-level">Level <%= current_user.level.floor %></span>
@@ -56,7 +57,6 @@
   </div>
 </div>
 <% end %>
-
 
 <div class="hero-wrapper <%= 'hero-wrapper-alt' if user_signed_in? %>">
   <div class="container">
@@ -187,3 +187,12 @@
 </div>
 
 <%= render 'shared/avatar_javascript' %>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script>
+              $(".hideit").click(function(){
+                $("#dashboard").slideUp();
+              });
+              $(".showit").click(function(){
+                $("#dashboard").slideDown();
+              });
+            </script>
