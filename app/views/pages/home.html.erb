@@ -75,10 +75,12 @@
             <div class="quest-header">
               <div class="quest-date-box">
                 <span class="quest-date">
-                  <time class="date" datetime="<%= event.datetime %>"></time>
+                  <p class="date" style="margin-bottom:0px;"
+%><%= event.datetime.strftime("%b %e") %></p>
                 </span>
                 <span class="quest-time">
-                  <time class="time" datetime="<%= event.datetime %>"></time>
+                  <p class="time" style="margin-bottom:0px;"
+%><%= event.datetime.strftime("%H:%M") %></p>
                 </span>
               </div>
               <div class="quest-top-info">

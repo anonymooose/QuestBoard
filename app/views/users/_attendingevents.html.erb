@@ -20,7 +20,7 @@ end %>
           </tr>
         </thead>
         <tbody>
-          <% @user.events.where('datetime > ?', Time.now).each do |event| %>
+          <% @user.events.where('datetime > ? AND host_id != ?', Time.now, @user.host.id).each do |event| %>
           <tr>
             <td><time class="date-year" datetime="<%= event.datetime %>"></time> @<time class="time" datetime="<%= event.datetime %>"></time></td>
             <td><%= link_to "#{event.title}", event_path(event) %></td>
