@@ -54,12 +54,22 @@
       <div class="col-sm-6 sub-content">
         <span class="brand-label">Achievements:</span>
         <div class="achievement-block">
-          <% @user.achievements.each do |achievement| %>
+          <% if @user.achievements.blank? %>
             <div class="achievement-slot">
-              <div data-toggle="tooltip" data-placement="top" title="<%= achievement.name %>">
-                <%= image_tag "badges/#{achievement.id}.svg" %>
+              <div data-toggle="tooltip" data-placement="top" title="No achievements yet">
+                <%= image_tag "cobweb-01.svg" %>
               </div>
             </div>
+            <span style="color: #999;">It's looking empty here. <i class="fa fa-frown-o" aria-hidden="true"></i> Go join a quest and get experience!</span>
+
+          <% else %>
+            <% @user.achievements.each do |achievement| %>
+              <div class="achievement-slot">
+                <div data-toggle="tooltip" data-placement="top" title="<%= achievement.name %>">
+                  <%= image_tag "badges/#{achievement.id}.svg" %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         </div>
 

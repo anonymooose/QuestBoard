@@ -8,8 +8,13 @@
           <% if user_signed_in? %>
             <h2>find a quest</h2>
           <% else %>
-            <h1>hello! find a quest</h1>
-            <h2>discover board game events around you</h2>
+            <div class="intro-wpr">
+              <%= image_tag("questboard_mascot_fornow-01.svg") %>
+              <div class="intro-text">
+                <h1>hello! find a quest</h1>
+                <h2>discover board game events around you</h2>
+              </div>
+            </div>
           <% end %>
         </div>
 
@@ -38,7 +43,7 @@
       <p>Items to purchase for your character are coming soon. This will allow you to spend your hard-earned coins on some loot! We're planning on having different clothes, shoes, and hairstyles. Change up your style, show off your wardrobe, and have fun with customization!</p>
     <% else %>
       <h3>About QuestBoard</h3>
-      <p>QuestBoard provides a way for you to organize board game events, meet fellow board gamers, and track your board game statistics/history through your very own customizable character, complete with a leveling system. The more quests (boardgames events) that you join and complete, the more experience you earn and the higher your level becomes. Not only can you compete while playing the board game, you can also compete with others through QuestBoard by attaining levels, items, and achievements for your character!</p>
+      <p>QuestBoard provides a way for you to organize board game events, meet fellow board gamers, and track your board game statistics/history through your very own customizable character, complete with a leveling system. The more quests (board game events) that you join and complete, the more experience you earn and the higher your level becomes. Not only can you compete while playing the board game, you can also compete with others through QuestBoard by attaining levels, items, and achievements for your character!</p>
 
       <p>Find and join a <a data-toggle="tooltip" data-placement="top" title="Board game event">quest</a>  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="Attend the board game event">Go on your quest</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="After the board game event occurs, check your notifications in the navigation bar for quest followups--upon completion, rewards will be distributed to your character">Claim your rewards</a> of <a data-toggle="tooltip" data-placement="top" title="Experience points (XP) are gained when completing a quest (attending a board game event and following up)">experience points</a> and <a data-toggle="tooltip" data-placement="top" title="Coins are a currency earned for completing tasks and quests; coins allow you to purchase items to customize your character">coins</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="Your level increases when you gain experience from completing quests">Level up!</a> <i class="fa fa-level-up" aria-hidden="true"></i></p>
     <% end %>

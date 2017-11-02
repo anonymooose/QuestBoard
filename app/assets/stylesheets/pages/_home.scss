@@ -25,6 +25,18 @@
   .hero-search {
     margin-top: 30px;
   }
+  .intro-wpr {
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  .intro-text {
+    margin-top: 15px;
+  }
 }
 
 .hero-wrapper-alt {
