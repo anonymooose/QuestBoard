@@ -21,7 +21,6 @@ if Game.all.blank?
   end
 end
 
-ADMINS = ['babyface_joe','trevor','rose','james','carla']
 
 
 if Achievement.all.blank?
@@ -35,7 +34,7 @@ if Achievement.all.blank?
    puts "achievements seeded"
  end
 
-ADMINS.each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } if User.first == nil
+['babyface_joe','trevor','rose','james','carla'].each { |name| User.create(username:"#{name}",email:"#{name}@admin.com",password:'123123') } unless User.any?
 User.first.avatar.update(top:1)
 {2=>[0,719], 3=>[1,444], 4=>[0,666], 5=>[1,123]}.each { |k,v| User.find(k).avatar.update(gender:v[0], hair:v[1], top:v[1], bottom:v[1], shoes:v[1]) }
 
