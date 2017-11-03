@@ -14,12 +14,14 @@
                   <div class="quest-header">
                     <div class="quest-date-box blue-box">
                       <span class="quest-date">
-                        <p class="date" style="margin-bottom:0px;"
-%><%= event.datetime.strftime("%b %e") %></p>
+                        <p class="date">
+                          <%= event.datetime.strftime("%b %e") %>
+                          </p>
                       </span>
                       <span class="quest-time">
-                        <p class="time" style="margin-bottom:0px;"
-%><%= event.datetime.strftime("%H:%M") %></p>
+                        <p class="time">
+                          <%= event.datetime.strftime("%H:%M") %>
+                          </p>
                       </span>
                     </div>
                     <div class="quest-top-info">
@@ -29,7 +31,7 @@
                       <span class="quest-distance">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <% if @location != nil %>
-                          <%= event.distance_from(@location, :units=>:kms).round(1) %> km from <%= @location %>
+                          <%= event.distance_from(@location, :units=>:kms).round(1) %> km away
                         <% else %>
                           <%= event.citycountry %>
                         <% end %>
