@@ -1,3 +1,14 @@
+<% provide(:nav_style, "homepage-player-dashboard") %>
+
+  <div id="spinner-overlay">
+    <div class="sk-folding-cube">
+      <div class="sk-cube1 sk-cube"></div>
+      <div class="sk-cube2 sk-cube"></div>
+      <div class="sk-cube4 sk-cube"></div>
+      <div class="sk-cube3 sk-cube"></div>
+    </div>
+  </div>
+
 <div class="hero-wrapper <%= 'hero-wrapper-alt' if user_signed_in? %>">
   <div class="container">
     <div class="row">
@@ -6,7 +17,12 @@
 
         <div class="main-heading-group">
           <% if user_signed_in? %>
-            <h2>find a quest</h2>
+          <div class="intro-wpr intro-wpr-alt">
+              <%= image_tag("questboard_mascot_fornow-01.svg") %>
+              <div class="intro-text">
+                <h2>find a quest</h2>
+              </div>
+            </div>
           <% else %>
             <div class="intro-wpr">
               <%= image_tag("questboard_mascot_fornow-01.svg") %>
@@ -45,7 +61,7 @@
       <h3>About QuestBoard</h3>
       <p>QuestBoard provides a way for you to organize board game events, meet fellow board gamers, and track your board game statistics/history through your very own customizable character, complete with a leveling system. The more quests (board game events) that you join and complete, the more experience you earn and the higher your level becomes. Not only can you compete while playing the board game, you can also compete with others through QuestBoard by attaining levels, items, and achievements for your character!</p>
 
-      <p>Find and join a <a data-toggle="tooltip" data-placement="top" title="Board game event">quest</a>  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="Attend the board game event">Go on your quest</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="After the board game event occurs, check your notifications in the navigation bar for quest followups--upon completion, rewards will be distributed to your character">Claim your rewards</a> of <a data-toggle="tooltip" data-placement="top" title="Experience points (XP) are gained when completing a quest (attending a board game event and following up)">experience points</a> and <a data-toggle="tooltip" data-placement="top" title="Coins are a currency earned for completing tasks and quests; coins allow you to purchase items to customize your character">coins</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="Your level increases when you gain experience from completing quests">Level up!</a> <i class="fa fa-level-up" aria-hidden="true"></i></p>
+      <p>Find and join a <a data-toggle="tooltip" data-placement="top" title="Board game event">quest</a>  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="Attend the board game event">Go on your quest</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="After the board game event occurs, check your notifications in the navigation bar for quest follow-ups--upon completion, rewards will be distributed to your character">Claim your rewards</a> of <a data-toggle="tooltip" data-placement="top" title="Experience points (XP) are gained when completing a quest (attending a board game event and following up)">experience points</a> and <a data-toggle="tooltip" data-placement="top" title="Coins are a currency earned for completing tasks and quests; coins allow you to purchase items to customize your character">coins</a> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> <a data-toggle="tooltip" data-placement="top" title="Your level increases when you gain experience from completing quests">Level up!</a> <i class="fa fa-level-up" aria-hidden="true"></i></p>
     <% end %>
     </div>
 
@@ -54,7 +70,7 @@
         <span>Are you ready to host your own quest?</span>
         <%= link_to t(".sign_in", default: "create quest"), new_event_path, class: "btn brand-btn brand-btn-red-invert" %>
       <% else %>
-        <span>Are you ready to level your board game stats? Let's go!</span>
+        <span>Are you ready to level up? Let's go!</span>
         <%= link_to t(".sign_in", default: "sign up"), new_user_registration_path, class: "btn brand-btn brand-btn-red-invert" %>
       <% end %>
     </div>

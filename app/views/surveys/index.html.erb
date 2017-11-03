@@ -7,28 +7,30 @@
       </div>
     </div>
     <div class="row is-flex">
-      <div class="col-sm-12">
-        <p>Please follow up on your recently completed quest(s) and <b>claim your rewards</b>.</p>
-      </div>
       <% if !@surveys.blank? %>
         <% for survey in @surveys.where(attended:false) %>
+          <div class="col-sm-12">
+            <p>Please follow up on your recently completed quest(s) and <b>claim your rewards</b>.</p>
+          </div>
           <div class="col-sm-4">
             <div class="card card-padding">
               <% event = survey.event %>
-                <span class="event-title"><%= event.title.split.map { |i| i.capitalize }.join(' ') %></span>
+
+            <%= link_to "#{event.title.split.map { |i| i.capitalize }.join(' ')}", event_path(event), class: "event-title" %>
+
                   <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= event.game.name %> </span>
                 <div class="quest-details">
                   <div class="detail-one">
                     <span class="brand-label">Occurred on:</span>
                     <span>
                       <style>margin-bottom:0px;</style>
-                      <p class="date"><%= event.datetime.strftime("%b %e, %Y") %></p> at
+                      <p class="date-year"><%= event.datetime.strftime("%b %e, %Y") %></p> at
                       <p class="time"><%= event.datetime.strftime("%H:%M") %></p>
                     </span>
                   </div>
                   <div class="detail-two">
                     <span class="brand-label">Hosted by:</span>
-                    <span><%= event.host.user.username %></span>
+                    <span><%= link_to "#{event.host.user.username}", user_path(event.host.user) %></span>
                   </div>
                 </div>
 
@@ -37,7 +39,9 @@
           </div>
         <% end %>
       <% else %>
-        <p>You haven't joined any quests yet! Go find some!</p>
+        <div class="col-sm-12">
+          <p>You haven't joined any quests yet! Go find some!</p>
+        </div>
       <% end %>
     </div>
   </div>

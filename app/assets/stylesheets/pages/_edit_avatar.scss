@@ -30,17 +30,17 @@
 
     .avatar-image {
       margin: 30px;
-
     }
 
     p {
       text-align: center;
       font-weight: bolder;
     }
-
-    .avatar-gender {
+    .btn {
+      margin-top: 30px;
       margin-bottom: 60px;
     }
+
   }
 
   .avatar-selection {
@@ -52,8 +52,38 @@
       margin: 5px;
     }
 
-    p{
+    p {
       font-weight: bolder;
+    }
+
+    img {
+      cursor: pointer;
+    }
+    .player-card {
+      background-color: #fff;
+      margin: 2em;
+      border-radius: 0 5px 5px 5px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+      margin: 0 15px 15px 15px;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .player-label {
+      display: block;
+      width: fit-content;
+      background-color: $brand-dark-gray;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      font-weight: 500;
+      color: #fff;
+      padding: 3px 15px 2px;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin-left: 15px;
     }
 
   }
@@ -63,48 +93,40 @@
 .avatar-choice {
   width: 80px;
   transition: all .05s ease;
+  border: solid 1px #f5f5f5;
+  margin: 5px;
 
   input {
     display: none;
   }
 
   input:checked ~ img {
-    box-shadow: 0 0 0 2px $brand-light-gray inset;
-    border-radius: 8px;
+    box-shadow: 0 0 0 2px $brand-med-gray inset;
   }
 
   &:hover {
-    box-shadow: 0 0 0 2px $brand-dark-gray inset;
-    border-radius: 8px;
+    box-shadow: 0 0 0 2px $brand-blue inset;
+    transition: .2s ease-in-out;
   }
 
+}
+
+.player-label-alt {
+  background-color: transparent;
+  color: #404040;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+}
+
+.avatar-gender img {
+  cursor: pointer;
 }
 
 .event-show-heading {
   background-color: $brand-dark-gray;
 }
 
-.player-card {
-  background-color: #fff;
-  margin: 2em;
-  border-radius: 0 5px 5px 5px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
-  margin: 0 15px 15px 15px;
-  padding: 10px;
 
-}
-
-.player-label {
-  display: block;
-  width: fit-content;
-  background-color: $brand-dark-gray;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  font-weight: 500;
-  color: #fff;
-  padding: 3px 15px 2px;
-  text-transform: uppercase;
-  font-size: 14px;
-  margin-left: 15px;
-}
