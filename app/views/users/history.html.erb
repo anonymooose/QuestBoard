@@ -9,18 +9,18 @@
         <% @events.each do |event| %>
           <div class="col-sm-4">
             <div class="card card-padding">
-                <span class="event-title"><%= event.title.split.map { |i| i.capitalize }.join(' ') %></span>
+                <%= link_to "#{event.title.split.map { |i| i.capitalize }.join(' ')}", event_path(event), class: "event-title" %>
                   <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= event.game.name %> </span>
                 <div class="quest-details">
                   <div class="detail-one">
                     <span class="brand-label">Occurred on:</span>
                     <span>
-                      <p class="date" style="margin-bottom:0px;"><%= event.datetime.strftime("%b %e, %Y") %></p> at <p class="time" style="margin-bottom:0px;"><%= event.datetime.strftime("%H:%M") %></p>
+                      <span class="date" style="margin-bottom:0px;"><%= event.datetime.strftime("%b %e, %Y") %></span><span class="time" style="margin-bottom:0px;">@<%= event.datetime.strftime("%H:%M") %></span>
                     </span>
                   </div>
                   <div class="detail-two">
                     <span class="brand-label">Hosted by:</span>
-                    <span><%= event.host.user.username %></span>
+                    <span><%= link_to "#{event.host.user.username}", user_path(event.host.user) %></span>
                   </div>
                 </div>
 

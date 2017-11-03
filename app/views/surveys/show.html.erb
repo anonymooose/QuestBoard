@@ -47,7 +47,7 @@
             <span class="brand-label">Players:</span>
             <% @event.players.each do |player|%>
               <hr>
-              <span class="player-username"><%= player.user.username %></span>
+              <span class="player-username"><%= link_to "#{player.user.username}", user_path(player.user) %></span>
               <span class="player-level">Level <%= player.user.level.floor %></span>
             <% end %>
           </div>

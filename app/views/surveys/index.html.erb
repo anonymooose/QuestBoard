@@ -23,9 +23,7 @@
                   <div class="detail-one">
                     <span class="brand-label">Occurred on:</span>
                     <span>
-                      <style>margin-bottom:0px;</style>
-                      <p class="date-year"><%= event.datetime.strftime("%b %e, %Y") %></p> at
-                      <p class="time"><%= event.datetime.strftime("%H:%M") %></p>
+                      <span class="date-year"><%= event.datetime.strftime("%b %e, %Y") %></span><span class="time">@<%= event.datetime.strftime("%H:%M") %></span>
                     </span>
                   </div>
                   <div class="detail-two">
@@ -40,7 +38,10 @@
         <% end %>
       <% else %>
         <div class="col-sm-12">
-          <p>You haven't joined any quests yet! Go find some!</p>
+          <p>You haven't joined any quests yet! Go <%= link_to "find some", root_path %>!</p>
+          <div class="questy">
+            <%= image_tag("questboard_mascot_fornow-01.svg") %>
+          </div>
         </div>
       <% end %>
     </div>
