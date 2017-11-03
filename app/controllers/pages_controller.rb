@@ -7,6 +7,9 @@ class PagesController < ApplicationController
     @events = Event.all.order(created_at: :desc).first(3)
   end
 
+  def about
+  end
+
   private
   def user_surveys
     current_user.surveys! unless current_user.nil?

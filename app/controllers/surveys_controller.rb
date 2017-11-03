@@ -24,12 +24,12 @@ class SurveysController < ApplicationController
       attendance ? @survey.vote = Player.find(survey_params[:vote].to_i) : @survey.vote = 0
       if attendance
         determine_change!
-        message = "Thanks for answering! You earned #{@event.coins} coins and #{@event.experience} xp!"
+        message = "Thanks for answering! You earned #{@event.coins} coins and #{@event.experience} XP!"
       else
         current_user.coins += 1
         current_user.players.where('event_id = ?', @event.id)[0].destroy
         error_check!
-        message = "Thanks for being honest! Here's 1 coin!"
+        message = "Thanks for being honest! You earned 1 coin!"
       end
     else
       survey_params[:host_attendance].drop(1).each do |survey_id|
@@ -37,7 +37,7 @@ class SurveysController < ApplicationController
       end
       @survey.host_win = Player.find(survey_params[:host_win].to_i)
       determine_change!
-      message = "Thanks for hosting. You earned #{@event.coins} coins and #{@event.experience} xp!"
+      message = "Thanks for hosting. You earned #{@event.coins} coins and #{@event.experience} XP!"
     end
     flash[:info] = message
     redirect_to surveys_path

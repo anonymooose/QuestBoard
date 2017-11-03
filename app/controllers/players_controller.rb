@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @event.add_user(current_user)
-    flash[:notice] = "You signed up for #{@event.title}! Have fun!!!!!!!"
+    flash[:notice] = "You signed up for #{@event.title}!"
     redirect_to event_path(@event)
   end
 
@@ -13,7 +13,7 @@ class PlayersController < ApplicationController
     unless @event.past?
       @player = @event.players.where("user_id = ?", current_user.id).first
       @player.destroy
-      flash[:notice] = "You've successfully left this event."
+      flash[:notice] = "You left the event #{@event.title}."
       redirect_to event_path(@event)
     else
       redirect_to root_path
