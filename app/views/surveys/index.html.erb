@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="row is-flex">
-      <% if !@surveys.blank? %>
+      <% if !@surveys.blank? && !@surveys.where(attended: false).blank? %>
         <% for survey in @surveys.where(attended:false) %>
           <div class="col-sm-12">
             <p>Please follow up on your recently completed quest(s) and <b>claim your rewards</b>.</p>
@@ -36,6 +36,13 @@
             </div>
           </div>
         <% end %>
+      <% elsif @surveys.where(attended: false).blank? && !@surveys.blank?  %>
+       <div class="col-sm-12">
+          <p>You don't have any outstanding follow up tasks right now!</p>
+          <div class="questy">
+            <%= image_tag("questboard_mascot_fornow-01.svg") %>
+          </div>
+        </div>
       <% else %>
         <div class="col-sm-12">
           <p>You haven't joined any quests yet! Go <%= link_to "find some", root_path %>!</p>
