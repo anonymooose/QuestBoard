@@ -9,6 +9,7 @@
   left: 0;
   bottom: 0;
   right: 0;
+  display: none;
 }
 
 #spinner-overlay:before {
@@ -20,6 +21,7 @@
   width: 100%;
   height: 100%;
   background-color: $brand-dark-gray;
+  opacity: 0.95;
 }
 
 .sk-folding-cube {
