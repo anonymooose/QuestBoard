@@ -1,3 +1,4 @@
+
 <div class="page-wrapper">
   <div class="container survey-index">
     <div class="ribbon-wrapper">
@@ -22,7 +23,9 @@
                   <div class="detail-one">
                     <span class="brand-label">Occurred on:</span>
                     <span>
-                      <time class="date-year" datetime="<%= event.datetime %>"></time> at <time class="time" datetime="<%= event.datetime %>"></time>
+                      <style>margin-bottom:0px;</style>
+                      <p class="date-year"><%= event.datetime.strftime("%b %e, %Y") %></p> at
+                      <p class="time"><%= event.datetime.strftime("%H:%M") %></p>
                     </span>
                   </div>
                   <div class="detail-two">

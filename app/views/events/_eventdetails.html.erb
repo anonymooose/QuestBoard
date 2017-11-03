@@ -1,6 +1,9 @@
 <header>
   <span class="quest-date">
-    <time class="date-year" datetime="<%= @event.datetime %>"></time> at <time class ="time" datetime="<%= @event.datetime %>"></time>
+    <p class="date-year time" style="margin-bottom:0px;"
+%>
+      <%= @event.datetime.strftime("%b %e, %Y at %H:%M") %>
+    </p>
   </span>
   <h3><%= @event.title.split.map { |i| i.capitalize }.join(' ') %></h3>
   <span class="game-title"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> <%= @event.game.name %></span>

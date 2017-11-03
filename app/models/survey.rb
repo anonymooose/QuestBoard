@@ -59,7 +59,7 @@ class Survey < ApplicationRecord
       counter = votes.group_by(&:itself).max_by{|_,v|v.size}
       # [id, [id,id,id,...]]
       if counter != nil
-        if counter.last.length > (self.game.max_players)/2
+        if counter.last.length > (self.event.players.count)/2
           self.event.win = Player.find(counter.first).user
           self.event.save
           return true
